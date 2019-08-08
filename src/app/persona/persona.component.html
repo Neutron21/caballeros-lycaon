@@ -1,8 +1,11 @@
 <div class="container">
-    <label for="">Operador A</label>
-    <input type="text" class="" [(ngModel)]="opA">
-    <label for="">Operador B</label>
-    <input type="text" class="" [(ngModel)]="opB">
-    <button (click)="sumar()">OK</button>
+    <form >
+        <label for="">Operador A</label>
+        <input type="number" class="" name="opA" [(ngModel)]="opA">
+        <label for="">Operador B</label>
+        <input type="number" class="" name="opB" [(ngModel)]="opB">
+        <button type="submit" (click)="sumar()">OK</button>
+    </form>
+    {{ mensaje ? mensaje : "" }}
     <label for="">Resultado: {{ result }}</label>
 </div>

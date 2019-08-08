@@ -7,12 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PersonaComponent implements OnInit {
 
-  mensaje: string = "s"; 
+  mensaje: string = ""; 
   
   opA:number; 
   opB:number; 
   result:number;
-  constructor() { }
+
+  constructor() {   }
 
   ngOnInit() {
   }
@@ -21,5 +22,6 @@ export class PersonaComponent implements OnInit {
   }
   sumar(){
     this.result = Number(this.opA) + Number(this.opB)
+    this.mensaje = "Fin";
   }
 }
