@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Res } from '../res.model';
 
 @Component({
   selector: 'app-persona',
@@ -8,11 +9,10 @@ import { Component, OnInit } from '@angular/core';
 export class PersonaComponent implements OnInit {
 
   mensaje: string = ""; 
+  @Output() res = new EventEmitter<Res>();
+  opA:string;
+  opB:string;
   
-  opA:number; 
-  opB:number; 
-  result:number;
-
   constructor() {   }
 
   ngOnInit() {
@@ -21,7 +21,9 @@ export class PersonaComponent implements OnInit {
     this.mensaje = (<HTMLInputElement>event.target).value;
   }
   sumar(){
-    this.result = Number(this.opA) + Number(this.opB)
-    this.mensaje = "Fin";
+    let res1 = new Res(this.opA, this.opB);
+    this.res.emit(res1)
+    this.opA = "";
+    this.opB = "";
   }
 }

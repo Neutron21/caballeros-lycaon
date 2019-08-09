@@ -4,25 +4,12 @@
     Welcome to {{ title }}¡ :)
   </h1>
   
- <app-persona></app-persona>
-<div class="container">  
-  <form class="form-row">
-    <div class="form-group col-md-2">
-      <label for="nombre" class="sr-only">Nombre</label>
-      <input type="text" name="nombre" id="nombre" 
-      placeholder="Nombre" class="form-control" [(ngModel)]="nombreInput">
-    </div>
-    <div class="form-group col-md-2">
-      <label for="apellido" class="sr-only">Apellido</label>
-      <input type="text" name="apellido" id="apellido" 
-      placeholder="apellido" class="form-control" [(ngModel)]="apellidoInput">
-    </div>
-    <div class="col-md-2">
-      <button type="submit" class="btn btn-primary" (click)="onAddPersona()">Guardar</button>
-    </div>
-  </form>
-  <div class="col-xs-12" *ngFor="let persona of personas; let indice = index">
-    {{indice+1}}: {{persona.nombre}} {{persona.apellido}}
-  </div>
+  <app-persona (res)="sumaEjecucion($event)">  </app-persona>
+  <h3>Resultado: {{ result }}</h3>
+  <app-formulario (personaCreada)="onPersonaAgregada($event)"></app-formulario>
+  <app-persona-form *ngFor="let personaElmt of personas; let i = index"
+                  [persona]="personaElmt"
+                  [indice]="i"></app-persona-form>
+
 </div>
 <router-outlet></router-outlet>
