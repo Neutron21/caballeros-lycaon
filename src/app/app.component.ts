@@ -1,22 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Persona } from './persona.model';
+import { PersonasService } from './personas.service';
 import { Res } from './res.model';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [ PersonasService ]
 })
-export class AppComponent {
-
+export class AppComponent implements OnInit {
+  
   title = 'borrador';
-  personas: Persona[] = [new Persona("Juan", "Pérez"), new Persona("Laura", "Juárez")];
+  personas: Persona[] = [];
   result:number;
-
-  onPersonaAgregada(persona:Persona){
-    
-    this.personas.push(persona);
+  
+  constructor(private personasService: PersonasService){  }
+  
+  ngOnInit(): void {
+    this.personas = this.personasService.personas;
   }
+ 
   sumaEjecucion(res:Res){
     this.result= Number(res.aOp) + Number(res.bOp);
   }

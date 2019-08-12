@@ -4,9 +4,9 @@
     Welcome to {{ title }}¡ :)
   </h1>
   
-  <app-persona (res)="sumaEjecucion($event)">  </app-persona>
+  <app-persona>  </app-persona>
   <h3>Resultado: {{ result }}</h3>
-  <app-formulario (personaCreada)="onPersonaAgregada($event)"></app-formulario>
+  <app-formulario (personaCreada)="onAddPersona($event)"></app-formulario>
   <app-persona-form *ngFor="let personaElmt of personas; let i = index"
                   [persona]="personaElmt"
                   [indice]="i"></app-persona-form>
