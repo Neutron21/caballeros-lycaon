@@ -1,0 +1,20 @@
+#loginComponent{
+    background-color: #4B515D;
+    padding: 5px;
+    border-radius: 8px;
+    min-width: 350px;
+}
+.col-centrada{
+    float: none;
+    margin: 0 auto;
+    padding: 3px;
+}
+.btn-ok{
+    background-color: #1C2331;
+    color: #ff4444 !important;
+    margin-top: 2px;
+    width: 40%;
+}
+.dark-input{
+    background-color: transparent  !important;
+}
