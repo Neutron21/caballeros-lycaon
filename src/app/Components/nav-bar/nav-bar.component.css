@@ -1,0 +1,21 @@
+.color-dark{
+    background-color: #1C2331;
+}
+.text{
+    color: #FFF !important;
+}
+.danger-color{
+    color: #ff4444 !important;
+}
+.danger-color:hover{
+    background-color: #4B515D;
+}
+.red-button{
+    background-color: #ff4444;
+}
+#login{
+    color: #ff4444 !important;
+}
+#login:hover{
+    text-decoration: none;
+}

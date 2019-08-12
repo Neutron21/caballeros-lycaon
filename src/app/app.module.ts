@@ -7,13 +7,19 @@ import { PersonaComponent } from './persona/persona.component';
 import { FormularioComponent } from './formulario/formulario.component';
 import { PersonaFormComponent } from './persona-form/persona-form.component';
 import { Logger } from './logger.service';
+import { NavBarComponent } from './Components/nav-bar/nav-bar.component';
+import { LoginComponent } from './Components/login/login.component';
+import { CarruselComponent } from './Components/carrusel/carrusel.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PersonaComponent,
     FormularioComponent,
-    PersonaFormComponent
+    PersonaFormComponent,
+    NavBarComponent,
+    LoginComponent,
+    CarruselComponent
   ],
   imports: [
     BrowserModule,

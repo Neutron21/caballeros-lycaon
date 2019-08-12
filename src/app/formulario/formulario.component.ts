@@ -14,7 +14,11 @@ export class FormularioComponent implements OnInit {
   nombreInput:string;
   apellidoInput:string;
 
-  constructor(private personasService: PersonasService) { }
+  constructor(private personasService: PersonasService) {
+    this.personasService.saludar.subscribe(
+      (indice: number) => { alert("Indice: "+indice)}
+    ); 
+   }
 
   ngOnInit() {  }
 
