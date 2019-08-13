@@ -1,0 +1,155 @@
+.fontStyle{
+    font-family: "Georgia", serif;
+}@import url('https://fonts.googleapis.com/css?family=Overpass');
+
+.left-side {
+    position: absolute;
+    height: 110px;
+    width: 100vw;
+    background: #000;
+    overflow: hidden;
+    z-index: 3;
+}
+
+.right-side {
+    position: absolute;
+    height: 110px;
+    width: 100vw;
+    background: #000;
+    z-index: 3;
+    overflow: hidden;
+}
+.hover {
+    top: 10px;
+    position: absolute;
+    float: left;
+    height: 80px;
+    width: 70px;
+    cursor: none;
+    overflow: hidden;
+}
+
+.bit-top {
+	position: absolute;
+	left: 0%;
+	top: 0px;
+	height: 5px;
+	width: 10px;
+	background: #fff;
+}
+
+.bit-top-left {
+	position: absolute;
+	left: 0%;
+	top: 5px;
+	height: 5px;
+	width: 5px;
+	background: #fff;
+}
+
+
+.bit-top-right {
+	position: absolute;
+	right: 0%;
+	top: 0px;
+	height: 5px;
+	width: 10px;
+	background: #fff;
+}
+
+.bit-top-right-2 {
+	position: absolute;
+	right: 0%;
+	top: 0px;
+	height: 10px;
+	width: 5px;
+	background: #fff;
+}
+
+.bit-bottom-left {
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	height: 10px;
+	width: 5px;
+	background: #fff;	
+}
+
+.bit-bottom-left-2 {
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	height: 5px;
+	width: 10px;
+	background: #fff;		
+}
+
+.bit-bottom-right {
+	position: absolute;
+	bottom: 0%;
+	right: 0px;
+	height: 5px;
+	width: 10px;
+	background: #fff;			
+}
+.bit-bottom-right-2 {
+	position: absolute;
+	bottom: 0%;
+	right: 0px;
+	height: 10px;
+	width: 5px;
+	background: #fff;			
+}
+
+.blur {
+    position: absolute;
+    /* color: #fefefe; */
+    color: #ff4444;
+    font-family: 'Overpass', sans-serif;
+    font-size: 64px;
+    letter-spacing: 20px;
+    margin: auto;
+    width: 100%;
+    filter: blur(5px);
+    cursor: none;
+    overflow: hidden;
+    text-align: center;
+    z-index: 3;
+}
+
+.focus {
+    position: absolute;
+    /* color: #fefefe; */
+    color: #ff4444;
+    font-family: 'Overpass', sans-serif;
+    font-size: 64px;
+    letter-spacing: 20px;
+    margin: auto;
+    width: 100%;
+    filter: blur(0px);
+    cursor: none;
+    overflow: hidden;
+    text-align: center;
+    z-index: 2;
+}
+
+.container-estilo {
+	position: relative;
+	height: 100px;
+	width: 100%;
+	overflow: hidden;
+}
+
+
+body {
+	background: #000;
+	margin: 0;
+	padding: 0;
+	cursor: none;
+}
+/* FIN DE LOS EFECTOS*/
+
+.letraStyle{
+	color: aliceblue;
+	font-size: 150%;
+}
