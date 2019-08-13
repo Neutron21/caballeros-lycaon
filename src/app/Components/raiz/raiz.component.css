@@ -138,17 +138,15 @@
 	height: 100px;
 	width: 100%;
 	overflow: hidden;
-}
-
-
-body {
 	background: #000;
-	margin: 0;
-	padding: 0;
 	cursor: none;
 }
-/* FIN DE LOS EFECTOS*/
 
+/* FIN DE LOS EFECTOS*/
+.back-image{
+	height: 50vh;
+	width: 25vw;
+}
 .letraStyle{
 	color: aliceblue;
 	font-size: 150%;
