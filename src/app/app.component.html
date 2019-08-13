@@ -1,7 +1,7 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center" class="grey-darken">
   <app-nav-bar></app-nav-bar>
-  <h1>
+  <!-- <h1>
     Welcome to {{ title }}¡ :)
   </h1>
   
@@ -10,13 +10,11 @@
   <app-formulario (personaCreada)="onAddPersona($event)"></app-formulario>
   <app-persona-form *ngFor="let personaElmt of personas; let i = index"
                   [persona]="personaElmt"
-                  [indice]="i"></app-persona-form>
+                  [indice]="i"></app-persona-form> -->
 
                   
                   
-  <router-outlet class="grey-darken"></router-outlet>
+  <router-outlet class="grey-darken body"></router-outlet>
    
 </div>
-<div class="spinner-grow text-secondary" style="width: 4rem; height: 4rem;" role="status">
-    <span class="sr-only">Loading...</span>
-  </div>   
+<app-footer></app-footer>

@@ -16,5 +16,11 @@
     width: 40%;
 }
 .dark-input{
-    background-color: transparent  !important;
+    background-color: #bdbdbd;
+}
+.label-login{
+    color: #fff ;
+}
+.text{
+    color: #ff4444;
 }

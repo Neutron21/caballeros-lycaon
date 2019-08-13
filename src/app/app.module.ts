@@ -10,6 +10,9 @@ import { Logger } from './logger.service';
 import { NavBarComponent } from './Components/nav-bar/nav-bar.component';
 import { LoginComponent } from './Components/login/login.component';
 import { CarruselComponent } from './Components/carrusel/carrusel.component';
+import { DescripcionComponent } from './Components/descripcion/descripcion.component';
+import { FooterComponent } from './Components/footer/footer.component';
+import { LoaderComponent } from './Components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,10 @@ import { CarruselComponent } from './Components/carrusel/carrusel.component';
     PersonaFormComponent,
     NavBarComponent,
     LoginComponent,
-    CarruselComponent
+    CarruselComponent,
+    DescripcionComponent,
+    FooterComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
