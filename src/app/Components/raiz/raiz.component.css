@@ -146,8 +146,10 @@
 .back-image{
 	height: 50vh;
 	width: 25vw;
+	min-height: 390px !important;
 }
 .letraStyle{
 	color: aliceblue;
 	font-size: 150%;
+	margin-top: 20px;
 }

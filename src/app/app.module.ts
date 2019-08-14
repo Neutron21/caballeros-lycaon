@@ -10,7 +10,6 @@ import { Logger } from './logger.service';
 import { NavBarComponent } from './Components/nav-bar/nav-bar.component';
 import { LoginComponent } from './Components/login/login.component';
 import { CarruselComponent } from './Components/carrusel/carrusel.component';
-import { DescripcionComponent } from './Components/descripcion/descripcion.component';
 import { FooterComponent } from './Components/footer/footer.component';
 import { LoaderComponent } from './Components/loader/loader.component';
 import { RaizComponent } from './Components/raiz/raiz.component';
@@ -24,7 +23,6 @@ import { RaizComponent } from './Components/raiz/raiz.component';
     NavBarComponent,
     LoginComponent,
     CarruselComponent,
-    DescripcionComponent,
     FooterComponent,
     LoaderComponent,
     RaizComponent

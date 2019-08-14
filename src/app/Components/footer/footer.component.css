@@ -4,3 +4,23 @@
 .text{
     color: #FFF !important;
 }
+.fa-instagram{
+    color: #FFF;
+}
+.fa-facebook-square{
+    color: #1565c0 ;
+}
+.small-text{
+    font-size: 60%;
+}
+.div-smallText{
+    padding-top: 10px;
+}
+.redSocial{
+    text-decoration: none;
+    color: #FFF;
+}
+.redSocial:hover{
+    color: #FF4444;
+    text-shadow: 1px 1px 8px #FFF;
+}
