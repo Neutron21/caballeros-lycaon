@@ -13,6 +13,7 @@ import { CarruselComponent } from './Components/carrusel/carrusel.component';
 import { FooterComponent } from './Components/footer/footer.component';
 import { LoaderComponent } from './Components/loader/loader.component';
 import { RaizComponent } from './Components/raiz/raiz.component';
+import { QuienesComponent } from './Components/quienes/quienes.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { RaizComponent } from './Components/raiz/raiz.component';
     CarruselComponent,
     FooterComponent,
     LoaderComponent,
-    RaizComponent
+    RaizComponent,
+    QuienesComponent
   ],
   imports: [
     BrowserModule,

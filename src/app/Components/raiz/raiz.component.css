@@ -150,6 +150,9 @@
 }
 .letraStyle{
 	color: aliceblue;
-	font-size: 150%;
+	font-size: 130%;
 	margin-top: 20px;
+}
+.titulos{
+	font-size: 4vh;
 }

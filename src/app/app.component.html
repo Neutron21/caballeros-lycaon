@@ -1,5 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center" class="grey-darken">
+<div class="grey-darken">
   <app-nav-bar></app-nav-bar>
   <!-- <h1>
     Welcome to {{ title }}¡ :)
@@ -11,10 +11,10 @@
   <app-persona-form *ngFor="let personaElmt of personas; let i = index"
                   [persona]="personaElmt"
                   [indice]="i"></app-persona-form> -->
-
-                  
-                  
-  <router-outlet class="grey-darken body"></router-outlet>
+            
+  <div class="page-body">
+  <router-outlet class="grey-darken"></router-outlet>
+</div>
    
 </div>
 <app-footer></app-footer>
