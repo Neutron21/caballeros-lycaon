@@ -15,6 +15,7 @@ import { LoaderComponent } from './Components/loader/loader.component';
 import { RaizComponent } from './Components/raiz/raiz.component';
 import { QuienesComponent } from './Components/quienes/quienes.component';
 import { TipsComponent } from './Components/tips/tips.component';
+import { DataServices } from './Services/dataServices'
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { TipsComponent } from './Components/tips/tips.component';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [Logger],
+  providers: [Logger, DataServices],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
