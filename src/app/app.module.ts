@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PersonaComponent } from './persona/persona.component';
-import { FormularioComponent } from './formulario/formulario.component';
+import { FormularioComponent } from './Components/formulario/formulario.component';
 import { PersonaFormComponent } from './persona-form/persona-form.component';
 import { Logger } from './logger.service';
 import { NavBarComponent } from './Components/nav-bar/nav-bar.component';
@@ -14,6 +14,7 @@ import { FooterComponent } from './Components/footer/footer.component';
 import { LoaderComponent } from './Components/loader/loader.component';
 import { RaizComponent } from './Components/raiz/raiz.component';
 import { QuienesComponent } from './Components/quienes/quienes.component';
+import { TipsComponent } from './Components/tips/tips.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { QuienesComponent } from './Components/quienes/quienes.component';
     FooterComponent,
     LoaderComponent,
     RaizComponent,
-    QuienesComponent
+    QuienesComponent,
+    TipsComponent
   ],
   imports: [
     BrowserModule,

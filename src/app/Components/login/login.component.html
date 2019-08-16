@@ -4,16 +4,16 @@
           <h4 class="text">Ingresar</h4>
             <div class="col-centrada">
               <label for="correo" class=" label-login">Correo</label>
-              <input type="email" name="email" id="correo" 
-              placeholder="@Email" class="form-control dark-input" [(ngModel)]="nombreInput" required>
+              <input type="email" name="email" id="correo" [(ngModel)]="correo"
+              placeholder="@Email" class="form-control dark-input" >
             </div>
             <div class="col-centrada">
               <label for="password" class=" label-login">Password</label>
-              <input type="password" name="password" id="password" 
-              placeholder="Password" class="form-control dark-input" [(ngModel)]="apellidoInput" required>
+              <input type="password" name="password" id="password" [(ngModel)]="password"
+              placeholder="Password" class="form-control dark-input" >
             </div>
             <div class="d-flex justify-content-center">
-              <button type="submit" class="btn btn-ok" (click)="onAddPersona()">Acceder</button>
+              <button type="submit" class="btn btn-ok" (click)="loginSystem()">Acceder</button>
             </div>
           </form>
     </div>

@@ -3,5 +3,5 @@
     background-color: #424242;
  }
  .page-body{
-   height: 85vh ;
+   min-height: 85vh ;
  }
