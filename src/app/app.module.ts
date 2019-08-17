@@ -16,6 +16,8 @@ import { RaizComponent } from './Components/raiz/raiz.component';
 import { QuienesComponent } from './Components/quienes/quienes.component';
 import { TipsComponent } from './Components/tips/tips.component';
 import { DataServices } from './Services/dataServices'
+import { HttpClientModule } from '@angular/common/http';
+import { LoginService } from './Components/login/login.services';
 
 @NgModule({
   declarations: [
@@ -35,9 +37,10 @@ import { DataServices } from './Services/dataServices'
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [Logger, DataServices],
+  providers: [Logger, DataServices, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
