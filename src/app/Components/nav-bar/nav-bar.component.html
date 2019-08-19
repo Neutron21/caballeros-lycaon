@@ -27,7 +27,13 @@
           <li class="nav-item">
               <a id="login" *ngIf="!sesionActiva()" routerLink="login">Iniciar Sesión</a>
               <a id="login" *ngIf="sesionActiva()" routerLink="miPerfil">Perfil</a>
-              <a id="login" *ngIf="sesionActiva()" (click)="cerrarSesion()" routerLink="login">Cerrar Sesión</a>
+              <a id="login" *ngIf="sesionActiva()" 
+                 (click)="cerrarSesion()" routerLink="login" 
+                 title="Cerrar Sesion" data-toggle="tooltip" 
+                 data-placement="bottom" title="Cerrar Sesion">
+              <h6> <i class="fa fa-external-link" style="font-size:36px;"></i></h6>
+
+              </a>
             </li>
       </ul>
    

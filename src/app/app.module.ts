@@ -18,6 +18,7 @@ import { TipsComponent } from './Components/tips/tips.component';
 import { DataServices } from './Services/dataServices'
 import { HttpClientModule } from '@angular/common/http';
 import { LoginService } from './Services/login.services';
+import { Guardian } from './Services/guardian.service';
 import { PerfilComponent } from './Components/perfil/perfil.component';
 import { IntinerarioComponent } from './Components/intinerario/intinerario.component';
 import { MiembrosComponent } from './Components/miembros/miembros.component';
@@ -46,7 +47,7 @@ import { MiembrosComponent } from './Components/miembros/miembros.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [Logger, DataServices, LoginService],
+  providers: [Logger, DataServices, LoginService, Guardian],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

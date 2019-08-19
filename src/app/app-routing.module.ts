@@ -8,6 +8,7 @@ import { TipsComponent } from './Components/tips/tips.component';
 import { IntinerarioComponent } from './Components/intinerario/intinerario.component';
 import { PerfilComponent } from './Components/perfil/perfil.component';
 import { MiembrosComponent } from './Components/miembros/miembros.component';
+import { Guardian } from './Services/guardian.service';
 
 const routes: Routes = [
   { path: '', component: RaizComponent },
@@ -15,9 +16,10 @@ const routes: Routes = [
   { path: 'galeria', component: CarruselComponent }, 
   { path: 'quienes-somos', component: QuienesComponent }, 
   { path: 'tips', component: TipsComponent }, 
-  { path: 'intinerario', component: IntinerarioComponent }, 
-  { path: 'miPerfil', component: PerfilComponent }, 
-  { path: 'miembros', component: MiembrosComponent }, 
+  // Rutas con sesion
+  { path: 'intinerario', component: IntinerarioComponent, canActivate: [Guardian] }, 
+  { path: 'miPerfil', component: PerfilComponent, canActivate: [Guardian]}, 
+  { path: 'miembros', component: MiembrosComponent, canActivate: [Guardian] }, 
 ];
 
 @NgModule({
