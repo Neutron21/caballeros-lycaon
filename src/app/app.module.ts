@@ -17,7 +17,10 @@ import { QuienesComponent } from './Components/quienes/quienes.component';
 import { TipsComponent } from './Components/tips/tips.component';
 import { DataServices } from './Services/dataServices'
 import { HttpClientModule } from '@angular/common/http';
-import { LoginService } from './Components/login/login.services';
+import { LoginService } from './Services/login.services';
+import { PerfilComponent } from './Components/perfil/perfil.component';
+import { IntinerarioComponent } from './Components/intinerario/intinerario.component';
+import { MiembrosComponent } from './Components/miembros/miembros.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,10 @@ import { LoginService } from './Components/login/login.services';
     LoaderComponent,
     RaizComponent,
     QuienesComponent,
-    TipsComponent
+    TipsComponent,
+    PerfilComponent,
+    IntinerarioComponent,
+    MiembrosComponent
   ],
   imports: [
     BrowserModule,

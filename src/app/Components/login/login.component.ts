@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { DataServices } from '../../Services/dataServices'
 import { Login } from '../../Models/login.model'
 import { NgForm } from '@angular/forms';
-import { LoginService } from './login.services'
+import { LoginService } from '../../Services/login.services'
 
 @Component({
   selector: 'app-login',
@@ -12,6 +12,7 @@ import { LoginService } from './login.services'
 })
 export class LoginComponent implements OnInit {
 
+  @Output() infoSession = new EventEmitter<boolean>();
   correo:string;
   password:string;
   personas: Login[] = [
@@ -30,14 +31,12 @@ export class LoginComponent implements OnInit {
 
     console.log("this.correo "+this.correo)
     console.log("this.password "+this.password)
-    
-      alert("logeando");
-      let login1 = new Login(this.correo, this.password);
-      this.personas.push(login1);
       
+      // let login1 = new Login(this.correo, this.password);
+      // this.personas.push(login1);
+      this.loginService.login(this.correo, this.password);
+      this.infoSession.emit(this.loginService.isAutenticated());
       // this.dataServices.guardarLogin(this.personas);
 
-   
-    
   }
 }

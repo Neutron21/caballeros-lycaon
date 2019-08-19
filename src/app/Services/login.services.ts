@@ -2,6 +2,7 @@
 import * as firebase from 'firebase';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
+import { error } from '@angular/compiler/src/util';
 
 @Injectable()
 export class LoginService{
@@ -15,14 +16,29 @@ export class LoginService{
                 firebase.auth().currentUser.getIdToken().then(
                     token => {
                         this.token = token;
+                        this.router.navigate(['/']);
+                        
+                        console.log("Auth ok!");
+                        
                     }
                 )
             }
         )
-        this.router.navigate(['/']);
+        
     }
     
     getIdToken(){
         return this.token;
+    }
+    isAutenticated(){
+        return this.token != null;
+    }
+    logout(){
+        firebase.auth().signOut().then( 
+            () => {
+                this.token = null;
+                this.router.navigate(['login']);
+            }
+        ).catch( error => console.error("error de Logout: "+error))
     }
 }

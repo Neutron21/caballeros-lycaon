@@ -1,19 +1,10 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="grey-darken">
-  <app-nav-bar></app-nav-bar>
-  <!-- <h1>
-    Welcome to {{ title }}¡ :)
-  </h1>
   
-  <app-persona>  </app-persona>
-  <h3>Resultado: {{ result }}</h3>
-  <app-formulario (personaCreada)="onAddPersona($event)"></app-formulario>
-  <app-persona-form *ngFor="let personaElmt of personas; let i = index"
-                  [persona]="personaElmt"
-                  [indice]="i"></app-persona-form> -->
-            
+  <app-nav-bar [sesion]="isAut" (infoSession)="onSesion($event)"></app-nav-bar>
+ 
   <div class="page-body">
-  <router-outlet class="grey-darken"></router-outlet>
+  <router-outlet class="grey-darken"> </router-outlet>
 </div>
    
 </div>
