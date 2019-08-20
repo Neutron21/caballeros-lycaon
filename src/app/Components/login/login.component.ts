@@ -13,30 +13,41 @@ import { LoginService } from '../../Services/login.services'
 export class LoginComponent implements OnInit {
 
   @Output() infoSession = new EventEmitter<boolean>();
-  correo:string;
-  password:string;
+  correo: string;
+  password: string;
+  msj: string;
   personas: Login[] = [
     new Login("Juan", "Pérez"),
     new Login("Laura", "Juárez")
-];
+  ];
   constructor(private dataServices: DataServices,
-              private loginService: LoginService) { }
+    private loginService: LoginService) { }
 
   ngOnInit() {
   }
 
-  loginSystem(form: NgForm){
-    this.correo = form.value.email;
-    this.password = form.value.password;
+  loginSystem(form: NgForm) {
 
-    console.log("this.correo "+this.correo)
-    console.log("this.password "+this.password)
-      
-      // let login1 = new Login(this.correo, this.password);
-      // this.personas.push(login1);
+    if (form.value.email == "" || form.value.password == "") {
+      this.msj = "Usuario ó password no válido!"
+    } else {
+      this.correo = form.value.email;
+      this.password = form.value.password;
+
       this.loginService.login(this.correo, this.password);
-      this.infoSession.emit(this.loginService.isAutenticated());
-      // this.dataServices.guardarLogin(this.personas);
+      // Damos un lapso para que se detecte la autenticacion del usuario
+      setTimeout(() => {
+      this.checkLogin();
+      }, 1000);
 
+    }
+  }
+  checkLogin() {
+    if (!this.loginService.isAutenticated()) {
+      this.msj = "Usuario ó password no válido!"
+    }
+  }
+  modifyInput() {
+    this.msj = "";
   }
 }

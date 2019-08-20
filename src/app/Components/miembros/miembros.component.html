@@ -1,1 +1,22 @@
-<p>miembros works!</p>
+<div class="container text-style">
+    <p *ngFor="let member of miembros">
+        {{member.nombres}} {{member.aPat}} {{member.aMat}} </p>
+
+        <form class="form" #f="ngForm" (ngSubmit)="f.form.valid && addUser(f)">
+                <h4 class="text">Ingresar</h4>
+                  <div class="col-centrada">
+                    <label for="correo" class="label-login">Correo</label>
+                    <input type="email" name="email" id="email" ngModel
+                    
+                    placeholder="@Email" class="form-control dark-input" >
+                  </div>
+                 
+                  <div class="d-flex justify-content-center">
+                      
+                    <button type="submit" class="btn btn-primary"
+                    data-toggle="modal" data-target="#loaderModal">Agregar</button>
+                  </div>
+                </form>
+        
+        
+    </div>

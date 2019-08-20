@@ -25,3 +25,8 @@
 .text{
     color: #ff4444;
 }
+.danger-color{
+    color: #ff4444;
+    font-size: 15px;
+    margin-top: 5px;
+}

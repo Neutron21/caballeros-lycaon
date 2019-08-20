@@ -5,16 +5,34 @@
             <div class="col-centrada">
               <label for="correo" class="label-login">Correo</label>
               <input type="email" name="email" id="email" ngModel
+              (input)="modifyInput()"
               placeholder="@Email" class="form-control dark-input" >
             </div>
             <div class="col-centrada">
               <label for="password" class=" label-login">Password</label>
               <input type="password" name="password" id="password" ngModel
+              (input)="modifyInput()"
               placeholder="Password" class="form-control dark-input" >
+              <label *ngIf="msj && !checkLogin()" for="msj" class="danger-color label-login">{{msj}}</label>
             </div>
             <div class="d-flex justify-content-center">
-              <button type="submit" class="btn btn-ok">Acceder</button>
+                
+              <button type="submit" class="btn btn-ok"
+              data-toggle="modal" data-target="#loaderModal">Acceder</button>
             </div>
           </form>
     </div>
 </div>
+<!-- <div class="modal fade" id="loaderModal" tabindex="-1" role="dialog" aria-labelledby="loaderModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content text-modal">
+        <div class="modal-header color-dark">
+          <h5 class="modal-title danger-color" id="loaderModalLabel">Mensaje enviado</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      <app-loader></app-loader>
+      </div>
+    </div>
+  </div> -->

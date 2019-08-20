@@ -19,7 +19,7 @@ const routes: Routes = [
   // Rutas con sesion
   { path: 'intinerario', component: IntinerarioComponent, canActivate: [Guardian] }, 
   { path: 'miPerfil', component: PerfilComponent, canActivate: [Guardian]}, 
-  { path: 'miembros', component: MiembrosComponent, canActivate: [Guardian] }, 
+  { path: 'miembros', component: MiembrosComponent, }, 
 ];
 
 @NgModule({
