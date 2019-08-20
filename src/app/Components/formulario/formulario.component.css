@@ -4,3 +4,13 @@
 .label-text{
     color: #fff ;
 }
+.color-dark{
+  background-color: #45526e;
+}
+.text-modal{
+  color: black;
+  background-color: #e0e0e0;
+}
+.text-modal .danger-color{
+  color: #ff4444 !important;
+}

@@ -1,10 +1,9 @@
 <div class="d-flex justify-content-center">
-  
     <div class="" id="loginComponent" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <form class="form" #f="ngForm" (ngSubmit)="f.form.valid && loginSystem(f)">
           <h4 class="text">Ingresar</h4>
             <div class="col-centrada">
-              <label for="correo" class=" label-login">Correo</label>
+              <label for="correo" class="label-login">Correo</label>
               <input type="email" name="email" id="email" ngModel
               placeholder="@Email" class="form-control dark-input" >
             </div>

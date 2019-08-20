@@ -1,9 +1,16 @@
 .ojos{
     width: 100%;
-    height: 40vh;
+    height: 28vh;
 }
 .auyando{
     width: 100%;
     height: 60vh;
-    
+}
+.titulos{
+	font-size: 4vh;
+}
+.letraStyle{
+	color: aliceblue;
+	font-size: 130%;
+	/* margin-top: 20px; */
 }

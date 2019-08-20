@@ -1,28 +1,50 @@
-<form class="form-horizontal form-contactUs">
-    <p>Dejanos tu nombre, correo electronico y nosotros te responderemos a la brevedad,
-         os si lo deseas nos puedes contactar por nuestras redes sociales</p>
+<form class="form-horizontal form-contactUs" #f="ngForm" (ngSubmit)="f.form.valid && enviarMsj(f)">
+    <p>Dejanos tu nombre, correo electrónico y nosotros te responderemos a la brevedad,
+         ó si lo deseas nos puedes contactar por nuestras redes sociales.</p>
     <div class="row">
       <div class="col-md-6"> 
           <div class="form-group">
-              <label class="label-text control-label" for="nombre">Nombre</label>
-              <input type="text" class="form-control mb-2" id="nombre" placeholder="Nombre" required>
+              <label class="label-text control-label" for="nombre">Nombre:</label>
+              <input type="text" class="form-control mb-2" id="nombre" name="nombre" placeholder="Nombre" [(ngModel)]="nombre">
           </div>
           <div class="form-group">
-              <label class="label-text control-label" for="correo">Correo</label>
+              <label class="label-text control-label" for="correo">Correo:</label>
                   <div class="input-group mb-2">
                       <div class="input-group-prepend">
                         <div class="input-group-text">@</div>
                       </div>
-                      <input type="text" class="form-control" id="correo" placeholder="Correo">
+                      <input type="text" class="form-control" id="correo" name="correo" placeholder="Correo" [(ngModel)]="correo">
                   </div>
           </div>
       </div>
       <div class="col-xs-12 col-md-6">
         <div class="form-group">
-            <label class="label-text control-label" for="text-area-msj">Deja tu mensaje</label>
-            <textarea class="form-control" id="text-area-msj" rows="3" required></textarea>
+            <label class="label-text control-label" for="textAreaMsj">Deja tu mensaje:</label>
+            <textarea class="form-control" id="textAreaMsj" name="textAreaMsj" rows="3" [(ngModel)]="textAreaMsj"></textarea>
         </div>
-              <button type="submit" class="btn btn-primary mb-2">Enviar</button>         
+        <div class="form-group d-flex justify-content-center">
+            <button type="submit" class="btn btn-secondary mb-2"
+            data-toggle="modal" data-target="#exampleModal">Enviar</button>         
+        </div>
         </div>
     </div>
 </form>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content text-modal">
+            <div class="modal-header color-dark">
+              <h5 class="modal-title danger-color" id="exampleModalLabel">Mensaje enviado</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Muchas Gracias,pronto estaremos en contacto.<br>
+              Saludos!
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+            </div>
+          </div>
+        </div>
+      </div>
