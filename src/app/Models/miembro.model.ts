@@ -3,5 +3,6 @@ export class Miembro{
                 public nombres:string,
                 public aPat: string,
                 public aMat: string,
-                public nickName: string) {   }
+                public nickName: string,
+                public uid: string) {   }
 }

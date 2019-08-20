@@ -2,13 +2,16 @@
 import * as firebase from 'firebase';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { error } from '@angular/compiler/src/util';
+import { AppConstant } from '../const'
+import { Miembro } from '../Models/miembro.model';
+import { DataServices } from './dataServices';
 
 @Injectable()
 export class LoginService{
     token: string;
     
-    constructor(private router: Router){}
+    constructor(private router: Router,
+                private dataServices: DataServices){}
 
     login(email: string, pass: string){
         
@@ -42,7 +45,24 @@ export class LoginService{
             }
         ).catch( error => console.error("error de Logout: "+error))
     }
-    addNewMember(email: string){
-        firebase.auth().createUserWithEmailAndPassword(email, "123456")
+    addNewMember(data: Miembro){
+        firebase.auth().createUserWithEmailAndPassword(data.email, AppConstant.PASSWORD).then(
+            userMember => {
+                let { user } = userMember;
+                let userTosave = {
+                    email: data.email,
+                    nombres: data.nombres,
+                    aPat: data.aPat,
+                    aMat: data.aMat,
+                    nickName: data.nickName,
+                    uid: user.uid
+                }
+                this.dataServices.guardarMiembro(userTosave);
+                console.log("se creo con exito"); 
+                
+            }
+        ).catch( err => {
+            console.log("err " +err); 
+        })
     }
 }
