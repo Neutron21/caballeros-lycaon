@@ -1,9 +1,8 @@
-
 import * as firebase from 'firebase';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { AppConstant } from '../const'
-import { Miembro } from '../Models/miembro.model';
+
 import { DataServices } from './dataServices';
 
 @Injectable()
@@ -45,7 +44,7 @@ export class LoginService{
             }
         ).catch( error => console.error("error de Logout: "+error))
     }
-    addNewMember(data: Miembro){
+    addNewMember(data){
         let msj: string;
         firebase.auth().createUserWithEmailAndPassword(data.email, AppConstant.PASSWORD).then(
             userMember => {
@@ -56,12 +55,13 @@ export class LoginService{
                     aPat: data.aPat,
                     aMat: data.aMat,
                     nickName: data.nickName,
-                    uid: user.uid,
-                    key: ""
+                    celular: data.celular,
+                    uid: user.uid
+                    
                 }
-                console.log(userMember.user);
                 
                 this.dataServices.guardarMiembro(userTosave);
+              
                 console.log("se creo con exito"); 
                 
             }

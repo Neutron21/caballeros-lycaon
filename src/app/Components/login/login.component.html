@@ -6,13 +6,13 @@
               <label for="correo" class="label-login">Correo</label>
               <input type="email" name="email" id="email" ngModel
               (input)="modifyInput()" autocomplete="on"
-              placeholder="@Email" class="form-control dark-input" >
+              placeholder="@Email" class="form-control dark-input" required>
             </div>
             <div class="col-centrada">
               <label for="password" class=" label-login">Password</label>
               <input type="password" name="password" id="password" ngModel
               (input)="modifyInput()"
-              placeholder="Password" class="form-control dark-input" >
+              placeholder="Password" class="form-control dark-input" required>
               <label *ngIf="msj && !checkLogin()" for="msj" class="danger-color label-login">{{msj}}</label>
             </div>
             <div class="d-flex justify-content-center">

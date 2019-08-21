@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
     new Login("Laura", "Juárez")
   ];
   constructor(private dataServices: DataServices,
-    private loginService: LoginService) { }
+              private loginService: LoginService) { }
 
   ngOnInit() {
   }

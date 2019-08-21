@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Miembro } from 'src/app/Models/miembro.model';
 import { LoginService } from 'src/app/Services/login.services';
 import { NgForm } from '@angular/forms';
 import { DataServices } from 'src/app/Services/dataServices';
@@ -12,59 +11,58 @@ import { DataServices } from 'src/app/Services/dataServices';
 export class MiembrosComponent implements OnInit {
 
   constructor(private loginService: LoginService,
-              private dataSevice: DataServices) { }
-
+    private dataSevice: DataServices) { }
+  nombre: string;
+  aPat: string;
+  aMat: string;
   email: string;
-  errMsj: string = "Error";
-  miembros: Miembro[] = [
-    { 
-      email: "mike@correo.com", 
-      nombre:"Miguel",
-      aPat: "Hayashida",
-      aMat: "Gomez",
-      nickName: "Mike",
-      uid: "",
-      key:""
-    },
-    {
-      email: "albert@correo.com", 
-      nombre:"Alberto",
-      aPat: "Chavez",
-      aMat: "Gallegos",
-      nickName: "Handsome",
-      uid: "",
-      key:""
-    }
-  ];
-  
+  nickName: string;
+  celular: number;
+  errMsj: string = "";
+  miembros: object[] = [];
+
   ngOnInit() {
     this.dataSevice.getMembers().subscribe(
-      (members)=>{
-      console.log(members)
-        })
+      (members) => {
+        if (members != null) {
+          let miembros = Object.keys(members);
+          for (var m of miembros) {
+            var miembro = members[m];
+            this.miembros.push(miembro);
+
+          }
+        }
+
+      })
+    console.log(this.miembros);
   }
-  addUser(form: NgForm){
-    let miembro1: Miembro = {
-      email: form.value.email, 
-      nombre:"Alberto",
-      aPat: "Chavez",
-      aMat: "Gallegos",
-      nickName: "Handsome",
-      uid: "",
-      key:""
+  addUser(form: NgForm) {
+    let miembro1 = {
+      email: form.value.email,
+      nombre: form.value.nombre,
+      aPat: form.value.aPat,
+      aMat: form.value.aMat,
+      nickName: form.value.nickName,
+      celular: form.value.celPhone,
     }
-    if(this.loginService.isAutenticated()){
-      this.errMsj = this.loginService.addNewMember(miembro1 );
-      
-      console.log("errMsj: "+this.errMsj);
-    } else{
+    if (!this.loginService.isAutenticated()) {
+      this.errMsj = this.loginService.addNewMember(miembro1);
+
+      console.log("errMsj: " + this.errMsj);
+    } else {
       console.log("Sin sesion");
     }
+    this.nombre = "";
+    this.aPat = "";
+    this.aMat = "";
     this.email = "";
+    this.nickName = "";
+    this.celular = null;
+
     this.getMsj();
   }
-  getMsj(){
-    console.log("errMsj: "+this.errMsj);
+  getMsj() {
+    console.log("errMsj: " + this.errMsj);
     return this.errMsj;
   }
 

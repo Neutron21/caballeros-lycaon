@@ -26,6 +26,11 @@ export class AppComponent implements OnInit {
     firebase.initializeApp({
       apiKey: "AIzaSyAfIaS8uMlNSh9zDGXcw0DmTUF3dGuOnW0",
       authDomain: "caballeros-mc.firebaseapp.com",
+      databaseURL: "https://caballeros-mc.firebaseio.com",
+      projectId: "caballeros-mc",
+      storageBucket: "",
+      messagingSenderId: "573088013461",
+      appId: "1:573088013461:web:50d8e80338af60cc"
     })
     this.sesionActiva()
   }

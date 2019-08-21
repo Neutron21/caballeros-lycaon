@@ -1,23 +1,66 @@
 <div class="container text-style">
-    <p *ngFor="let member of miembros">
-        {{member.nombre}} {{member.aPat}} {{member.aMat}} </p>
+  <p *ngFor="let member of miembros; let i = index">
+    {{member.nombre}} {{member.email}}
+  </p>
+  <h4 class="text">Ingresar</h4>
+  <form class="form-inline" #f="ngForm" (ngSubmit)="f.form.valid && addUser(f)">
+    <div class="row">
+      <div class="col-sm-12 col-md-4">
+        <div class="form-group">
+          <label class="label-text control-label" for="nombre">Nombre(s):</label>
+        </div>
+        <input type="text" class="form-control mb-2 fill-width" id="nombre" name="nombre" placeholder="Nombre" [(ngModel)]="nombre">
+      </div>
+      <div class="col-sm-12 col-md-4">
+        <div class="form-group">
+          <label class="label-text control-label" for="nombre">A Paterno:</label>
+        </div>
+        <input type="text" class="form-control mb-2 fill-width" id="aPat" name="aPat" placeholder="A Paterno" [(ngModel)]="aPat">
+      </div>
+      <div class="col-sm-12 col-md-4">
+        <div class="form-group">
+          <label class="label-text control-label" for="nombre">A Materno:</label>
+        </div>
+        <input type="text" class="form-control mb-2 fill-width" id="aMat" name="aMat" placeholder="A Materno" [(ngModel)]="aMat">
+      </div>
 
-        <form class="form" #f="ngForm" (ngSubmit)="f.form.valid && addUser(f)">
-                <h4 class="text">Ingresar</h4>
-                  <div class="col-centrada">
-                    <label for="correo" class="label-login">Correo</label>
-                    <label *ngIf="errMsj" for="errMsj" class="label-login">{{ errMsj }}</label>
-                    <input type="email" name="email" id="email" [(ngModel)]="email"
-                    
-                    placeholder="@Email" class="form-control dark-input" >
-                  </div>
-                 
-                  <div class="d-flex justify-content-center">
-                      
-                    <button type="submit" class="btn btn-primary"
-                    data-toggle="modal" data-target="#loaderModal">Agregar</button>
-                  </div>
-                </form>
-        
-        
+
+
     </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-4">
+        <div class="form-group">
+          <label class="label-text control-label" for="correo">Correo:</label>
+          <label *ngIf="errMsj" for="errMsj" class="label-login">{{ errMsj }}</label>
+        </div>
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text">@</div>
+          </div>
+          <input type="text" class="form-control" id="email" name="email" placeholder="Correo" [(ngModel)]="email">
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-4">
+        <div class="form-group">
+          <label class="label-text control-label" for="nombre">Apodo:</label>
+        </div>
+        <input type="text" class="form-control mb-2 fill-width" id="nickName" name="nickName" placeholder="Apodo" [(ngModel)]="nickName">
+      </div>
+      <div class="col-sm-12 col-md-4">
+        <div class="form-group">
+          <label class="label-text control-label" for="nombre">Cel:</label>
+        </div>
+        <input type="phone" class="form-control mb-2 fill-width" id="celPhone" name="celPhone" placeholder="Cel" [(ngModel)]="celular">
+      </div>
+    </div>
+    <!-- <div class="row"> -->
+      <div class="col-md-offset-8">
+          <div class="form-group d-flex justify-content-end">
+              <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#loaderModal">Agregar</button>
+           </div>
+      </div>
+    <!-- </div> -->
+  </form>
+
+
+</div>
