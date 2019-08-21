@@ -46,23 +46,31 @@ export class LoginService{
         ).catch( error => console.error("error de Logout: "+error))
     }
     addNewMember(data: Miembro){
+        let msj: string;
         firebase.auth().createUserWithEmailAndPassword(data.email, AppConstant.PASSWORD).then(
             userMember => {
                 let { user } = userMember;
                 let userTosave = {
                     email: data.email,
-                    nombres: data.nombres,
+                    nombre: data.nombre,
                     aPat: data.aPat,
                     aMat: data.aMat,
                     nickName: data.nickName,
-                    uid: user.uid
+                    uid: user.uid,
+                    key: ""
                 }
+                console.log(userMember.user);
+                
                 this.dataServices.guardarMiembro(userTosave);
                 console.log("se creo con exito"); 
                 
             }
         ).catch( err => {
-            console.log("err " +err); 
+            console.log("err: " +err); 
+            alert(err.message); 
+            msj = err.message;
         })
+        return msj;
     }
+   
 }

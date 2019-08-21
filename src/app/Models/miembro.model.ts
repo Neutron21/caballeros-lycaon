@@ -1,8 +1,9 @@
 export class Miembro{
     constructor(public email:string, 
-                public nombres:string,
+                public nombre:string,
                 public aPat: string,
                 public aMat: string,
                 public nickName: string,
-                public uid: string) {   }
+                public uid: string,
+                public key: string) {   }
 }

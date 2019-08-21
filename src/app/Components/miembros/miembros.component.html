@@ -1,11 +1,12 @@
 <div class="container text-style">
     <p *ngFor="let member of miembros">
-        {{member.nombres}} {{member.aPat}} {{member.aMat}} </p>
+        {{member.nombre}} {{member.aPat}} {{member.aMat}} </p>
 
         <form class="form" #f="ngForm" (ngSubmit)="f.form.valid && addUser(f)">
                 <h4 class="text">Ingresar</h4>
                   <div class="col-centrada">
                     <label for="correo" class="label-login">Correo</label>
+                    <label *ngIf="errMsj" for="errMsj" class="label-login">{{ errMsj }}</label>
                     <input type="email" name="email" id="email" [(ngModel)]="email"
                     
                     placeholder="@Email" class="form-control dark-input" >
