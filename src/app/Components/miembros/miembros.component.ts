@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/Services/login.services';
 import { NgForm } from '@angular/forms';
 import { DataServices } from 'src/app/Services/dataServices';
+import { log } from 'util';
+import { Miembro } from 'src/app/Models/miembro.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-miembros',
@@ -11,7 +14,8 @@ import { DataServices } from 'src/app/Services/dataServices';
 export class MiembrosComponent implements OnInit {
 
   constructor(private loginService: LoginService,
-    private dataSevice: DataServices) { }
+              private dataSevice: DataServices,
+              private route: ActivatedRoute) { }
   nombre: string;
   aPat: string;
   aMat: string;
@@ -19,22 +23,16 @@ export class MiembrosComponent implements OnInit {
   nickName: string;
   celular: number;
   errMsj: string = "";
-  miembros: object[] = [];
+  miembros: Miembro[] = [];
+  id: string;
 
   ngOnInit() {
-    this.dataSevice.getMembers().subscribe(
-      (members) => {
-        if (members != null) {
-          let miembros = Object.keys(members);
-          for (var m of miembros) {
-            var miembro = members[m];
-            this.miembros.push(miembro);
-
-          }
-        }
-
-      })
+    this.getMiembros()
     console.log(this.miembros);
+    this.id = this.route.snapshot.params['id'];
+    if (this.id) {
+      let miembro: Miembro = this.dataSevice.findMember(this.id);
+    }
   }
   addUser(form: NgForm) {
     let miembro1 = {
@@ -58,35 +56,68 @@ export class MiembrosComponent implements OnInit {
     this.email = "";
     this.nickName = "";
     this.celular = null;
-
+    // setTimeout(() => {
+    //   this.getMiembros();
+    //   }, 1000);
+    
     this.getMsj();
   }
   getMsj() {
     console.log("errMsj: " + this.errMsj);
     return this.errMsj;
   }
-  onlyText(event){
-    
-    console.log(event.target.id);
-    let filtro=/^[A-Za-z\á\é\í\ó\ú\´\.\s\xF1\xD1]+$/;
-    let arrayInput = event.target.value.split("");
-    let aux = arrayInput[arrayInput.length-1];
-    
-    let textInput = event.target.value;
-    let textExit="";
-    for(let index=0;  index < arrayInput.length-1; index++){
-      textExit += textExit
-    }
-    console.log("textExit: "+textExit);
-      
-        if(filtro.test(aux)){
-          textExit += aux;
-          console.log("OK");
-          console.log(aux);
+  getMiembros(){
+    this.dataSevice.getMembers().subscribe(
+      (members) => {
+        if (members != null) {
+          let miembros = Object.keys(members);
+          for (var m of miembros) {
+            var miembro = members[m];
+            this.miembros.push(miembro);
+
+          }
         }
-      
-    this.nombre = textExit
-    
+
+      })
   }
+  // onlyText(event){
+     /* FORMA 1 */
+    // let value = event.target.value;
+    
+    
+    //     var tam = value.length-1;
+    //     var ultimoChar = value.charAt(tam);
+    //     let filtro=/^[A-Za-z\á\é\í\ó\ú\´\.\s\xF1\xD1]+$/;
+    //     if(!filtro.test(ultimoChar)){ 
+    //       console.log("Error")
+    //       console.log(false);
+    //         value=value.replace(ultimoChar, '');
+            
+    //     }
+    //     this.nombre=value;
+       
+    /* FORMA 2 */
+
+    // console.log(event.target.id);
+    // let filtro=/^[A-Za-z\á\é\í\ó\ú\´\.\s\xF1\xD1]+$/;
+    // let arrayInput = event.target.value.split("");
+    // let aux = arrayInput[arrayInput.length-1];
+    
+    // let textInput = event.target.value;
+    // let textExit="";
+    // for(let index=0;  index < arrayInput.length-1; index++){
+    //   textExit += textExit
+    // }
+    // console.log("textExit: "+textExit);
+      
+    //     if(filtro.test(aux)){
+    //       textExit += aux;
+    //       console.log("OK");
+    //       console.log(aux);
+    //     }
+      
+    // this.nombre = textExit
+    
+  // }
   
 }

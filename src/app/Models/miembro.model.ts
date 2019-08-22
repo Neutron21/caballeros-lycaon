@@ -5,5 +5,5 @@ export class Miembro{
                 public aMat: string,
                 public nickName: string,
                 public uid: string,
-                public key: string) {   }
+                public cel: string) {   }
 }

@@ -6,9 +6,10 @@ import { RaizComponent } from './Components/raiz/raiz.component';
 import { QuienesComponent } from './Components/quienes/quienes.component';
 import { TipsComponent } from './Components/tips/tips.component';
 import { IntinerarioComponent } from './Components/intinerario/intinerario.component';
-import { PerfilComponent } from './Components/perfil/perfil.component';
 import { MiembrosComponent } from './Components/miembros/miembros.component';
 import { Guardian } from './Services/guardian.service';
+import { MiPerfilComponent } from './Components/mi-perfil/mi-perfil.component';
+import { ViewMemberComponent } from './Components/view-member/view-member.component';
 
 const routes: Routes = [
   { path: '', component: RaizComponent },
@@ -18,8 +19,11 @@ const routes: Routes = [
   { path: 'tips', component: TipsComponent }, 
   // Rutas con sesion
   { path: 'intinerario', component: IntinerarioComponent, canActivate: [Guardian] }, 
-  { path: 'miPerfil', component: PerfilComponent, canActivate: [Guardian]}, 
+  { path: 'miPerfil', component: MiPerfilComponent, canActivate: [Guardian]}, 
   { path: 'miembros', component: MiembrosComponent, }, 
+  { path: 'miembros/:id', component: MiembrosComponent, }, 
+  { path: 'profile', component: ViewMemberComponent, }, 
+  { path: 'profile/:id', component: ViewMemberComponent, }, 
 ];
 
 @NgModule({

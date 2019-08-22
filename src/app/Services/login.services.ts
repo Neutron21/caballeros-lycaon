@@ -61,7 +61,7 @@ export class LoginService{
                 }
                 
                 this.dataServices.guardarMiembro(userTosave);
-              
+                
                 console.log("se creo con exito"); 
                 
             }

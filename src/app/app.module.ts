@@ -19,9 +19,11 @@ import { DataServices } from './Services/dataServices'
 import { HttpClientModule } from '@angular/common/http';
 import { LoginService } from './Services/login.services';
 import { Guardian } from './Services/guardian.service';
-import { PerfilComponent } from './Components/perfil/perfil.component';
 import { IntinerarioComponent } from './Components/intinerario/intinerario.component';
 import { MiembrosComponent } from './Components/miembros/miembros.component';
+import { BikerComponent } from './Components/biker/biker.component';
+import { MiPerfilComponent } from './Components/mi-perfil/mi-perfil.component';
+import { ViewMemberComponent } from './Components/view-member/view-member.component';
 
 @NgModule({
   declarations: [
@@ -37,9 +39,11 @@ import { MiembrosComponent } from './Components/miembros/miembros.component';
     RaizComponent,
     QuienesComponent,
     TipsComponent,
-    PerfilComponent,
     IntinerarioComponent,
-    MiembrosComponent
+    MiembrosComponent,
+    BikerComponent,
+    MiPerfilComponent,
+    ViewMemberComponent
   ],
   imports: [
     BrowserModule,
