@@ -65,11 +65,28 @@ export class MiembrosComponent implements OnInit {
     console.log("errMsj: " + this.errMsj);
     return this.errMsj;
   }
-  textValue(){
-    let filter6=/^[A-Za-z\_\-\.\s\xF1\xD1]+$/;
-    // if(filter6.test()){
-
-    // }
+  onlyText(event){
+    
+    console.log(event.target.id);
+    let filtro=/^[A-Za-z\á\é\í\ó\ú\´\.\s\xF1\xD1]+$/;
+    let arrayInput = event.target.value.split("");
+    let aux = arrayInput[arrayInput.length-1];
+    
+    let textInput = event.target.value;
+    let textExit="";
+    for(let index=0;  index < arrayInput.length-1; index++){
+      textExit += textExit
+    }
+    console.log("textExit: "+textExit);
+      
+        if(filtro.test(aux)){
+          textExit += aux;
+          console.log("OK");
+          console.log(aux);
+        }
+      
+    this.nombre = textExit
+    
   }
   
 }

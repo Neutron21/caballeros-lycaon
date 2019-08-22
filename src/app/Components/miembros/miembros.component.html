@@ -23,7 +23,7 @@
                     <div class="form-group">
                       <label class="label-text control-label" for="nombre">Nombre(s):</label>
                     </div>
-                    <input type="text" class="form-control mb-2 fill-width" id="nombre" name="nombre" placeholder="Nombre" [(ngModel)]="nombre">
+                    <input type="text" class="form-control mb-2 fill-width" (input)=onlyText($event) id="nombre" name="nombre" placeholder="Nombre" [(ngModel)]="nombre">
                   </div>
                   <div class="col-sm-12 col-md-4">
                     <div class="form-group">
