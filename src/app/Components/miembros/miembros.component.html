@@ -1,66 +1,84 @@
 <div class="container text-style">
-  <p *ngFor="let member of miembros; let i = index">
-    {{member.nombre}} {{member.email}}
-  </p>
-  <h4 class="text">Ingresar</h4>
-  <form class="form-inline" #f="ngForm" (ngSubmit)="f.form.valid && addUser(f)">
-    <div class="row">
-      <div class="col-sm-12 col-md-4">
-        <div class="form-group">
-          <label class="label-text control-label" for="nombre">Nombre(s):</label>
+  <div *ngFor="let member of miembros; let i = index">
+    <i class="fa fa-address-card-o" style="font-size:20px;"></i>
+    {{member.nombre}} {{member.aPat}} {{member.aMat}} {{member.nickName}} 
+    <i class="fa fa-close" style="font-size:20px;"></i>
+  </div>
+  <!-- <i class="fa fa fa-motorcycle" style="font-size:36px;"></i> -->
+  <!-- <i class="fa fa fa-phone" style="font-size:36px;"></i> -->
+  <p>Crear Biker
+      <button class="btn btn-plus red-button" type="button" data-toggle="collapse" 
+              data-target="#formAddBiker" aria-expanded="false" 
+              aria-controls="formAddBiker">
+              <i class="fa fa fa-plus" style="font-size:23px;"></i>
+      </button>
+    </p>
+    
+        <div class="collapse multi-collapse" id="formAddBiker">
+          
+              <h4 class="text">Ingresar</h4>
+              <form class="form-inline" #f="ngForm" (ngSubmit)="f.form.valid && addUser(f)">
+                <div class="row">
+                  <div class="col-sm-12 col-md-4">
+                    <div class="form-group">
+                      <label class="label-text control-label" for="nombre">Nombre(s):</label>
+                    </div>
+                    <input type="text" class="form-control mb-2 fill-width" id="nombre" name="nombre" placeholder="Nombre" [(ngModel)]="nombre">
+                  </div>
+                  <div class="col-sm-12 col-md-4">
+                    <div class="form-group">
+                      <label class="label-text control-label" for="nombre">A Paterno:</label>
+                    </div>
+                    <input type="text" class="form-control mb-2 fill-width" id="aPat" name="aPat" placeholder="A Paterno" [(ngModel)]="aPat">
+                  </div>
+                  <div class="col-sm-12 col-md-4">
+                    <div class="form-group">
+                      <label class="label-text control-label" for="nombre">A Materno:</label>
+                    </div>
+                    <input type="text" class="form-control mb-2 fill-width" id="aMat" name="aMat" placeholder="A Materno" [(ngModel)]="aMat">
+                  </div>
+            
+            
+            
+                </div>
+                <div class="row">
+                  <div class="col-sm-12 col-md-4">
+                    <div class="form-group">
+                      <label class="label-text control-label" for="correo">Correo:</label>
+                      <label *ngIf="errMsj" for="errMsj" class="label-login">{{ errMsj }}</label>
+                    </div>
+                    <div class="input-group mb-2">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">@</div>
+                      </div>
+                      <input type="text" class="form-control" id="email" name="email" placeholder="Correo" [(ngModel)]="email">
+                    </div>
+                  </div>
+                  <div class="col-sm-12 col-md-4">
+                    <div class="form-group">
+                      <label class="label-text control-label" for="nombre">Apodo:</label>
+                    </div>
+                    <input type="text" class="form-control mb-2 fill-width" id="nickName" name="nickName" placeholder="Apodo" [(ngModel)]="nickName">
+                  </div>
+                  <div class="col-sm-12 col-md-4">
+                    <div class="form-group">
+                      <label class="label-text control-label" for="nombre">Cel:</label>
+                    </div>
+                    <input type="phone" class="form-control mb-2 fill-width" id="celPhone" name="celPhone" placeholder="Cel" [(ngModel)]="celular">
+                  </div>
+                </div>
+                
+                  <div class="col-md-offset-8">
+                      <div class="form-group d-flex justify-content-end">
+                          <button type="submit" class="btn red-button" data-toggle="modal" data-target="#loaderModal">Agregar</button>
+                       </div>
+                  </div>
+                
+              </form>
+            
+          
         </div>
-        <input type="text" class="form-control mb-2 fill-width" id="nombre" name="nombre" placeholder="Nombre" [(ngModel)]="nombre">
-      </div>
-      <div class="col-sm-12 col-md-4">
-        <div class="form-group">
-          <label class="label-text control-label" for="nombre">A Paterno:</label>
-        </div>
-        <input type="text" class="form-control mb-2 fill-width" id="aPat" name="aPat" placeholder="A Paterno" [(ngModel)]="aPat">
-      </div>
-      <div class="col-sm-12 col-md-4">
-        <div class="form-group">
-          <label class="label-text control-label" for="nombre">A Materno:</label>
-        </div>
-        <input type="text" class="form-control mb-2 fill-width" id="aMat" name="aMat" placeholder="A Materno" [(ngModel)]="aMat">
-      </div>
-
-
-
-    </div>
-    <div class="row">
-      <div class="col-sm-12 col-md-4">
-        <div class="form-group">
-          <label class="label-text control-label" for="correo">Correo:</label>
-          <label *ngIf="errMsj" for="errMsj" class="label-login">{{ errMsj }}</label>
-        </div>
-        <div class="input-group mb-2">
-          <div class="input-group-prepend">
-            <div class="input-group-text">@</div>
-          </div>
-          <input type="text" class="form-control" id="email" name="email" placeholder="Correo" [(ngModel)]="email">
-        </div>
-      </div>
-      <div class="col-sm-12 col-md-4">
-        <div class="form-group">
-          <label class="label-text control-label" for="nombre">Apodo:</label>
-        </div>
-        <input type="text" class="form-control mb-2 fill-width" id="nickName" name="nickName" placeholder="Apodo" [(ngModel)]="nickName">
-      </div>
-      <div class="col-sm-12 col-md-4">
-        <div class="form-group">
-          <label class="label-text control-label" for="nombre">Cel:</label>
-        </div>
-        <input type="phone" class="form-control mb-2 fill-width" id="celPhone" name="celPhone" placeholder="Cel" [(ngModel)]="celular">
-      </div>
-    </div>
-    <!-- <div class="row"> -->
-      <div class="col-md-offset-8">
-          <div class="form-group d-flex justify-content-end">
-              <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#loaderModal">Agregar</button>
-           </div>
-      </div>
-    <!-- </div> -->
-  </form>
-
+     
+  
 
 </div>

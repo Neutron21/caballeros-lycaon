@@ -7,3 +7,13 @@
 .fill-width{
     width: 100%;
 }
+.btn-plus{
+    border-radius: 50%;
+}
+.red-button{
+    color: aliceblue;
+    background-color: #ff4444;
+}
+.red-text{
+    color: #ff4444 !important;
+}

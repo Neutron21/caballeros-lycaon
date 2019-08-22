@@ -65,5 +65,11 @@ export class MiembrosComponent implements OnInit {
     console.log("errMsj: " + this.errMsj);
     return this.errMsj;
   }
+  textValue(){
+    let filter6=/^[A-Za-z\_\-\.\s\xF1\xD1]+$/;
+    // if(filter6.test()){
 
+    // }
+  }
+  
 }
