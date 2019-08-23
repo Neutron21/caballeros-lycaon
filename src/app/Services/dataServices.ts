@@ -12,6 +12,7 @@ export class DataServices{
                 private router: Router){}
     
     miembros: Miembro[];
+    perfil;
 
     guardarMiembro(member){
        
@@ -22,7 +23,7 @@ export class DataServices{
             console.log("EXITO");
             alert("Guardado exitoso!");
 
-        }).catch((error) => {
+        }).catch((error) => {   
             firebase.auth().currentUser.delete().then(()=>{
                 //Si lo elmino de la base de firebase
             }).catch((errorDel)=>{
@@ -34,8 +35,31 @@ export class DataServices{
     getMembers(){
        return this.httpClient.get(`${AppConstant.URL_DB}users.json`);
     }
-    findMember(id: string){
-        let miembro: Miembro = this.miembros[id];
-        return miembro;
+  
+    findMember(uid: string){
+        
+        return new Promise((resolve,reject)=>{
+            firebase.database().ref(`/users/${uid}`).on("value",(data)=>{
+
+                resolve(data.val());
+              
+            })
+        })
+
+       
+        
     }
+
+    deleteMember(uid:string, name: string){
+        
+        firebase.database().ref(`/users/${uid}`).remove().then(()=>{
+            alert("Se Elimino: "+name);
+        }).catch((error) => {
+            alert("Hubo un error!");
+        })
+    }
+    getPerfil(){
+        return this.perfil;
+    }
+    
 }

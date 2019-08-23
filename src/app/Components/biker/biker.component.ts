@@ -1,11 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Miembro } from 'src/app/Models/miembro.model';
 import { Router } from '@angular/router';
+import { DataServices } from 'src/app/Services/dataServices';
 
 @Component({
   selector: 'app-biker',
   templateUrl: './biker.component.html',
-  styleUrls: ['./biker.component.css']
+  styleUrls: ['./biker.component.css'],
+  providers:[]
 })
 export class BikerComponent implements OnInit {
   
@@ -14,14 +16,16 @@ export class BikerComponent implements OnInit {
 
   title: string = "Miembros"
 
-  constructor() { }
+  constructor(private dataServices: DataServices) { }
 
   ngOnInit() {
   }
-  eliminarUsuer(uid: string){
+  
+  eliminarUsuer(miembro: Miembro){
     
     console.log("eliminarUsuer() OK!");
-    console.log("Uid: "+uid);
+    console.log("Uid: "+miembro.uid);
+    this.dataServices.deleteMember(miembro.uid, miembro.nombre)
     
   }
 }

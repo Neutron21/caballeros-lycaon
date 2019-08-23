@@ -3,26 +3,7 @@
     <h6>Miembros</h6>
     <app-biker *ngFor="let member of miembros; let i = index"
               [miembro]="member"></app-biker>
-      <!-- <div id="member.uid"> 
-        
-            <i class="fa fa-address-card-o yellow-text" style="font-size:20px;"></i>
-        
-            <label *ngIf="false" name="uid">{{member.uid}}</label>
-            <label>{{member.nombre}}</label>
-            <label>{{member.aPat}}</label>
-            <label>{{member.aMat}}</label>
-            <label><b>"{{member.nickName}}"</b></label>
-                <button type="submit">
-                    <i class="fa fa-close red-text" style="font-size:18px;"></i>
-                </button>
-           
-        
-       
-   </div> -->
-   
   
-  <!-- <i class="fa fa fa-motorcycle" style="font-size:36px;"></i> -->
-  <!-- <i class="fa fa fa-phone" style="font-size:36px;"></i> -->
   <p>Crear Biker
       <button class="btn btn-plus red-button" type="button" data-toggle="collapse" 
               data-target="#formAddBiker" aria-expanded="false" 

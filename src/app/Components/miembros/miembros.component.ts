@@ -14,8 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 export class MiembrosComponent implements OnInit {
 
   constructor(private loginService: LoginService,
-              private dataSevice: DataServices,
-              private route: ActivatedRoute) { }
+              private dataSevice: DataServices) { }
   nombre: string;
   aPat: string;
   aMat: string;
@@ -29,10 +28,7 @@ export class MiembrosComponent implements OnInit {
   ngOnInit() {
     this.getMiembros()
     console.log(this.miembros);
-    this.id = this.route.snapshot.params['id'];
-    if (this.id) {
-      let miembro: Miembro = this.dataSevice.findMember(this.id);
-    }
+   
   }
   addUser(form: NgForm) {
     let miembro1 = {

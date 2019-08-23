@@ -1,1 +1,62 @@
 <p class="text">mi-perfil works!</p>
+<div *ngIf="editar" class="form-edition">
+        <form class="form-inline" #f="ngForm" (ngSubmit)="f.form.valid">
+                <div class="row">
+                  <div class="col-sm-12 col-md-4">
+                    <div class="form-group">
+                      <label class="label-text control-label" for="nombre">Nombre(s):</label>
+                    </div>
+                    <input type="text" class="form-control mb-2 fill-width" id="nombre" name="nombre" placeholder="Nombre" [(ngModel)]="perfil.nombre">
+                  </div>
+                  <div class="col-sm-12 col-md-4">
+                    <div class="form-group">
+                      <label class="label-text control-label" for="nombre">A Paterno:</label>
+                    </div>
+                    <input type="text" class="form-control mb-2 fill-width" id="aPat" name="aPat" placeholder="A Paterno" [(ngModel)]="perfil.aPat">
+                  </div>
+                  <div class="col-sm-12 col-md-4">
+                    <div class="form-group">
+                      <label class="label-text control-label" for="nombre">A Materno:</label>
+                    </div>
+                    <input type="text" class="form-control mb-2 fill-width" id="aMat" name="aMat" placeholder="A Materno" [(ngModel)]="perfil.aMat">
+                  </div>
+            
+            
+            
+                </div>
+                <div class="row">
+                  <div class="col-sm-12 col-md-4">
+                    <div class="form-group">
+                      <label class="label-text control-label" for="correo">Correo:</label>
+                      <!-- <label *ngIf="errMsj" for="errMsj" class="label-login">{{ errMsj }}</label> -->
+                    </div>
+                    <div class="input-group mb-2">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">@</div>
+                      </div>
+                      <input type="text" class="form-control" id="email" name="email" placeholder="Correo" [(ngModel)]="perfil.email">
+                    </div>
+                  </div>
+                  <div class="col-sm-12 col-md-4">
+                    <div class="form-group">
+                      <label class="label-text control-label" for="nombre">Apodo:</label>
+                    </div>
+                    <input type="text" class="form-control mb-2 fill-width" id="nickName" name="nickName" placeholder="Apodo" [(ngModel)]="perfil.nickName">
+                  </div>
+                  <div class="col-sm-12 col-md-4">
+                    <div class="form-group">
+                      <label class="label-text control-label" for="nombre">Cel:</label>
+                    </div>
+                    <input type="phone" class="form-control mb-2 fill-width" id="celPhone" name="celPhone" placeholder="Cel" [(ngModel)]="perfil.celular">
+                  </div>
+                </div>
+                
+                  <div class="col-md-offset-8">
+                      <div class="form-group d-flex justify-content-end">
+                            <button type="submit" class="btn btn-secondary" data-toggle="modal" data-target="#loaderModal">Cancelar</button>
+                          <button type="submit" class="btn red-button" data-toggle="modal" data-target="#loaderModal">Guardar</button>
+                       </div>
+                  </div>
+                
+              </form>
+        </div>

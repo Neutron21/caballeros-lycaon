@@ -1,1 +1,62 @@
-<p>view-member works!</p>
+<div class="container white-text">
+    <div *ngIf="perfil" class="content">
+
+        <label> {{perfil.nombre}}</label>
+        <label> {{perfil.aPat}}</label>
+        <label> {{perfil.aMat}}</label>
+        <label> {{perfil.nickName}}</label>
+        <div class="card fondo-card">
+            <div class="card-header">
+                   <h5> {{perfil.nickName}} <span class="cargo">Presidente</span></h5> 
+            </div>
+            <div class="card-body">
+                <h5 class="card-title"> {{perfil.nombre}} {{perfil.aPat}} {{perfil.aMat}}</h5>
+                <div class="row">
+                    <div class="col-4-md">
+                        <div class="card-text">
+                                <p class="card-text">Cel.</p> 
+                            <i class="fa fa-phone yellow-text" style="font-size:20px;"></i>
+                            {{perfil.celular}}
+                        </div>
+                        <div class="card-text">
+                            <i class="fa fa-birthday-cake yellow-text" style="font-size:20px;"></i>
+                            <p class="card-text">Fecha Nac.</p> 
+                        </div>
+                        <div class="card-text">
+                                <i class="fa fa-motorcycle yellow-text" style="font-size:20px;"></i>
+                                <p class="card-text">Vehículo.</p> 
+                        </div> 
+                        <!-- allergies
+                                plus
+                                pen
+                                heartbeat
+                                warning
+                                tint -->
+                                <div class="card-text">
+                                        <i class="fa fa-heartbeat yellow-text" style="font-size:20px;"></i>
+                                        Alergias y Salud
+                                        <p class="card-text">Info salud.</p> 
+                                </div>
+                                <div class="card-text">
+                                    <i class="fa fa-warning yellow-text" style="font-size:20px;"></i>
+                                    Info emergencia.
+                                        <!-- <p class="card-text">Info emergencia.</p>  -->
+                                </div>
+                        
+                    </div>
+                    <div class="col-4-md">
+                        <p class="card-text">Telefonos de emergencia.</p>
+                    </div>
+                    <div class="col-4-md">
+                        <p class="card-text">Datos Moto.</p>
+                    </div>
+                    <a class="btn btn-primary"></a>
+                </div>
+                
+                
+                
+            </div>
+        </div>
+
+    </div>
+</div>

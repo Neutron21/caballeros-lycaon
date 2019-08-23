@@ -55,8 +55,8 @@ export class LoginService{
                     aPat: data.aPat,
                     aMat: data.aMat,
                     nickName: data.nickName,
-                    celular: data.celular,
-                    uid: user.uid
+                    uid: user.uid,
+                    cel: data.celular,
                     
                 }
                 
@@ -72,5 +72,6 @@ export class LoginService{
         })
         return msj;
     }
+   
    
 }

@@ -1,6 +1,6 @@
 
 <div id="member.uid"> 
-        <a routerLink="/profile">
+        <a [routerLink]="['/profile',miembro.uid]">
         <i class="fa fa-address-card-o yellow-text" style="font-size:20px;"></i>
         </a>
         <label class="label-member">{{miembro.nombre}}</label>
@@ -10,6 +10,6 @@
         <label class="label-member">{{miembro.celular}}</label>
         <label class="label-member"><b>"{{miembro.nickName}}"</b></label>
         
-        <i class="fa fa-close red-text" (click)="eliminarUsuer(miembro.uid)" style="font-size:18px;"></i>
+        <i class="fa fa-trash red-text" (click)="eliminarUsuer(miembro)" style="font-size:18px;"></i>
     
 </div>

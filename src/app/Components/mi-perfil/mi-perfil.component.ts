@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MiPerfilComponent implements OnInit {
 
+  editar: boolean = false;
+  
   constructor() { }
 
   ngOnInit() {
