@@ -7,7 +7,13 @@
 }
 .fondo-card{
     background-color: #616161;
+    margin-top: 2%;
 }
 .cargo{
     font-size: .7em;
+}
+.profile-style{
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
 }
