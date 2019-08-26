@@ -6,6 +6,7 @@ import { log } from 'util';
 import { Miembro } from 'src/app/Models/miembro.model';
 import { ActivatedRoute } from '@angular/router';
 
+
 @Component({
   selector: 'app-miembros',
   templateUrl: './miembros.component.html',
@@ -22,6 +23,7 @@ export class MiembrosComponent implements OnInit {
   nickName: string;
   celular: number;
   errMsj: string = "";
+  admin: boolean = false;
   miembros: Miembro[] = [];
   id: string;
 
@@ -31,6 +33,8 @@ export class MiembrosComponent implements OnInit {
    
   }
   addUser(form: NgForm) {
+    debugger
+    
     let miembro1 = {
       email: form.value.email,
       nombre: form.value.nombre,
@@ -38,8 +42,10 @@ export class MiembrosComponent implements OnInit {
       aMat: form.value.aMat,
       nickName: form.value.nickName,
       celular: form.value.celPhone,
+      admin: form.value.admin,
+      activo: true
     }
-    if (!this.loginService.isAutenticated()) {
+    if (this.loginService.isAutenticated()) {
       this.errMsj = this.loginService.addNewMember(miembro1);
 
       console.log("errMsj: " + this.errMsj);
@@ -52,6 +58,7 @@ export class MiembrosComponent implements OnInit {
     this.email = "";
     this.nickName = "";
     this.celular = null;
+    this.admin = false
     // setTimeout(() => {
     //   this.getMiembros();
     //   }, 1000);

@@ -1,3 +1,10 @@
 .text{
     color: aliceblue;
 }
+.red-button{
+    color: aliceblue;
+    background-color: #ff4444;
+}
+.btn-agregar{
+    margin-top: 3rem;
+}

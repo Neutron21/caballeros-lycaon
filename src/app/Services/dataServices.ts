@@ -12,13 +12,12 @@ export class DataServices{
                 private router: Router){}
     
     miembros: Miembro[];
-    perfil;
 
     guardarMiembro(member){
        
         firebase.database().ref(`/users/${member.uid}`).set(member).then(() => {
-            this.miembros.push(member);
-            this.router.navigate(['miembros']);
+            // this.miembros.push(member);
+            // this.router.navigate(['miembros']);
             
             console.log("EXITO");
             alert("Guardado exitoso!");
@@ -58,8 +57,10 @@ export class DataServices{
             alert("Hubo un error!");
         })
     }
-    getPerfil(){
-        return this.perfil;
+ getPerfil(){
+        let uid = firebase.auth().currentUser.uid;
+       return this.findMember(uid);
+
     }
     
 }

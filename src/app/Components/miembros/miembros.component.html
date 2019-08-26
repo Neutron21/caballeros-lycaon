@@ -63,12 +63,24 @@
                     </div>
                     <input type="phone" class="form-control mb-2 fill-width" id="celPhone" name="celPhone" placeholder="Cel" [(ngModel)]="celular">
                   </div>
+                  <div class="col-sm-12 col-md-4">
+                  
+                  </div>
+                
                 </div>
                 
                   <div class="col-md-offset-8">
                       <div class="form-group d-flex justify-content-end">
-                          <button type="submit" class="btn red-button" data-toggle="modal" data-target="#loaderModal">Agregar</button>
+                        <button type="submit" class="btn red-button" data-toggle="modal" data-target="#loaderModal">Agregar</button>
+                        
+                            <div class="form-group admin-check">
+                                <input type="checkbox" class="form-check-input" 
+                                id="admin" name="admin" [(ngModel)]="admin">
+                                <label class="form-check-label" for="adminCheck">Admin</label>
+                              </div>
+                        
                        </div>
+
                   </div>
                 
               </form>

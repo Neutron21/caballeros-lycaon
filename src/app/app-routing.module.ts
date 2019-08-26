@@ -17,13 +17,11 @@ const routes: Routes = [
   { path: 'galeria', component: CarruselComponent }, 
   { path: 'quienes-somos', component: QuienesComponent }, 
   { path: 'tips', component: TipsComponent }, 
-  // Rutas con sesion
+  // Rutas con sesion  canActivate: [Guardian]
   { path: 'intinerario', component: IntinerarioComponent, canActivate: [Guardian] }, 
-  { path: 'miPerfil', component: MiPerfilComponent, canActivate: [Guardian]}, 
-  { path: 'miembros', component: MiembrosComponent, }, 
-  { path: 'miembros/:id', component: MiembrosComponent, }, 
-  { path: 'profile', component: ViewMemberComponent, }, 
-  { path: 'profile/:id', component: ViewMemberComponent, }, 
+  { path: 'miPerfil', component: MiPerfilComponent,}, 
+  { path: 'miembros', component: MiembrosComponent, canActivate: [Guardian]}, 
+  { path: 'profile/:id', component: ViewMemberComponent,}, 
 ];
 
 @NgModule({

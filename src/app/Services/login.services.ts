@@ -45,9 +45,11 @@ export class LoginService{
         ).catch( error => console.error("error de Logout: "+error))
     }
     addNewMember(data){
+        debugger
         let msj: string;
         firebase.auth().createUserWithEmailAndPassword(data.email, AppConstant.PASSWORD).then(
             userMember => {
+                console.log(userMember); 
                 let { user } = userMember;
                 let userTosave = {
                     email: data.email,
@@ -56,7 +58,9 @@ export class LoginService{
                     aMat: data.aMat,
                     nickName: data.nickName,
                     uid: user.uid,
-                    cel: data.celular,
+                    celular: data.celular,
+                    admin: data.admin,
+                    activo: data.activo
                     
                 }
                 
