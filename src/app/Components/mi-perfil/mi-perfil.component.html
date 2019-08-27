@@ -1,31 +1,36 @@
-<div class="container">
+<div class="container text">
 
-
-  <div *ngIf="editar" class="form-edition text">
-    <form class="form-inline" #f="ngForm" (ngSubmit)="f.form.valid">
+  <p>Informacion General</p>
+ 
+  <div *ngIf="editar" class="form-edition">
+    <form class="form-inline" #f="ngForm" >
       <div class="row">
         <div class="col-sm-12 col-md-4">
           <div class="form-group">
             <label class="label-text control-label" for="nombre">Nombre(s):</label>
+            <input type="text" class="form-control mb-2 fill-width" id="nombre" name="nombre" placeholder="Nombre"
+              [(ngModel)]="perfil.nombre">
           </div>
-          <input type="text" class="form-control mb-2 fill-width" id="nombre" name="nombre" placeholder="Nombre"
-            [(ngModel)]="perfil.nombre">
+
         </div>
         <div class="col-sm-12 col-md-4">
           <div class="form-group">
             <label class="label-text control-label" for="nombre">A Paterno:</label>
+            <input type="text" class="form-control mb-2 fill-width" id="aPat" name="aPat" placeholder="A Paterno"
+              [(ngModel)]="perfil.aPat">
           </div>
-          <input type="text" class="form-control mb-2 fill-width" id="aPat" name="aPat" placeholder="A Paterno"
-            [(ngModel)]="perfil.aPat">
+
         </div>
         <div class="col-sm-12 col-md-4">
           <div class="form-group">
             <label class="label-text control-label" for="nombre">A Materno:</label>
+            <input type="text" class="form-control mb-2 fill-width" id="aMat" name="aMat" placeholder="A Materno"
+              [(ngModel)]="perfil.aMat">
           </div>
-          <input type="text" class="form-control mb-2 fill-width" id="aMat" name="aMat" placeholder="A Materno"
-            [(ngModel)]="perfil.aMat">
+
         </div>
       </div>
+
       <div class="row">
         <div class="col-sm-12 col-md-4">
           <div class="form-group">
@@ -36,104 +41,207 @@
           <div class="input-group mb-2">
             <div class="input-group-prepend">
               <div class="input-group-text">@</div>
+              <input type="text" class="form-control fill-width" id="email" name="email" placeholder="Correo"
+                [(ngModel)]="perfil.email">
             </div>
-            <input type="text" class="form-control" id="email" name="email" placeholder="Correo"
-              [(ngModel)]="perfil.email">
+
           </div>
         </div>
         <div class="col-sm-12 col-md-4">
           <div class="form-group">
             <label class="label-text control-label" for="nombre">Apodo:</label>
+            <input type="text" class="form-control mb-2 fill-width" id="nickName" name="nickName" placeholder="Apodo"
+              [(ngModel)]="perfil.nickName">
           </div>
-          <input type="text" class="form-control mb-2 fill-width" id="nickName" name="nickName" placeholder="Apodo"
-            [(ngModel)]="perfil.nickName">
+
         </div>
         <div class="col-sm-12 col-md-4">
           <div class="form-group">
             <label class="label-text control-label" for="nombre">Cel:</label>
+            <input type="phone" class="form-control mb-2 fill-width" id="celPhone" name="celPhone" placeholder="Cel"
+              [(ngModel)]="perfil.celular">
           </div>
-          <input type="phone" class="form-control mb-2 fill-width" id="celPhone" name="celPhone" placeholder="Cel"
-            [(ngModel)]="perfil.celular">
         </div>
       </div>
 
-      <!-- Salud y alergias -->
     </form>
+    <!-- Vehículo(s) -->
+    <p>Vehículo(s)</p>
+    
+    
+      <div class="row">
+        <div class="col-sm-12 col-md-3">
+          <div class="form-group">
+            <label class="label-text control-label" for="marca">Marca:</label>
+            <input type="text" class="form-control mb-2 fill-width" id="marca" name="marca"
+              placeholder="Marca" [(ngModel)]="marca">
+          </div>
+
+        </div>
+        <div class="col-sm-12 col-md-3">
+          <div class="form-group">
+            <label class="label-text control-label" for="subMarca">SubMarca:</label>
+            <input type="text" class="form-control mb-2 fill-width" id="subMarca" name="subMarca"
+              placeholder="SubMarca" [(ngModel)]="subMarca">
+          </div>
+
+        </div>
+        <div class="col-sm-12 col-md-3">
+           <div class="form-group">
+            <label class="label-text control-label" for="nombre">Modelo:</label>
+           
+              <select class="custom-select mr-sm-2" id="modelo" name="modelo" >
+                <option selected>Seleccione</option>
+                <option *ngFor="let anio of modelos; let indice = index" [value] = "anio">{{anio}}</option>
+                
+              </select> 
+          </div> 
+        </div> 
+        <div class="col-sm-12 col-md-3">
+          <div class="form-group">
+            <label class="label-text control-label" for="nombre">Placa:</label>
+            <input type="text" class="form-control mb-2 fill-width" id="placa" name="placa"
+              placeholder="Placa" [(ngModel)]="placa">
+          </div>
+
+        </div>
+        <div class="col-sm-12 col-md-3">
+          <div class="form-group">
+            <label class="label-text control-label" for="nombre">No. Serie:</label>
+            <input type="text" class="form-control mb-2 fill-width" id="serie" name="serie"
+              placeholder="No. Serie" [(ngModel)]="serie">
+          </div>
+
+        </div>
+        <div class="col-sm-12 col-md-3">
+          <div class="form-group">
+            <label class="label-text control-label" for="nombre">Aseguradora:</label>
+            <input type="text" class="form-control mb-2 fill-width" id="aseguradora" name="aseguradora"
+              placeholder="Aseguradora" [(ngModel)]="aseguradora">
+          </div>
+
+        </div>
+        <div class="col-sm-12 col-md-3">
+          <div class="form-group">
+            <label class="label-text control-label" for="nombre">Poliza:</label>
+            <input type="text" class="form-control mb-2 fill-width" id="poliza" name="poliza"
+              placeholder="Poliza" [(ngModel)]="poliza">
+          </div>
+        </div>
+
+        <div class="col-sm-12 col-md-3">
+          <div class="form-group">
+            <label class="label-text control-label" for="nombre">Tel Aseguradora:</label>
+            <input type="text" class="form-control mb-2 fill-width" id="telAseguradora" name="telAseguradora"
+              placeholder="Teléfono" [(ngModel)]="telAseguradora">
+          </div>
+        </div>
+
+        <div class="col-sm-12 col-md-3">
+          <div class="form-group">
+            <label class="label-text control-label" for="nombre">Cc:</label>
+            <input type="text" class="form-control mb-2 fill-width" id="cc" name="cc"
+              placeholder="Cilindrada" [(ngModel)]="cc">
+          </div> 
+        </div>
+        <div class="form-group btn-agregar">
+          <button type="submit" class="btn red-button form-control" 
+                  data-toggle="modal" data-target="#loaderModal" (click)="addVehicle()">
+            <i class="fa fa-plus red-text" style="font-size:18px;"></i></button>
+        </div>
+        <div class="col-sm-12 col-md-3">
+
+          <ul *ngFor="let moto of motosEdit; let indice = index">
+            <li>
+              {{moto.marca}} {{moto.submarca}} {{moto.modelo}} {{moto.cc}} {{moto.placa}} {{moto.ciaSeguro}}
+              {{moto.poliza}} {{moto.telSeguro}}
+              <i class="fa fa-times-circle red-text" style="font-size:18px;" (click)="delVehicle(indice)"></i>
+            </li>
+          </ul>
+        </div>
+      </div>
+    
+    <!-- Salud y alergias -->
     <p>Datos relacionados a la Salud</p>
-    <form #f="ngForm" (ngSubmit)="addAlergia(f)">
+    
       <div class="row">
         <div class="col-sm-12 col-md-4">
           <div class="form-group">
             <label class="label-text control-label" for="nombre">Tipo de sangre:</label>
+            <input type="text" class="form-control mb-2 fill-width" id="bloodType" name="bloodType"
+              placeholder="Grupo Sanguineo" [(ngModel)]="bloodType">
           </div>
-          <input type="text" class="form-control mb-2 fill-width" id="bloodType" name="bloodType"
-            placeholder="Grupo Sanguineo" [(ngModel)]="bloodType">
+
         </div>
         <div class="col-sm-12 col-md-4">
           <div class="form-group">
             <label class="label-text control-label" for="nombre">Alergía ó enfermedad:</label>
+            <input type="text" class="form-control mb-2 fill-width" id="newAllergy" name="newAllergy"
+              placeholder="Padecimiento" [(ngModel)]="newAllergy">
           </div>
-          <input type="text" class="form-control mb-2 fill-width" id="newAllergy" name="newAllergy"
-            placeholder="Padecimiento" [(ngModel)]="newAllergy">
+
         </div>
         <div class="form-group btn-agregar">
-          <button type="submit" class="btn red-button form-control" data-toggle="modal" data-target="#loaderModal">
+          <button type="submit" class="btn red-button form-control" 
+                  data-toggle="modal" data-target="#loaderModal" (click)="addAlergia()">
             <i class="fa fa-plus red-text" style="font-size:18px;"></i></button>
         </div>
         <div class="col-sm-12 col-md-4">
-        <!-- <div class="col"> -->
-            <ul *ngFor="let alergia of saludEdit; let indice = index">
-              <li>
-                {{alergia}} 
-                <i class="fa fa-times-circle red-text" 
-                   style="font-size:18px;" (click)="delElement(indice)"></i>
-              </li>
-            </ul>
-          </div>
-      </div>
-    </form>
-    <!-- Contactos de emergencia -->
-  
-  <p>Contactos de emergencia</p>
-  <form #f="ngForm" (ngSubmit)="addAlergia(f)">
-    <div class="row">
-      <div class="col-sm-12 col-md-4">
-        <div class="form-group">
-          <label class="label-text control-label" for="nombre">Nombre:</label>
-        </div>
-        <input type="text" class="form-control mb-2 fill-width" id="nameContact" name="nameContact"
-          placeholder="Grupo Sanguineo" [(ngModel)]="nameContact">
-      </div>
-      <div class="col-sm-12 col-md-4">
-        <div class="form-group">
-          <label class="label-text control-label" for="nombre">Parentesco:</label>
-        </div>
-        <input type="text" class="form-control mb-2 fill-width" id="parentesco" name="parentesco"
-          placeholder="Parentesco" [(ngModel)]="parentesco">
-      </div>
-      <div class="col-sm-12 col-md-4">
-          <div class="form-group">
-            <label class="label-text control-label" for="nombre">Número:</label>
-          </div>
-          <input type="text" class="form-control mb-2 fill-width" id="telContact" name="telContact"
-            placeholder="Teléfono" [(ngModel)]="telContact">
-        </div>
-      <div class="form-group btn-agregar">
-        <button type="submit" class="btn red-button form-control" data-toggle="modal" data-target="#loaderModal">
-          <i class="fa fa-plus red-text" style="font-size:18px;"></i></button>
-      </div>
-      <div class="col-sm-12 col-md-4">
-      <!-- <div class="col"> -->
+
           <ul *ngFor="let alergia of saludEdit; let indice = index">
             <li>
-              {{alergia}} 
-              <i class="fa fa-times-circle red-text" 
-                 style="font-size:18px;" (click)="delElement(indice)"></i>
+              {{alergia}}
+              <i class="fa fa-times-circle red-text" style="font-size:18px;" (click)="delAlergia(indice)"></i>
             </li>
           </ul>
         </div>
-    </div>
-  </form>
+      </div>
     
+
+    <!-- Contactos de emergencia -->
+    <p>Contactos de emergencia</p>
+     <!-- <form #f="ngForm" (ngSubmit)="addContacto(f)"> -->
+      <div class="row">
+        <div class="col-sm-12 col-md-3">
+          <div class="form-group">
+            <label class="label-text control-label" for="nombre">Nombre:</label>
+            <input type="text" class="form-control mb-2 fill-width" id="nameContact" name="nameContact"
+              placeholder="Nombre" [(ngModel)]="nameContact">
+          </div>
+
+        </div>
+        <div class="col-sm-12 col-md-3">
+          <div class="form-group">
+            <label class="label-text control-label" for="nombre">Parentesco:</label>
+            <input type="text" class="form-control mb-2 fill-width" id="parentesco" name="parentesco"
+              placeholder="Parentesco" [(ngModel)]="parentesco">
+          </div>
+
+        </div>
+        <div class="col-sm-12 col-md-3">
+          <div class="form-group">
+            <label class="label-text control-label" for="nombre">Número:</label>
+            <input type="text" class="form-control mb-2 fill-width" id="telContact" name="telContact"
+              placeholder="Teléfono" [(ngModel)]="telContact">
+          </div>
+
+        </div>
+        <div class="form-group btn-agregar">
+          <button type="submit" class="btn red-button form-control" 
+                  data-toggle="modal" data-target="#loaderModal" (click)="addContacto()">
+            <i class="fa fa-plus red-text" style="font-size:18px;"></i></button>
+        </div>
+        <div class="col-sm-12 col-md-3">
+          
+          <ul *ngFor="let contacto of contactos; let indice = index">
+            <li>
+              {{contacto.nomContacto}} {{contacto.parentesco}} {{contacto.telContacto}}
+              <i class="fa fa-times-circle red-text" style="font-size:18px;" (click)="delContact(indice)"></i>
+            </li>
+          </ul>
+        </div>
+      </div>
+    <!-- </form>  -->
+
   </div>
 </div>

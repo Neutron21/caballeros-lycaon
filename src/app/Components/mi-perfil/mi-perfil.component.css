@@ -4,7 +4,14 @@
 .red-button{
     color: aliceblue;
     background-color: #ff4444;
+    border-radius: 50%;
 }
 .btn-agregar{
-    margin-top: 3rem;
+    margin-top: 2rem;
+}
+.fill-width{
+    width: 100%;
+}
+.container{
+    margin-top: 2%;
 }

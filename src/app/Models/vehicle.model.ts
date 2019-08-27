@@ -3,6 +3,7 @@ export class Vehicle{
                 public submarca: string,
                 public modelo: number,
                 public placa: string,
+                public cc: number,
                 public serie: string,
                 public ciaSeguro: string,
                 public poliza: string,
