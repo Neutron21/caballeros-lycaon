@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { DataServices } from 'src/app/Services/dataServices';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormControl } from '@angular/forms';
 import { Vehicle } from 'src/app/Models/vehicle.model';
 import { TelEmergencia } from 'src/app/Models/telEmergencia.model';
+import { AppConstant } from '../../const';
+import { Health } from 'src/app/Models/health.model';
 
 @Component({
   selector: 'app-mi-perfil',
@@ -19,13 +21,14 @@ export class MiPerfilComponent implements OnInit {
   editar: boolean = true;
   uid: string;
 
-  bloodType: string;
+  bloodType = "Seleccione";
+  bloodys = AppConstant.TYPE_BLOOD;
   newAllergy: string;
   saludEdit: string[] = [];
 
   marca: string;
   subMarca: string;
-  modelo: number;
+  modelo = "Seleccione";
   cc: number;
   placa: string;
   serie: string;
@@ -61,7 +64,7 @@ export class MiPerfilComponent implements OnInit {
     this.motosEdit.push(moto);
     this.marca = "";
     this.subMarca = "";
-    this.modelo = null;
+    this.modelo = "Seleccione";
     this.serie = "";
     this.cc = null;
     this.placa = "";
@@ -97,5 +100,30 @@ export class MiPerfilComponent implements OnInit {
   }
   delContact(indice: number) {
     this.contactos.splice(indice, 1);
+  }
+  saveProfile(form: NgForm){
+    if (form.value.nombre && form.value.aPat && form.value.aMat 
+        && form.value.celPhone && form.value.email && form.value.nickName ) {
+          console.log(form.value);
+          console.log(this.motosEdit);
+          console.log(this.saludEdit);
+          console.log(this.contactos);
+          let infoSalud: Health = new Health(this.bloodType,this.saludEdit)
+
+          let newPerfil = {
+           nombre: form.value.nombre, 
+           aPat: form.value.aPat, 
+           aMat: form.value.aMat, 
+           celular: form.value.celPhone, 
+           email: form.value.email, 
+           nickName: form.value.nickName,
+           motos: this.motosEdit,
+           salud: this.saludEdit,
+           contactos: infoSalud
+          }
+          console.log(newPerfil);
+    }
+    
+    
   }
 }

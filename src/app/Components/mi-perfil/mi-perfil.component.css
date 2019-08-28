@@ -4,6 +4,8 @@
 .red-button{
     color: aliceblue;
     background-color: #ff4444;
+}
+.circle{
     border-radius: 50%;
 }
 .btn-agregar{
@@ -14,4 +16,21 @@
 }
 .container{
     margin-top: 2%;
+}
+.card{
+    background-color: transparent;
+    border-style: solid;
+    /* border-width: 1px 1px 1px 1px; */
+    /* border-color: aliceblue; */
+    /* border-color: #d0d6e2; */
+
+}
+.card-header{
+    background-color: #616161;
+}
+.btn-link-perfil{
+    color: aliceblue;
+}
+.btn-link-perfil:hover{
+    color:  #ff4444;
 }

@@ -1,9 +1,7 @@
-<div class="container text">
-
-  <p>Informacion General</p>
- 
+<div class="container text accordion" >
+    <h5>Datos Generales</h5>
   <div *ngIf="editar" class="form-edition">
-    <form class="form-inline" #f="ngForm" >
+    <form class="form-inline" #f="ngForm" (submit)="saveProfile(f)" >
       <div class="row">
         <div class="col-sm-12 col-md-4">
           <div class="form-group">
@@ -63,10 +61,62 @@
           </div>
         </div>
       </div>
-
+      <div class="form-group btn-agrega">
+          <button type="button" class="btn red-button form-control" >
+                  Cancelar
+            <i class="fa fa-close red-text" style="font-size:18px;"></i></button>
+            <button type="submit" class="btn red-button form-control" >
+                  Guardar
+            <i class="fa fa-cloud-upload red-text" style="font-size:18px;"></i></button>
+        </div>
     </form>
     <!-- Vehículo(s) -->
-    <p>Vehículo(s)</p>
+    <div class="accordion" id="accordionExample">
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+              <button class="btn btn-link-perfil" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                Vehículo(s)
+              </button>
+            </h2>
+          </div>
+      
+          <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingTwo">
+            <h2 class="mb-0">
+              <button class="btn btn-link-perfil collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Datos relacionados a la salud
+              </button>
+            </h2>
+          </div>
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+            <div class="card-body">
+              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingThree">
+            <h2 class="mb-0">
+              <button class="btn btn-link-perfil collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                Contactos de emergencia
+              </button>
+            </h2>
+          </div>
+          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+            <div class="card-body">
+              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+            </div>
+          </div>
+        </div>
+      </div>
+  
     
     
       <div class="row">
@@ -90,7 +140,7 @@
            <div class="form-group">
             <label class="label-text control-label" for="nombre">Modelo:</label>
            
-              <select class="custom-select mr-sm-2" id="modelo" name="modelo" >
+              <select class="custom-select mr-sm-2" id="modelo" name="modelo" [(ngModel)]="modelo">
                 <option selected>Seleccione</option>
                 <option *ngFor="let anio of modelos; let indice = index" [value] = "anio">{{anio}}</option>
                 
@@ -145,7 +195,7 @@
           </div> 
         </div>
         <div class="form-group btn-agregar">
-          <button type="submit" class="btn red-button form-control" 
+          <button type="submit" class="btn red-button circle form-control" 
                   data-toggle="modal" data-target="#loaderModal" (click)="addVehicle()">
             <i class="fa fa-plus red-text" style="font-size:18px;"></i></button>
         </div>
@@ -162,14 +212,18 @@
       </div>
     
     <!-- Salud y alergias -->
-    <p>Datos relacionados a la Salud</p>
+    <h5>Datos relacionados a la Salud</h5>
     
       <div class="row">
         <div class="col-sm-12 col-md-4">
           <div class="form-group">
             <label class="label-text control-label" for="nombre">Tipo de sangre:</label>
-            <input type="text" class="form-control mb-2 fill-width" id="bloodType" name="bloodType"
-              placeholder="Grupo Sanguineo" [(ngModel)]="bloodType">
+            <!-- <input type="text" class="form-control mb-2 fill-width" id="bloodType" name="bloodType"
+              placeholder="Grupo Sanguineo" [(ngModel)]="bloodType"> -->
+              <select class="custom-select mr-sm-2" id="bloodType" name="bloodType" [(ngModel)]="bloodType">
+                  <option selected>Seleccione</option>
+                  <option *ngFor="let blood of bloodys; let indice = index" [value] = "blood">{{blood}}</option>
+                </select> 
           </div>
 
         </div>
@@ -182,7 +236,7 @@
 
         </div>
         <div class="form-group btn-agregar">
-          <button type="submit" class="btn red-button form-control" 
+          <button type="submit" class="btn red-button circle form-control" 
                   data-toggle="modal" data-target="#loaderModal" (click)="addAlergia()">
             <i class="fa fa-plus red-text" style="font-size:18px;"></i></button>
         </div>
@@ -199,7 +253,7 @@
     
 
     <!-- Contactos de emergencia -->
-    <p>Contactos de emergencia</p>
+    <h5>Contactos de emergencia</h5>
      <!-- <form #f="ngForm" (ngSubmit)="addContacto(f)"> -->
       <div class="row">
         <div class="col-sm-12 col-md-3">
@@ -227,7 +281,7 @@
 
         </div>
         <div class="form-group btn-agregar">
-          <button type="submit" class="btn red-button form-control" 
+          <button type="submit" class="btn red-button circle form-control" 
                   data-toggle="modal" data-target="#loaderModal" (click)="addContacto()">
             <i class="fa fa-plus red-text" style="font-size:18px;"></i></button>
         </div>

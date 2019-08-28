@@ -1,7 +1,7 @@
 export class Vehicle{
     constructor(public marca: string,
                 public submarca: string,
-                public modelo: number,
+                public modelo: any,
                 public placa: string,
                 public cc: number,
                 public serie: string,
