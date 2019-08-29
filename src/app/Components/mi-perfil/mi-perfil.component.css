@@ -20,17 +20,20 @@
 .card{
     background-color: transparent;
     border-style: solid;
-    /* border-width: 1px 1px 1px 1px; */
-    /* border-color: aliceblue; */
-    /* border-color: #d0d6e2; */
-
 }
 .card-header{
     background-color: #616161;
+    width: 78vw;
 }
 .btn-link-perfil{
     color: aliceblue;
 }
-.btn-link-perfil:hover{
+.red-hover:hover{
     color:  #ff4444;
+}
+.upper{
+    text-transform: uppercase;
+}
+.input-group-prepend{
+    width: inherit;
 }

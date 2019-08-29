@@ -21,14 +21,14 @@ export class MiPerfilComponent implements OnInit {
   editar: boolean = true;
   uid: string;
 
-  bloodType = "Seleccione";
+  bloodType = "SELECCIONE";
   bloodys = AppConstant.TYPE_BLOOD;
   newAllergy: string;
   saludEdit: string[] = [];
 
   marca: string;
   subMarca: string;
-  modelo = "Seleccione";
+  modelo = "SELECCIONE";
   cc: number;
   placa: string;
   serie: string;
@@ -43,6 +43,9 @@ export class MiPerfilComponent implements OnInit {
   contactos: TelEmergencia[] = [];
 
   perfil = {};
+
+  arrowDown: boolean = true;
+  
   constructor(private dataServices: DataServices) { }
 
   async ngOnInit() {
@@ -53,6 +56,9 @@ export class MiPerfilComponent implements OnInit {
     }
     
     this.perfil = await this.dataServices.getPerfil();
+    if(this.perfil.uid){
+      this.uid = this.perfil.uid; 
+    }
     console.log(this.perfil);
 
   }
@@ -64,7 +70,7 @@ export class MiPerfilComponent implements OnInit {
     this.motosEdit.push(moto);
     this.marca = "";
     this.subMarca = "";
-    this.modelo = "Seleccione";
+    this.modelo = "SELECCIONE";
     this.serie = "";
     this.cc = null;
     this.placa = "";
@@ -104,7 +110,7 @@ export class MiPerfilComponent implements OnInit {
   saveProfile(form: NgForm){
     if (form.value.nombre && form.value.aPat && form.value.aMat 
         && form.value.celPhone && form.value.email && form.value.nickName ) {
-          console.log(form.value);
+          console.log(form);
           console.log(this.motosEdit);
           console.log(this.saludEdit);
           console.log(this.contactos);
@@ -117,13 +123,18 @@ export class MiPerfilComponent implements OnInit {
            celular: form.value.celPhone, 
            email: form.value.email, 
            nickName: form.value.nickName,
+           uid: this.uid,
            motos: this.motosEdit,
-           salud: this.saludEdit,
-           contactos: infoSalud
+           salud: infoSalud,
+           contactos: this.contactos
           }
           console.log(newPerfil);
+          this.dataServices.updateMiembro(newPerfil);
     }
     
     
+  }
+  changeArrow(){
+    this.arrowDown = !this.arrowDown;
   }
 }

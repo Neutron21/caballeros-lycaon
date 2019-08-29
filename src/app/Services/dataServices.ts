@@ -62,5 +62,19 @@ export class DataServices{
        return this.findMember(uid);
 
     }
-    
+    updateMiembro(member){
+       
+        firebase.database().ref(`/users/${member.uid}`).update(member).then(() => {
+            // this.miembros.push(member);
+            // this.router.navigate(['miembros']);
+            
+            console.log("EXITO");
+            alert("Perfil actualizado con exito!");
+
+        }).catch((error) => {   
+            console.log("ERROR");
+            console.log(error);
+            alert("Ocurrio un error!");
+        })
+    }
 }
