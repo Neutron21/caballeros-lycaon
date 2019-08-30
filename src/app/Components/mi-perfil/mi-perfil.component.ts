@@ -5,6 +5,7 @@ import { Vehicle } from 'src/app/Models/vehicle.model';
 import { TelEmergencia } from 'src/app/Models/telEmergencia.model';
 import { AppConstant } from '../../const';
 import { Health } from 'src/app/Models/health.model';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-mi-perfil',
@@ -15,6 +16,13 @@ export class MiPerfilComponent implements OnInit {
 
   hoy = new Date();
   yyyy = this.hoy.getFullYear();
+  mm = this.hoy.getMonth();
+  dd = this.hoy.getDate();
+  minYear = this.yyyy-50;
+
+  maxDate = moment(new Date()).format('YYYY-MM-DD');
+  minDate= moment(new Date(this.minYear, this.mm, this.dd)).format('YYYY-MM-DD');
+  date;
   modelos = [];
 
 
@@ -45,6 +53,8 @@ export class MiPerfilComponent implements OnInit {
   perfil = {};
 
   arrowDown: boolean = true;
+  arrowDown2: boolean = true;
+  arrowDown3: boolean = true;
   
   constructor(private dataServices: DataServices) { }
 
@@ -56,8 +66,10 @@ export class MiPerfilComponent implements OnInit {
     }
     
     this.perfil = await this.dataServices.getPerfil();
-    if(this.perfil.uid){
+    if(this.perfil && this.perfil.uid){
       this.uid = this.perfil.uid; 
+      
+      this.date = this.perfil.birthday;
     }
     console.log(this.perfil);
 
@@ -120,6 +132,7 @@ export class MiPerfilComponent implements OnInit {
            nombre: form.value.nombre, 
            aPat: form.value.aPat, 
            aMat: form.value.aMat, 
+           birthday: form.value.birthday,
            celular: form.value.celPhone, 
            email: form.value.email, 
            nickName: form.value.nickName,
@@ -136,5 +149,11 @@ export class MiPerfilComponent implements OnInit {
   }
   changeArrow(){
     this.arrowDown = !this.arrowDown;
+  }
+  changeArrow2(){
+    this.arrowDown2 = !this.arrowDown2;
+  }
+  changeArrow3(){
+    this.arrowDown3 = !this.arrowDown3;
   }
 }
