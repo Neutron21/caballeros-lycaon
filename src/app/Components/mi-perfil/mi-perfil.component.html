@@ -1,7 +1,85 @@
 <div class="container text accordion">
-    <i class="fa fa-tint " style="font-size:18px;"></i> 
   <h5><i class="fa fa-address-card-o yellow-text" style="font-size:28px;"></i>
     Datos Generales</h5>
+  <div *ngIf="!editar" class="form-edition">
+    <div class="row">
+      <div class="col-sm-12 col-md-3">
+        <label class="label-text control-label" for="nombre">Nombre(s):</label>
+        <label class="label-text control-label" for="nombre">{{perfil.nombre}}</label>
+      </div>
+      <div class="col-sm-12 col-md-3">
+        <label class="label-text control-label" for="nombre">Apellido Paterno:</label>
+        <label class="label-text control-label" for="nombre">{{perfil.aPat}}</label>
+      </div>
+      <div class="col-sm-12 col-md-3">
+        <label class="label-text control-label" for="nombre">Apellido Materno:</label>
+        <label class="label-text control-label" for="nombre">{{perfil.aMat}}</label>
+      </div>
+      <button (click)="changeEdit()" class="btn red-button">
+        Editar
+        <i class="fa fa-pencil" style="font-size:18px;"></i>
+      </button>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-3">
+        <label class="label-text control-label" for="nombre">Correo:</label>
+        <label class="label-text control-label" for="nombre">{{perfil.email}}</label>
+      </div>
+      <div class="col-sm-12 col-md-3">
+        <label class="label-text control-label" for="nombre">Cel:</label>
+        <label class="label-text control-label" for="nombre">{{perfil.celular}}</label>
+      </div>
+      <div class="col-sm-12 col-md-3">
+        <label class="label-text control-label" for="nombre">Apodo:</label>
+        <label class="label-text control-label" for="nombre">{{perfil.nickName}}</label>
+      </div>
+      <div class="col-sm-12 col-md-3">
+        <label class="label-text control-label" for="nombre">Fecha Nac:</label><br>
+        <label class="label-text control-label" for="nombre">{{perfil.birthday}}</label>
+      </div>
+    </div>
+    <h5><i class="fa fa-motorcycle " style="font-size:28px;"></i>
+      Vehículo(s)
+    </h5>
+    <app-moto *ngFor="let motoArray of perfil.motos; let i = index" [moto]="motoArray"></app-moto>
+    <h5>
+      <i class="fa fa-heartbeat " style="font-size:28px;"></i>
+      Datos relacionados a la salud
+    </h5>
+    <div class="row">
+      <div class="col-sm-12 col-md-3">
+        <i class="fa fa-tint " style="font-size:18px;"></i>
+        <label class="label-text control-label" for="nombre"> Tipo de Sangre:</label><br>
+        <label class="label-text control-label" for="nombre">{{perfil.salud.tipoSangre}}</label>
+      </div>
+      <div class="col-sm-12 col-md-3">
+        <i class="fa fa-stethoscope" style="font-size:18px;"></i>
+        <label class="label-text control-label" for="nombre"> Alergias:</label><br>
+        <ol>
+          <li class="label-text control-label" for="nombre" *ngFor="let alergia of perfil.salud.alergias">{{alergia}}
+          </li>
+        </ol>
+      </div>
+    </div>
+    <h5>
+      <i class="fa fa-warning " style="font-size:28px;"></i>
+      Contactos de emergencia
+    </h5>
+    
+      <div class="row" *ngFor="let contacto of perfil.contactos">
+        
+        <div class="col-sm-12 col-md-3">
+          <i class="fa fa-user-circle-o" style="font-size:18px;"></i>
+          {{contacto.nomContacto}}, {{contacto.parentesco}}
+        </div>
+        <div class="col-sm-12 col-md-3">
+          <i class="fa fa-phone" style="font-size:18px;"></i> {{contacto.telContacto}}
+        </div>
+        
+      </div>
+  </div>
+
+
   <div *ngIf="editar" class="form-edition">
     <form class="" #f="ngForm" (ngSubmit)="saveProfile(f)">
       <div class="row">
@@ -32,8 +110,8 @@
         <div class="col-sm-12 col-md-3">
           <div class="form-group">
             <label class="label-text control-label" for="birthday">Fecha Nac:</label>
-            <input type="date" class="form-control mb-2 fill-width" id="birthday" name="birthday"
-              [(ngModel)]="date" [min]="minDate" [max]="maxDate">
+            <input type="date" class="form-control mb-2 fill-width" id="birthday" name="birthday" [(ngModel)]="date"
+              [min]="minDate" [max]="maxDate">
           </div>
         </div>
       </div>
@@ -43,23 +121,23 @@
           <div class="form-group">
             <label class="label-text control-label" for="correo">Correo:</label>
             <!-- <label *ngIf="errMsj" for="errMsj" class="label-login">{{ errMsj }}</label> -->
-          <!-- </div> -->
+            <!-- </div> -->
 
-          <div class="input-group mb-2">
-            <div class="input-group-prepend">
-              <div class="input-group-text">@</div>
-              <input type="text" class="form-control fill-width" id="email" name="email" placeholder="CORREO"
-                [(ngModel)]="perfil.email">
+            <div class="input-group mb-2">
+              <div class="input-group-prepend">
+                <div class="input-group-text">@</div>
+                <input type="text" class="form-control fill-width" id="email" name="email" placeholder="CORREO"
+                  [(ngModel)]="perfil.email">
+              </div>
+
             </div>
-
           </div>
-        </div>
         </div>
         <div class="col-sm-12 col-md-3">
           <div class="form-group">
             <label class="label-text control-label" for="nombre">Apodo:</label>
-            <input type="text" class="form-control mb-2 fill-width upper" id="nickName" name="nickName" placeholder="Apodo"
-              [(ngModel)]="perfil.nickName">
+            <input type="text" class="form-control mb-2 fill-width upper" id="nickName" name="nickName"
+              placeholder="Apodo" [(ngModel)]="perfil.nickName">
           </div>
 
         </div>
@@ -71,265 +149,282 @@
           </div>
         </div>
       </div>
-     
-  <!-- Vehículo(s) -->
+
+      <!-- Vehículo(s) -->
       <div class="row">
         <div class="accordion" id="accordionExample">
           <div class="card">
             <div class="card-header" id="headingOne" data-toggle="collapse" data-target="#collapseOne"
-            aria-expanded="false" aria-controls="collapseOne" (click)="changeArrow()">
+              aria-expanded="false" aria-controls="collapseOne" (click)="changeArrow()">
               <h2 class="mb-0">
-                <button class="btn btn-link-perfil" type="button" >
+                <button class="btn btn-link-perfil" type="button">
                   <i class="fa fa-motorcycle " style="font-size:28px;"></i>
                   <span class="red-hover"> Vehículo(s) </span>
-                  <i *ngIf="arrowDown" class="fa fa-plus-square-o" style="font-size:15px;" data-toggle="collapse" data-target="#collapseOne"
-                  aria-expanded="false" aria-controls="collapseOne"></i>
-                  <i *ngIf="!arrowDown" class="fa fa-minus-square-o" style="font-size:15px;" data-toggle="collapse" data-target="#collapseOne"
-                  aria-expanded="false" aria-controls="collapseOne"></i>
-                </button> 
+                  <i *ngIf="arrowDown" class="fa fa-plus-square-o" style="font-size:15px;" data-toggle="collapse"
+                    data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne"></i>
+                  <i *ngIf="!arrowDown" class="fa fa-minus-square-o" style="font-size:15px;" data-toggle="collapse"
+                    data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne"></i>
+                </button>
               </h2>
             </div>
 
             <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
               <div class="card-body">
-                  <div class="row">
-                      <div class="col-sm-12 col-md-4">
-                        <div class="form-group">
-                          <label class="label-text control-label" for="marca">Marca:</label>
-                          <input type="text" class="form-control mb-2 fill-width upper" id="marca" name="marca" placeholder="Marca"
-                            [(ngModel)]="marca">
+                <div class="row">
+                  <div class="col-sm-12 col-md-4">
+                    <div class="form-group">
+                      <label class="label-text control-label" for="marca">Marca:</label>
+                      <input type="text" class="form-control mb-2 fill-width upper" id="marca" name="marca"
+                        placeholder="Marca" [(ngModel)]="marca">
+                    </div>
+
+                  </div>
+                  <div class="col-sm-12 col-md-4">
+                    <div class="form-group">
+                      <label class="label-text control-label" for="subMarca">SubMarca:</label>
+                      <input type="text" class="form-control mb-2 fill-width upper" id="subMarca" name="subMarca"
+                        placeholder="SubMarca" [(ngModel)]="subMarca">
+                    </div>
+
+                  </div>
+                  <div class="col-sm-12 col-md-4">
+                    <div class="form-group">
+                      <label class="label-text control-label" for="nombre">Modelo:</label>
+
+                      <select class="custom-select mr-sm-2" id="modelo" name="modelo" [(ngModel)]="modelo">
+                        <option selected>{{modelo}}</option>
+                        <option *ngFor="let anio of modelos; let indice = index" [value]="anio">{{anio}}</option>
+
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-sm-12 col-md-4">
+                    <div class="form-group">
+                      <label class="label-text control-label" for="nombre">Placa:</label>
+                      <input type="text" class="form-control mb-2 fill-width upper" id="placa" name="placa"
+                        placeholder="Placa" [(ngModel)]="placa">
+                    </div>
+
+                  </div>
+                  <div class="col-sm-12 col-md-4">
+                    <div class="form-group">
+                      <label class="label-text control-label" for="nombre">No. Serie:</label>
+                      <input type="text" class="form-control mb-2 fill-width upper" id="serie" name="serie"
+                        placeholder="No. Serie" [(ngModel)]="serie">
+                    </div>
+
+                  </div>
+                  <div class="col-sm-12 col-md-4">
+                    <div class="form-group">
+                      <label class="label-text control-label" for="nombre">Aseguradora:</label>
+                      <input type="text" class="form-control mb-2 fill-width upper" id="aseguradora" name="aseguradora"
+                        placeholder="Aseguradora" [(ngModel)]="aseguradora ">
+                    </div>
+
+                  </div>
+                  <div class="col-sm-12 col-md-4">
+                    <div class="form-group">
+                      <label class="label-text control-label" for="nombre">Poliza:</label>
+                      <input type="text" class="form-control mb-2 fill-width upper" id="poliza" name="poliza"
+                        placeholder="Poliza" [(ngModel)]="poliza">
+                    </div>
+                  </div>
+
+                  <div class="col-sm-12 col-md-4">
+                    <div class="form-group">
+                      <label class="label-text control-label" for="nombre">Tel Aseguradora:</label>
+                      <input type="text" class="form-control mb-2 fill-width" id="telAseguradora" name="telAseguradora"
+                        placeholder="TELÉFONO" [(ngModel)]="telAseguradora">
+                    </div>
+                  </div>
+
+                  <div class="col-sm-12 col-md-3">
+                    <div class="form-group">
+                      <label class="label-text control-label" for="nombre">Cc:</label>
+
+                      <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                          <input type="text" class="form-control fill-width" id="cc" name="cc" placeholder="CC"
+                            [(ngModel)]="cc">
+                          <div class="input-group-text">cc</div>
                         </div>
-              
-                      </div>
-                      <div class="col-sm-12 col-md-4">
-                        <div class="form-group">
-                          <label class="label-text control-label" for="subMarca">SubMarca:</label>
-                          <input type="text" class="form-control mb-2 fill-width upper" id="subMarca" name="subMarca" placeholder="SubMarca"
-                            [(ngModel)]="subMarca">
-                        </div>
-              
-                      </div>
-                      <div class="col-sm-12 col-md-4">
-                        <div class="form-group">
-                          <label class="label-text control-label" for="nombre">Modelo:</label>
-              
-                          <select class="custom-select mr-sm-2" id="modelo" name="modelo" [(ngModel)]="modelo">
-                            <option selected>SELECCIONE</option>
-                            <option *ngFor="let anio of modelos; let indice = index" [value]="anio">{{anio}}</option>
-              
-                          </select>
-                        </div>
-                      </div>
-                      <div class="col-sm-12 col-md-4">
-                        <div class="form-group">
-                          <label class="label-text control-label" for="nombre">Placa:</label>
-                          <input type="text" class="form-control mb-2 fill-width upper" id="placa" name="placa" placeholder="Placa"
-                            [(ngModel)]="placa">
-                        </div>
-              
-                      </div>
-                      <div class="col-sm-12 col-md-4">
-                        <div class="form-group">
-                          <label class="label-text control-label" for="nombre">No. Serie:</label>
-                          <input type="text" class="form-control mb-2 fill-width upper" id="serie" name="serie" placeholder="No. Serie"
-                            [(ngModel)]="serie">
-                        </div>
-              
-                      </div>
-                      <div class="col-sm-12 col-md-4">
-                        <div class="form-group">
-                          <label class="label-text control-label" for="nombre">Aseguradora:</label>
-                          <input type="text" class="form-control mb-2 fill-width upper" id="aseguradora" name="aseguradora"
-                            placeholder="Aseguradora" [(ngModel)]="aseguradora ">
-                        </div>
-              
-                      </div>
-                      <div class="col-sm-12 col-md-4">
-                        <div class="form-group">
-                          <label class="label-text control-label" for="nombre">Poliza:</label>
-                          <input type="text" class="form-control mb-2 fill-width upper" id="poliza" name="poliza" placeholder="Poliza"
-                            [(ngModel)]="poliza">
-                        </div>
-                      </div>
-              
-                      <div class="col-sm-12 col-md-4">
-                        <div class="form-group">
-                          <label class="label-text control-label" for="nombre">Tel Aseguradora:</label>
-                          <input type="text" class="form-control mb-2 fill-width" id="telAseguradora" name="telAseguradora"
-                            placeholder="TELÉFONO" [(ngModel)]="telAseguradora">
-                        </div>
-                      </div>
-              
-                      <div class="col-sm-12 col-md-3">
-                        <div class="form-group">
-                          <label class="label-text control-label" for="nombre">Cc:</label>
-                        
-                        <div class="input-group mb-2">
-                            <div class="input-group-prepend">
-                              <input type="text" class="form-control fill-width" id="cc" name="cc" placeholder="CC"
-                                [(ngModel)]="cc">
-                                <div class="input-group-text">cc</div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-group btn-agregar">
-                        <button type="button" class="btn red-button circle form-control" data-toggle="modal"
-                          data-target="#loaderModal" (click)="addVehicle()">
-                          <i class="fa fa-plus " style="font-size:18px;"></i></button>
-                      </div>
-                      <div class="col-sm-12 col-md-3">
-              
-                        <ul *ngFor="let moto of motosEdit; let indice = index">
-                          <li>
-                            {{moto.marca}} {{moto.submarca}} {{moto.modelo}} {{moto.cc}} {{moto.placa}} {{moto.ciaSeguro}}
-                            {{moto.poliza}} {{moto.telSeguro}}
-                            <i class="fa fa-times-circle " style="font-size:18px;" (click)="delVehicle(indice)"></i>
-                          </li>
-                        </ul>
                       </div>
                     </div>
+                  </div>
+                  <div class="form-group btn-agregar">
+                    <button type="button" class="btn red-button circle form-control" data-toggle="modal"
+                      data-target="#loaderModal" (click)="addVehicle()">
+                      <i class="fa fa-plus " style="font-size:18px;"></i></button>
+                  </div>
+                  
+<!-- 
+                    <ul *ngFor="let moto of motosEdit; let indice = index">
+                      <li>
+                        {{moto.marca}} {{moto.submarca}} {{moto.modelo}}, {{moto.cc}}cc
+                        <label>Placa: </label> {{moto.placa}} <label>Aseguradora: </label> {{moto.ciaSeguro}}
+                        <label>Poliza: </label>{{moto.poliza}} <label>Teléfono: </label> {{moto.telSeguro}}
+                        <i class="fa fa-times-circle " style="font-size:18px;" (click)="delVehicle(indice)"></i>
+                      </li>
+                    </ul> -->
+                  </div>
+                    <div class="row" *ngFor="let moto of motosEdit; let indice = index">
+        
+                        <div class="col-sm-12 col-md-6">
+                          
+                            {{moto.marca}} {{moto.submarca}} {{moto.modelo}}, {{moto.cc}}cc
+                            <label>Placa: </label> {{moto.placa}} <label>Aseguradora: </label> {{moto.ciaSeguro}}
+                            <label>Poliza: </label>{{moto.poliza}} 
+                            <label>Teléfono: </label> {{moto.telSeguro}}
+                            <i class="fa fa-times-circle" style="font-size:18px;" title="Eliminar"
+                               (click)="delVehicle(indice)"></i>
+                        </div>
+                      
+                      </div>
               
+
               </div>
             </div>
           </div>
           <!-- Salud y alergias -->
           <div class="card">
-            <div class="card-header" id="headingTwo" data-toggle="collapse"
-            data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" (click)="changeArrow2()">
+            <div class="card-header" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo"
+              aria-expanded="false" aria-controls="collapseTwo" (click)="changeArrow2()">
               <h2 class="mb-0">
-                <button class="btn btn-link-perfil collapsed" type="button" >
+                <button class="btn btn-link-perfil collapsed" type="button">
                   <i class="fa fa-heartbeat " style="font-size:28px;"></i>
-                  
+
                   <span class="red-hover"> Datos relacionados a la salud </span>
                   <i *ngIf="arrowDown2" class="fa fa-plus-square-o" style="font-size:18px;" data-toggle="collapse"
-                  data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"></i>
+                    data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"></i>
                   <i *ngIf="!arrowDown2" class="fa fa-minus-square-o" style="font-size:18px;" data-toggle="collapse"
-                  data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"></i>
-                </button> 
+                    data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"></i>
+                </button>
               </h2>
             </div>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
               <div class="card-body">
-                
-        <div class="row">
-            
-            <div class="col-sm-12 col-md-4">
-              <div class="form-group">
-                <label class="label-text control-label" for="nombre">Tipo de sangre:</label>
-                <!-- <input type="text" class="form-control mb-2 fill-width" id="bloodType" name="bloodType"
-                  placeholder="Grupo Sanguineo" [(ngModel)]="bloodType"> -->
-                <select class="custom-select mr-sm-2" id="bloodType" name="bloodType" [(ngModel)]="bloodType">
-                  <option selected>SELECCIONE</option>
-                  <option *ngFor="let blood of bloodys; let indice = index" [value]="blood">{{blood}}</option>
-                </select>
+
+                <div class="row">
+
+                  <div class="col-sm-12 col-md-4">
+                    <div class="form-group">
+                      <label class="label-text control-label" for="nombre">Tipo de sangre:</label>
+                      <select class="custom-select mr-sm-2" id="bloodType" name="bloodType" [(ngModel)]="bloodType">
+                        <option selected>SELECCIONE</option>
+                        <option *ngFor="let blood of bloodys; let indice = index" [value]="blood">{{blood}}</option>
+                      </select>
+                    </div>
+
+                  </div>
+                  <div class="col-sm-12 col-md-4">
+                    <div class="form-group">
+                      <label class="label-text control-label" for="nombre">Alergía ó enfermedad:</label>
+                      <input type="text" class="form-control mb-2 fill-width" id="newAllergy" name="newAllergy"
+                        placeholder="PADECIMIENTO" [(ngModel)]="newAllergy">
+                    </div>
+
+                  </div>
+                  <div class="form-group btn-agregar">
+                    <button type="button" class="btn red-button circle form-control" data-toggle="modal"
+                      data-target="#loaderModal" (click)="addAlergia()">
+                      <i class="fa fa-plus " style="font-size:18px;"></i></button>
+                  </div>
+                  <div class="col-sm-12 col-md-4">
+
+                    <ul *ngFor="let alergia of saludEdit; let indice = index">
+                      <li>
+                          <i class="fa fa-stethoscope" style="font-size:18px;"></i>
+                        {{ alergia}}
+                        <i class="fa fa-times-circle " style="font-size:18px;" title="Eliminar"
+                          (click)="delAlergia(indice)"></i>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </div>
-    
-            </div>
-            <div class="col-sm-12 col-md-4">
-              <div class="form-group">
-                <label class="label-text control-label" for="nombre">Alergía ó enfermedad:</label>
-                <input type="text" class="form-control mb-2 fill-width" id="newAllergy" name="newAllergy"
-                  placeholder="PADECIMIENTO" [(ngModel)]="newAllergy">
-              </div>
-    
-            </div>
-            <div class="form-group btn-agregar">
-              <button type="button" class="btn red-button circle form-control" data-toggle="modal"
-                data-target="#loaderModal" (click)="addAlergia()">
-                <i class="fa fa-plus " style="font-size:18px;"></i></button>
-            </div>
-            <div class="col-sm-12 col-md-4">
-    
-              <ul *ngFor="let alergia of saludEdit; let indice = index">
-                <li>
-                  {{alergia}}
-                  <i class="fa fa-times-circle " style="font-size:18px;" (click)="delAlergia(indice)"></i>
-                </li>
-              </ul>
             </div>
           </div>
-              </div>
-            </div>
-          </div>
-          
+
           <div class="card">
-            <div class="card-header" id="headingThree"  data-toggle="collapse"
-            data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" (click)="changeArrow3()">
+            <div class="card-header" id="headingThree" data-toggle="collapse" data-target="#collapseThree"
+              aria-expanded="false" aria-controls="collapseThree" (click)="changeArrow3()">
               <h2 class="mb-0">
                 <button class="btn btn-link-perfil collapsed" type="button">
                   <i class="fa fa-warning " style="font-size:28px;"></i>
-                  
+
                   <span class="red-hover"> Contactos de emergencia </span>
                   <i *ngIf="arrowDown3" class="fa fa-plus-square-o" style="font-size:18px;" data-toggle="collapse"
-                  data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"></i>
+                    data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"></i>
                   <i *ngIf="!arrowDown3" class="fa fa-minus-square-o" style="font-size:18px;" data-toggle="collapse"
-                  data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"></i>
-                </button> 
+                    data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"></i>
+                </button>
               </h2>
             </div>
             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
               <div class="card-body">
-                  <div class="row">
-                      <div class="col-sm-12 col-md-4">
-                        <div class="form-group">
-                          <label class="label-text control-label" for="nombre">Nombre:</label>
-                          <input type="text" class="form-control mb-2 fill-width upper" id="nameContact" name="nameContact"
-                            placeholder="Nombre" [(ngModel)]="nameContact">
-                        </div>
-              
-                      </div>
-                      <div class="col-sm-12 col-md-4">
-                        <div class="form-group">
-                          <label class="label-text control-label" for="nombre">Parentesco:</label>
-                          <input type="text" class="form-control mb-2 fill-width upper" id="parentesco" name="parentesco"
-                            placeholder="Parentesco" [(ngModel)]="parentesco">
-                        </div>
-              
-                      </div>
-                      <div class="col-sm-12 col-md-3">
-                        <div class="form-group">
-                          <label class="label-text control-label" for="nombre">Número:</label>
-                          <input type="text" class="form-control mb-2 fill-width" id="telContact" name="telContact"
-                            placeholder="TELÉFONO" [(ngModel)]="telContact">
-                        </div>
-              
-                      </div>
-                      <div class="form-group btn-agregar">
-                        <button type="button" class="btn red-button circle form-control" data-toggle="modal"
-                          data-target="#loaderModal" (click)="addContacto()">
-                          <i class="fa fa-plus " style="font-size:18px;"></i></button>
-                      </div>
-                      <div class="col-sm-12 col-md-3">
-              
-                        <ul *ngFor="let contacto of contactos; let indice = index">
-                          <li>
-                            {{contacto.nomContacto}} {{contacto.parentesco}} {{contacto.telContacto}}
-                            <i class="fa fa-times-circle " style="font-size:18px;" (click)="delContact(indice)"></i>
-                          </li>
-                        </ul>
-                      </div>
+                <div class="row">
+                  <div class="col-sm-12 col-md-4">
+                    <div class="form-group">
+                      <label class="label-text control-label" for="nombre">Nombre:</label>
+                      <input type="text" class="form-control mb-2 fill-width upper" id="nameContact" name="nameContact"
+                        placeholder="Nombre" [(ngModel)]="nameContact">
                     </div>
+
+                  </div>
+                  <div class="col-sm-12 col-md-4">
+                    <div class="form-group">
+                      <label class="label-text control-label" for="nombre">Parentesco:</label>
+                      <input type="text" class="form-control mb-2 fill-width upper" id="parentesco" name="parentesco"
+                        placeholder="Parentesco" [(ngModel)]="parentesco">
+                    </div>
+
+                  </div>
+                  <div class="col-sm-12 col-md-3">
+                    <div class="form-group">
+                      <label class="label-text control-label" for="nombre">Número:</label>
+                      <input type="text" class="form-control mb-2 fill-width" id="telContact" name="telContact"
+                        placeholder="TELÉFONO" [(ngModel)]="telContact">
+                    </div>
+
+                  </div>
+                  <div class="form-group btn-agregar">
+                    <button type="button" class="btn red-button circle form-control" data-toggle="modal"
+                      data-target="#loaderModal" (click)="addContacto()">
+                      <i class="fa fa-plus " style="font-size:18px;"></i></button>
+                  </div>
+                  <div class="col-sm-12 col-md-4">
+
+                    <ul *ngFor="let contacto of contactos; let indice = index">
+                      <li><i class="fa fa-user-circle-o" style="font-size:18px;"></i>
+                        {{contacto.nomContacto}}, {{contacto.parentesco}} <br>
+                        <i class="fa fa-phone" style="font-size:18px;"></i>
+                        {{contacto.telContacto}}
+                        <i class="fa fa-times-circle " style="font-size:18px;" title="Eliminar"
+                         (click)="delContact(indice)"></i>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
- 
+
       <div class="d-flex flex-row-reverse bd-highlight">
-          <div class="p-2 bd-highlight">
-              <button type="submit" class="btn red-button">
-                  Guardar
-                  <i class="fa fa-cloud-upload " style="font-size:18px;"></i>
-              </button>
-          </div>
-          <div class="p-2 bd-highlight">
-              <button type="button" class="btn red-button">
-                Cancelar
-                <i class="fa fa-close " style="font-size:18px;"></i>
-              </button>
-            </div>
+        <div class="p-2 bd-highlight">
+          <button type="submit" class="btn red-button">
+            Guardar
+            <i class="fa fa-cloud-upload " style="font-size:18px;"></i>
+          </button>
         </div>
+        <div class="p-2 bd-highlight">
+          <button type="button" class="btn btn-secondary" (click)="changeEdit()">
+            Cancelar
+            <i class="fa fa-close " style="font-size:18px;"></i>
+          </button>
+        </div>
+      </div>
     </form>
   </div>
 </div>

@@ -28,7 +28,7 @@
 .btn-link-perfil{
     color: aliceblue;
 }
-.red-hover:hover{
+.fa-times-circle, .red-hover:hover{
     color:  #ff4444;
 }
 .upper{
@@ -37,3 +37,4 @@
 .input-group-prepend{
     width: inherit;
 }
+

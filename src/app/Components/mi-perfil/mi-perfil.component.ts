@@ -26,7 +26,7 @@ export class MiPerfilComponent implements OnInit {
   modelos = [];
 
 
-  editar: boolean = true;
+  editar: boolean = false;
   uid: string;
 
   bloodType = "SELECCIONE";
@@ -68,8 +68,11 @@ export class MiPerfilComponent implements OnInit {
     this.perfil = await this.dataServices.getPerfil();
     if(this.perfil && this.perfil.uid){
       this.uid = this.perfil.uid; 
-      
+      this.motosEdit = this.perfil.motos ? this.perfil.motos : [];
+      this.saludEdit = this.perfil.salud.alergias ? this.perfil.salud.alergias : [];
+      this.contactos = this.perfil.contactos ? this.perfil.contactos : [];
       this.date = this.perfil.birthday;
+      this.bloodType = this.perfil.salud.tipoSangre ? this.perfil.salud.tipoSangre : this.bloodType;
     }
     console.log(this.perfil);
 
@@ -143,17 +146,27 @@ export class MiPerfilComponent implements OnInit {
           }
           console.log(newPerfil);
           this.dataServices.updateMiembro(newPerfil);
+          this.changeEdit();
     }
     
     
   }
   changeArrow(){
     this.arrowDown = !this.arrowDown;
+    this.arrowDown2 = true;
+    this.arrowDown3 = true;
   }
   changeArrow2(){
     this.arrowDown2 = !this.arrowDown2;
+    this.arrowDown = true;
+    this.arrowDown3 = true;
   }
   changeArrow3(){
     this.arrowDown3 = !this.arrowDown3;
+    this.arrowDown = true;
+    this.arrowDown2 = true;
+  }
+  changeEdit(){
+    this.editar = !this.editar;
   }
 }

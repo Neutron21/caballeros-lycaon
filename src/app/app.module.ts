@@ -24,6 +24,7 @@ import { MiembrosComponent } from './Components/miembros/miembros.component';
 import { BikerComponent } from './Components/biker/biker.component';
 import { MiPerfilComponent } from './Components/mi-perfil/mi-perfil.component';
 import { ViewMemberComponent } from './Components/view-member/view-member.component';
+import { MotoComponent } from './Components/moto/moto.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { ViewMemberComponent } from './Components/view-member/view-member.compon
     MiembrosComponent,
     BikerComponent,
     MiPerfilComponent,
-    ViewMemberComponent
+    ViewMemberComponent,
+    MotoComponent
   ],
   imports: [
     BrowserModule,
