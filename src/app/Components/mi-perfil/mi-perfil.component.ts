@@ -50,7 +50,7 @@ export class MiPerfilComponent implements OnInit {
   telContact: string;
   contactos: TelEmergencia[] = [];
 
-  perfil = {};
+  perfil;
 
   arrowDown: boolean = true;
   arrowDown2: boolean = true;
@@ -59,13 +59,14 @@ export class MiPerfilComponent implements OnInit {
   constructor(private dataServices: DataServices) { }
 
   async ngOnInit() {
-
+    
+    this.perfil = await this.dataServices.getPerfil();
+    
     for (let index = 0; index < 50; index++) {
       this.modelos[index] = this.yyyy;
       this.yyyy--;
     }
     
-    this.perfil = await this.dataServices.getPerfil();
     if(this.perfil && this.perfil.uid){
       this.uid = this.perfil.uid; 
       this.motosEdit = this.perfil.motos ? this.perfil.motos : [];

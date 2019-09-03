@@ -1,9 +1,15 @@
 <div class="container white-text">
     <div *ngIf="perfil" class="content">
 
+
+
         <div class="card fondo-card">
             <div class="card-header">
-                <h5> {{perfil.nickName}} <span class="cargo">Presidente</span></h5>
+                <h5>
+                    <a routerLink="miembros">
+                        <i class="fa fa-arrow-circle-left yellow-text" style="font-size:20px;"></i>
+                    </a>
+                    {{perfil.nickName}} <span class="cargo">Presidente</span></h5>
             </div>
             <div class="card-body">
                 <h5 class="card-title"> {{perfil.nombre}} {{perfil.aPat}} {{perfil.aMat}}</h5>
@@ -19,7 +25,7 @@
                         <div class="card-text">
                             <p class="card-text">
                                 <i class="fa fa-birthday-cake yellow-text" style="font-size:20px;"></i>
-                                21-02-1988 31 años.
+                                {{perfil.birthday}}, {{edad}}
                             </p>
                         </div>
                     </div>
@@ -30,32 +36,29 @@
                                 <i class="fa fa-motorcycle yellow-text" style="font-size:20px;"></i>
                                 Vehículo.
                             </p>
-                            <ul>
-                                <li>Benelli tnt 25</li>
-                                <li>2017</li>
-                                <li>Placa: 7U5BH</li>
-                                <li>SN: LKADSFJ984URAKLDJSF</li>
-                                <li>Seguro: Qualitas</li>
-                                <li>Tel Seguro: 578909764</li>
-                                <li>Poliza: J984LDJS32F</li>
+                            <ul *ngFor="let motoArray of perfil.motos; let i = index">
+                                <li>{{motoArray.marca}} {{motoArray.modelo}} {{motoArray.cc}} cc</li>
+                                <li>{{motoArray.modelo}}</li>
+                                <li>Placa: {{motoArray.placa}}</li>
+                                <li>SN: {{motoArray.serie}}</li>
+                                <li>Seguro: {{motoArray.ciaSeguro}}</li>
+                                <li>Tel Seguro: {{motoArray.telSeguro}}</li>
+                                <li>Poliza: {{motoArray.poliza}}</li>
                             </ul>
                         </div>
-                        <!-- allergies
-                                    plus
-                                    pen
-                                    heartbeat
-                                    warning
-                                    tint -->
+
                         <div class="card-text">
                             <p>
                                 <i class="fa fa-heartbeat yellow-text" style="font-size:20px;"></i>
                                 Alergias y Salud
                             </p>
-                            <ul>
-                                <li>Sulfas</li>
-                                <li>O+</li>
-                                <li>NO Hipertenso</li>
-                                <li>NO Diabetico</li>
+                            <ul *ngIf="perfil.salud">
+                                <li>{{perfil.salud.tipoSangre}}</li>
+                                <li *ngFor="let alergia of perfil.salud.alergias; let i = index">
+                                    {{alergia}}
+                                </li>
+
+
                             </ul>
                         </div>
 
@@ -68,16 +71,18 @@
                                 Info emergencia.
                             </p>
 
-                            <ul>
-                                <li>
-                                        <i class="fa fa-phone yellow-text" style="font-size:20px;"></i>
-                                        Beatriz 134958240
-                                </li>
-                                <li>
-                                        <i class="fa fa-phone yellow-text" style="font-size:20px;"></i>
-                                        Javier 134958240
-                                </li>
-                                
+                            <ul class="aling" *ngFor="let contacto of perfil.contactos; let i = index">
+                                <!-- <ol> -->
+                                <i class="fa fa-user-circle-o yellow-text" style="font-size:20px;"></i>
+                                {{contacto.nomContacto}}, {{contacto.parentesco}}
+                                <br>
+                                <!-- </ol>
+                                <ol> -->
+                                <i class="fa fa-phone yellow-text" style="font-size:20px;"></i>
+                                {{contacto.telContacto}}
+                                <!-- </ol> -->
+
+
                             </ul>
                         </div>
                     </div>

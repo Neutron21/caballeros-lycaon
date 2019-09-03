@@ -43,3 +43,9 @@
 .capital{
     text-transform: capitalize;
 }
+.titulos{
+    background-color: #616161;
+}
+.edit-btn{
+    height: 50%;
+}
