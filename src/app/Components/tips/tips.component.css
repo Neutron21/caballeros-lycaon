@@ -1,4 +1,9 @@
 .titulos{
     font-size: 4vh;
+}
+.text{
     color: aliceblue;
+}
+.img-tips{
+    width: 100%;
 }
