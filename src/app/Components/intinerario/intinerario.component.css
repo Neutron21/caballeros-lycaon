@@ -1,0 +1,19 @@
+.white-text{
+    color: aliceblue;
+}
+.red-button{
+    color: aliceblue;
+    background-color: #ff4444;
+}
+.btn-plus{
+    border-radius: 50%;
+}
+.fill-width{
+    width: 100%;
+}
+.row{
+    width: 100%;
+}
+.align-btn{
+    margin-top: 10%;
+}

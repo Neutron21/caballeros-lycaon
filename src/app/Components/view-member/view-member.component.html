@@ -6,8 +6,8 @@
         <div class="card fondo-card">
             <div class="card-header">
                 <h5>
-                    <a routerLink="miembros">
-                        <i class="fa fa-arrow-circle-left yellow-text" style="font-size:20px;"></i>
+                    <a routerLink="/miembros" class="white-text">                         
+                        <i class="fa fa-arrow-left yellow-text" style="font-size:20px;"></i>
                     </a>
                     {{perfil.nickName}} <span class="cargo">Presidente</span></h5>
             </div>
@@ -72,17 +72,14 @@
                             </p>
 
                             <ul class="aling" *ngFor="let contacto of perfil.contactos; let i = index">
-                                <!-- <ol> -->
+                                
                                 <i class="fa fa-user-circle-o yellow-text" style="font-size:20px;"></i>
                                 {{contacto.nomContacto}}, {{contacto.parentesco}}
                                 <br>
-                                <!-- </ol>
-                                <ol> -->
+                               
                                 <i class="fa fa-phone yellow-text" style="font-size:20px;"></i>
                                 {{contacto.telContacto}}
-                                <!-- </ol> -->
-
-
+                                
                             </ul>
                         </div>
                     </div>

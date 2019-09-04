@@ -77,4 +77,18 @@ export class DataServices{
             alert("Ocurrio un error!");
         })
     }
+    guardarEvento(evento){
+       
+        firebase.database().ref('/eventos/').set(evento).then(() => {
+            // this.miembros.push(member);
+            // this.router.navigate(['miembros']);
+            
+            console.log("EXITO");
+            alert("Guardado exitoso!");
+
+        }).catch((error) => {   
+            console.log("ERROR");
+            
+        })
+    }
 }

@@ -1,1 +1,114 @@
-<p>intinerario works!</p>
+<div class="container">
+    <!-- <div class=" white-text">
+       
+    </div> -->
+    <div class="white-text">
+        <h5>Intinerario</h5>
+        <p>Crear Evento
+            <button class="btn btn-plus red-button" type="button" data-toggle="collapse" data-target="#formAddBiker"
+                aria-expanded="false" aria-controls="formAddBiker">
+                <i class="fa fa fa-plus" style="font-size:18;"></i>
+            </button>
+        </p>
+        <div class="collapse multi-collapse" id="formAddBiker">
+
+            <h6 class="text">Ingresar</h6>
+            <form class="form-inline" #f="ngForm" (ngSubmit)="f.form.valid && addEvent(f)">
+                <div class="row">
+                    <div class="col-sm-12 col-md-3">
+                        <div class="form-group">
+                            <label class="label-text control-label" for="nombre">Tipo:</label>
+
+                            <select class="custom-select fill-width" id="tipo" name="tipo" [(ngModel)]="type">
+                                <option selected>{{type}}</option>
+                                <option *ngFor="let tipo of tipos; let indice = index" [value]="tipo">{{tipo}}</option>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-3">
+                        <div class="form-group">
+                            <label class="label-text control-label" for="nombre">Fecha:</label>
+                        </div>
+                        <input type="date" class="form-control mb-2 fill-width" id="fecha" name="fecha"
+                             [min]="minDate" [max]="maxDate" [(ngModel)]="fecha">
+                    </div>
+                    <div class="col-sm-12 col-md-3">
+                        <div class="form-group">
+                            <label class="label-text control-label" for="nombre">Ciudad:</label>
+                        </div>
+                        <input type="text" class="form-control mb-2 fill-width" id="ciudad" name="ciudad"
+                            placeholder="Ciudad" [(ngModel)]="ciudad">
+                    </div>
+                    <div class="col-sm-12 col-md-3">
+                        <div class="form-group">
+                            <label class="label-text control-label" for="nombre">Lugar:</label>
+                        </div>
+                        <input type="phone" class="form-control mb-2 fill-width" id="lugar" name="lugar"
+                            placeholder="Lugar" [(ngModel)]="lugar">
+                    </div>
+
+
+                </div>
+                <div class="row">
+
+
+                    <div class="col-sm-12 col-md-3">
+                        <div class="form-group">
+                            <label class="label-text control-label" for="correo">Presupuesto:</label>
+                            <!-- <label *ngIf="errMsj" for="errMsj" class="label-login">{{ errMsj }}</label> -->
+                        </div>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fa fa fa-dollar" style="font-size:18;"></i>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" id="presupuesto" name="presupuesto"
+                                placeholder="$ 0.00" [(ngModel)]="presupuesto">
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-3">
+                        <div class="form-group">
+                            <label class="label-text control-label" for="nombre">Distancia:</label>
+
+                            <div class="input-group mb-2">
+                                <input type="text" class="form-control" id="distancia" name="distancia"
+                                    placeholder="Distancia" [(ngModel)]="distancia">
+                                <div class="input-group-append">
+                                    <div class="input-group-text">km</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-3">
+                        <div class="form-group">
+                            <label class="label-text control-label" for="correo">Maps:</label>
+                            <!-- <label *ngIf="errMsj" for="errMsj" class="label-login">{{ errMsj }}</label> -->
+                        </div>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <i class="fa fa fa-map-marker" style="font-size:18;"></i>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" id="url" name="url" placeholder="URL Mapa"
+                                [(ngModel)]="url">
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-3">
+                        <div class="form-group d-flex justify-content-center align-btn">
+                            <button type="submit" class="btn red-button" data-toggle="modal"
+                                data-target="#loaderModal">Agregar</button>
+                        </div>
+
+                    </div>
+                </div>
+
+            </form>
+
+
+        </div>
+    </div>
+
+</div>

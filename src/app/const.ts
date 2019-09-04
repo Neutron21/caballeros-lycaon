@@ -5,4 +5,7 @@ export class AppConstant {
         'A+','A-','B+','B-',
         'AB+','AB-','O+','O-',
     ];  
+    public static TYPE_EVENT = [
+        'Rodada','Convivencia'
+    ];  
  }

@@ -4,6 +4,7 @@ export class Evento{
                 public ciudad: string,
                 public lugar: string,
                 public presupuesto: number,
-                public distancia: number
+                public distancia: number,
+                public url: string
                 ){}
 }

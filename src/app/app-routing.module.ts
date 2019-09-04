@@ -18,10 +18,10 @@ const routes: Routes = [
   { path: 'quienes-somos', component: QuienesComponent }, 
   { path: 'tips', component: TipsComponent }, 
   // Rutas con sesion  canActivate: [Guardian]
-  { path: 'intinerario', component: IntinerarioComponent, canActivate: [Guardian] }, 
-  { path: 'miPerfil', component: MiPerfilComponent,}, 
+  { path: 'intinerario', component: IntinerarioComponent,}, 
+  { path: 'miPerfil', component: MiPerfilComponent, canActivate: [Guardian]}, 
   { path: 'miembros', component: MiembrosComponent, canActivate: [Guardian]}, 
-  { path: 'profile/:id', component: ViewMemberComponent,}, 
+  { path: 'profile/:id', component: ViewMemberComponent, canActivate: [Guardian]}, 
 ];
 
 @NgModule({
