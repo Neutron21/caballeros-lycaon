@@ -1,9 +1,91 @@
 <div class="container">
-    <!-- <div class=" white-text">
-       
-    </div> -->
+   
     <div class="white-text">
         <h5>Intinerario</h5>
+        <div class="row" >
+            <div class="accordion" id="accordionExample" >
+              <div class="card" *ngFor="let plan of eventosArray">
+                <div class="card-header " id="headingOne" data-toggle="collapse" 
+                [attr.data-target]="'#'+ plan.key"
+               
+                  aria-expanded="false" aria-controls="collapseOne">
+                  <h2 class="mb-0">
+                    <button class="btn btn-link-perfil red-hover" type="button">
+                      <i *ngIf="plan.type == 'Rodada'" class="fa fa-road " style="font-size:28px;"></i>
+                      
+                      <i *ngIf="plan.type == 'Convivencia'"  class="fa fa-smile-o " style="font-size:28px;"></i>
+                      <span class="red-hover"> {{plan.lugar}} </span>
+                     
+                    </button>
+                  </h2>
+                </div>
+    
+                <div id="{{plan.key}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                  <div class="card-body">
+                    <div class="row">
+                  
+                      <div class="col-sm-12 col-md-3">
+                        <div class="form-group">
+                          <label class="label-text control-label" for="nombre">Destino:</label><br>
+                          {{plan.lugar}}
+                        </div>
+    
+                      </div>
+                      <div class="col-sm-12 col-md-3">
+                        <div class="form-group">
+                          <label class="label-text control-label" for="nombre">Ciudad:</label><br>
+                          {{plan.ciudad}}
+                        </div>
+                      </div>
+    
+                      <div class="col-sm-12 col-md-3">
+                        <div class="form-group">
+                          <label class="label-text control-label" for="nombre">Distancia:</label><br>
+                          {{plan.distancia}} kms
+                        </div>
+                      </div>
+    
+                      <div class="col-sm-12 col-md-3">
+                        <div class="form-group">
+                          <label class="label-text control-label" for="nombre">Presupuesto:</label><br>
+                          <i class="fa fa-dollar " style="font-size:20px;"></i> {{plan.presupuesto}} aproximado
+                        </div>
+                      </div>
+                      <div class="col-sm-12 col-md-3">
+                        <div class="form-group">
+                          <label class="label-text control-label" for="nombre">Fecha:</label><br>
+                          {{plan.fecha}}
+                        </div>
+                      </div>
+                      <div class="col-sm-12 col-md-3">
+                        <div class="form-group">
+                                 
+                          <a class="label-text control-label" href="{{plan.url}}" target="_blank">
+                                <i class="fa fa-map-marker red-text" style="font-size:18px;"></i> Mapa</a>
+                          
+                        </div>
+                      </div>
+                      <div class="col-sm-12 col-md-3">
+                            <div class="form-group">
+                                <label class="label-text control-label" (click)="edithPlan(plan.key)" for="borrar"> Editar 
+                                    <i class="fa fa-pencil red-text" style="font-size:18px;"></i> 
+                                </label>
+                            </div>
+                          </div>
+                      <div class="col-sm-12 col-md-3">
+                        <div class="form-group">
+                            <label class="label-text control-label" (click)="delPlan(plan.key, plan.lugar)" for="borrar"> Eliminar 
+                                <i class="fa fa-trash red-text" style="font-size:18px;"></i> 
+                            </label>
+                        </div>
+                      </div>
+                    </div>
+               
+                  </div>
+                </div>
+              </div>
+
+        
         <p>Crear Evento
             <button class="btn btn-plus red-button" type="button" data-toggle="collapse" data-target="#formAddBiker"
                 aria-expanded="false" aria-controls="formAddBiker">
@@ -103,6 +185,7 @@
                         </div>
 
                     </div>
+                   
                 </div>
 
             </form>

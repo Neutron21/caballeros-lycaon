@@ -13,7 +13,7 @@
               <input type="password" name="password" id="password" ngModel
               (input)="modifyInput()"
               placeholder="Password" class="form-control dark-input" required>
-              <label *ngIf="msj && !checkLogin()" for="msj" class="danger-color label-login">{{msj}}</label>
+              <label *ngIf="msj" for="msj" class="danger-color label-login">{{msj}}</label>
             </div>
             <div class="d-flex justify-content-center">
                 

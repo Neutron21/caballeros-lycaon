@@ -32,7 +32,13 @@ export class IntinerarioComponent implements OnInit {
   minDate= moment(new Date()).format('YYYY-MM-DD');
   maxDate = moment(new Date(this.maxYear, this.mm, this.dd)).format('YYYY-MM-DD');
 
+  eventosArray = [];
+  
+
   ngOnInit() {
+    this.getEventos();
+    console.log(this.eventosArray);
+    
   }
 
   addEvent(form: NgForm) {
@@ -54,5 +60,33 @@ export class IntinerarioComponent implements OnInit {
     }
     
     
+  }
+  
+  getEventos(){
+    this.dataServices.getEvents().subscribe(
+      (eventos) => {
+        if (eventos != null) {
+          let rodadas = Object.keys(eventos);
+          
+          
+          for (var m of rodadas) {
+            var evento = eventos[m];
+                evento.key = m;
+            
+            this.eventosArray.push(evento);
+
+          }
+        }
+
+      })
+  }
+  
+  edithPlan(key){
+    console.log(key);
+    
+  }
+  delPlan(key, lugar){
+    this.dataServices.deleteEvent(key, lugar);
+    console.log(key);
   }
 }

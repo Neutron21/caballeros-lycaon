@@ -17,3 +17,17 @@
 .align-btn{
     margin-top: 10%;
 }
+.card{
+    background-color: transparent;
+    border-style: solid;
+}
+.card-header{
+    background-color: #616161;
+    width: 78vw;
+}
+.btn-link-perfil{
+    color: aliceblue;
+}
+.red-hover:hover{
+    color:  #ff4444;
+}
