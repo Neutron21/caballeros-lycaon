@@ -1,3 +1,6 @@
+.intinerario{
+    margin-top: 1%;
+}
 .white-text{
     color: aliceblue;
 }
@@ -30,4 +33,28 @@
 }
 .red-hover:hover{
     color:  #ff4444;
+}
+.color-dark{
+background-color: #45526e;
+}
+.text-modal{
+color: black;
+background-color: #e0e0e0;
+}
+.text-modal .danger-color{
+color: #ff4444 !important;
+}
+.crear-evento{
+    margin-top: 1%;
+    font-size: larger;
+}
+.link-mapa{
+    color: #bbdefb;
+}
+.hard-code{
+    font-size: smaller;
+    color: #d0d6e2;
+}
+.dynamic{
+    font-size: larger;
 }

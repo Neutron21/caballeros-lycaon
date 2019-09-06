@@ -21,7 +21,8 @@ export class IntinerarioComponent implements OnInit {
   lugar: string;
   presupuesto: number;
   distancia: number;
-  url: string
+  url: string;
+  key: string = "";
 
   hoy = new Date();
   yyyy = this.hoy.getFullYear();
@@ -33,7 +34,9 @@ export class IntinerarioComponent implements OnInit {
   maxDate = moment(new Date(this.maxYear, this.mm, this.dd)).format('YYYY-MM-DD');
 
   eventosArray = [];
-  
+  editar: boolean = false;
+  keyAux: string;
+  lugarAux: string;
 
   ngOnInit() {
     this.getEventos();
@@ -48,7 +51,7 @@ export class IntinerarioComponent implements OnInit {
       console.log(form.value);
   
       let evento: Evento = new Evento(form.value.tipo, form.value.fecha, form.value.ciudad,
-        form.value.lugar,form.value.presupuesto, form.value.distancia, form.value.url );
+        form.value.lugar,form.value.presupuesto, form.value.distancia, form.value.url, this.key );
         this.dataServices.guardarEvento(evento);
       this.type = "SELECCIONE";
       this.fecha = "";
@@ -68,7 +71,6 @@ export class IntinerarioComponent implements OnInit {
         if (eventos != null) {
           let rodadas = Object.keys(eventos);
           
-          
           for (var m of rodadas) {
             var evento = eventos[m];
                 evento.key = m;
@@ -81,12 +83,24 @@ export class IntinerarioComponent implements OnInit {
       })
   }
   
-  edithPlan(key){
-    console.log(key);
+  edithPlan(plan){
+    console.log(plan);
+    this.type = plan.type;
+    this.fecha = plan.fecha;
+    this.ciudad = plan.ciudad;
+    this.lugar = plan.lugar;
+    this.presupuesto = plan.presupuesto;
+    this.distancia = plan.distancia;
+    this.url = plan.url;
+    this.key = plan.key;
     
   }
-  delPlan(key, lugar){
-    this.dataServices.deleteEvent(key, lugar);
-    console.log(key);
+  delAuxPlan(key, lugar){
+    this.keyAux = key;
+    this.lugarAux = lugar
+  }
+  delPlan(){
+    this.dataServices.deleteEvent(this.keyAux, this.lugarAux);
+    console.log(this.keyAux);
   }
 }

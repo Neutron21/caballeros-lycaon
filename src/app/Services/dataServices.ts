@@ -78,23 +78,35 @@ export class DataServices {
         })
     }
     guardarEvento(evento) {
+        if (evento.key) {
+            firebase.database().ref(`/eventos/${evento.key}`).update(evento).then(() => {
+                console.log("EXITO");
+                alert("Evento actualizado!");
+    
+            }).catch((error) => {
+                console.log("ERROR");
+                console.log(error);
+                alert("Ocurrio un error!");
+            })
+        } else {
 
-        firebase.database().ref('/eventos/').push(evento).then(() => {
-            // this.miembros.push(member);
-            // this.router.navigate(['miembros']);
+            firebase.database().ref('/eventos/').push(evento).then(() => {
+                // this.miembros.push(member);
+                // this.router.navigate(['miembros']);
 
-            console.log("EXITO");
-            alert("Guardado exitoso!");
+                console.log("EXITO");
+                alert("Guardado exitoso!");
 
-        }).catch((error) => {
-            console.log("ERROR");
+            }).catch((error) => {
+                console.log("ERROR");
 
-        })
+            })
+        }
     }
-    getEvents(){
+    getEvents() {
         return this.httpClient.get(`${AppConstant.URL_DB}eventos.json`);
-     }
-     deleteEvent(key: string, lugar: string) {
+    }
+    deleteEvent(key: string, lugar: string) {
 
         firebase.database().ref(`/eventos/${key}`).remove().then(() => {
             alert("Se Elimino: " + lugar);

@@ -5,6 +5,7 @@ export class Evento{
                 public lugar: string,
                 public presupuesto: number,
                 public distancia: number,
-                public url: string
+                public url: string,
+                public key: string,
                 ){}
 }
