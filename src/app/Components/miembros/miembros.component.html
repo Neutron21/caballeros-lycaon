@@ -1,9 +1,12 @@
 <div class="container miembros text-style">
     
     <h5 class="text">Miembros</h5>
-    <app-biker *ngFor="let member of miembros; let i = index"
-              [miembro]="member"></app-biker>
-  
+    <div class="row" *ngFor="let member of miembros; let i = index">
+      <app-biker [miembro]="member"> </app-biker>
+              <i class="fa fa-trash red-text" (click)="eliminarUsuer(member.uid, member.nickName)" style="font-size:18px;"
+              data-toggle="modal" data-target="#delUserModal"></i>
+    </div>
+    
   <p>Crear Biker
       <button class="btn btn-plus red-button" type="button" data-toggle="collapse" 
               data-target="#formAddBiker" aria-expanded="false" 
@@ -90,4 +93,24 @@
      
   
 
+</div>
+<div *ngIf="nickAux" class="modal fade" id="delUserModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content text-modal">
+      <div class="modal-header color-dark">
+        <h5 class="modal-title danger-color" id="contactModalLabel">Mensaje enviado</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Estas seguro de eliminar a {{nickAux}}?<br>
+        
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+        <button type="button" class="btn red-button" data-dismiss="modal" (click)="delBiker()">Si</button>
+      </div>
+    </div>
+  </div>
 </div>

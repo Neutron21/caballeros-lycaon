@@ -27,6 +27,9 @@ export class MiembrosComponent implements OnInit {
   miembros: Miembro[] = [];
   id: string;
 
+  nickAux: string;
+  uidAux: string;
+
   ngOnInit() {
     this.getMiembros()
     console.log(this.miembros);
@@ -82,6 +85,15 @@ export class MiembrosComponent implements OnInit {
         }
 
       })
+  }
+  eliminarUsuer(id, apodo){
+    
+    this.uidAux = id;
+    this.nickAux = apodo;
+  
+  }
+  delBiker(){
+    this.dataSevice.deleteMember(this.uidAux, this.nickAux)
   }
   // onlyText(event){
      /* FORMA 1 */

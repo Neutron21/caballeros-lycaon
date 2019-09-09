@@ -52,7 +52,7 @@ export class DataServices {
     deleteMember(uid: string, name: string) {
 
         firebase.database().ref(`/users/${uid}`).remove().then(() => {
-            alert("Se Elimino: " + name);
+            console.log("Se Elimino: " + name);
         }).catch((error) => {
             alert("Hubo un error!");
         })
