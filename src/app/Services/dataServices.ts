@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { AppConstant } from '../const';
 import { Miembro } from '../Models/miembro.model';
 import { Router } from '@angular/router';
+import { Evento } from '../Models/evento.model';
 
 @Injectable()
 export class DataServices {
@@ -12,22 +13,20 @@ export class DataServices {
         private router: Router) { }
 
     miembros: Miembro[];
+    eventos: Evento[] = [];
 
     guardarMiembro(member) {
 
         firebase.database().ref(`/users/${member.uid}`).set(member).then(() => {
-            // this.miembros.push(member);
-            // this.router.navigate(['miembros']);
-
+        
             console.log("EXITO");
             alert("Guardado exitoso!");
 
         }).catch((error) => {
             firebase.auth().currentUser.delete().then(() => {
-                //Si lo elmino de la base de firebase
+                
             }).catch((errorDel) => {
-                //Si no puedo eliminarlo
-                // reject({error:true,msg:"Ocurrio un error inesperado."});
+               
             })
         })
     }
@@ -91,11 +90,11 @@ export class DataServices {
         } else {
 
             firebase.database().ref('/eventos/').push(evento).then(() => {
-                // this.miembros.push(member);
-                // this.router.navigate(['miembros']);
 
                 console.log("EXITO");
                 alert("Guardado exitoso!");
+                this.eventos.push(evento);
+               
 
             }).catch((error) => {
                 console.log("ERROR");
@@ -106,10 +105,41 @@ export class DataServices {
     getEvents() {
         return this.httpClient.get(`${AppConstant.URL_DB}eventos.json`);
     }
+    llenarEventos(){
+        
+        this.getEvents().subscribe(
+            (eventos) => {
+              if (eventos != null) {
+                let rodadas = Object.keys(eventos);
+                
+                for (var m of rodadas) {
+                  var evento = eventos[m];
+                      evento.key = m;
+                  
+                  this.eventos.push(evento);
+                  
+                  this.eventos.sort(function (a, b) {
+                    if (a.fecha > b.fecha) {
+                      return 1;
+                    }
+                    if (a.fecha < b.fecha) {
+                      return -1;
+                    }
+                    // a must be equal to b
+                    return 0;
+                  });
+      
+                }
+              }
+      
+            })
+    }
     deleteEvent(key: string, lugar: string) {
 
         firebase.database().ref(`/eventos/${key}`).remove().then(() => {
             alert("Se Elimino: " + lugar);
+            
+            
         }).catch((error) => {
             alert("Hubo un error!");
         })

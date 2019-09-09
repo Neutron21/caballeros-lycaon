@@ -40,11 +40,12 @@ export class IntinerarioComponent implements OnInit {
 
   ngOnInit() {
     this.getEventos();
+    this.eventosArray = this.dataServices.eventos;
     console.log(this.eventosArray);
     
   }
 
-  addEvent(form: NgForm) {
+ addEvent(form: NgForm) {
     console.log(form.value);
     if(form.value.tipo != "SELECCIONE" && form.value.fecha && form.value.ciudad && 
       form.value.lugar && form.value.presupuesto && form.value.distancia ){
@@ -52,7 +53,9 @@ export class IntinerarioComponent implements OnInit {
   
       let evento: Evento = new Evento(form.value.tipo, form.value.fecha, form.value.ciudad,
         form.value.lugar,form.value.presupuesto, form.value.distancia, form.value.url, this.key );
-        this.dataServices.guardarEvento(evento);
+       
+      this.dataServices.guardarEvento(evento);
+        
       this.type = "SELECCIONE";
       this.fecha = "";
       this.ciudad = "";
@@ -60,27 +63,18 @@ export class IntinerarioComponent implements OnInit {
       this.presupuesto = null;
       this.distancia = null;
       this.url = ""
+      
+      
     }
     
     
   }
   
   getEventos(){
-    this.dataServices.getEvents().subscribe(
-      (eventos) => {
-        if (eventos != null) {
-          let rodadas = Object.keys(eventos);
-          
-          for (var m of rodadas) {
-            var evento = eventos[m];
-                evento.key = m;
-            
-            this.eventosArray.push(evento);
-
-          }
-        }
-
-      })
+    
+    this.dataServices.llenarEventos();
+    
+    
   }
   
   edithPlan(plan){
@@ -99,8 +93,21 @@ export class IntinerarioComponent implements OnInit {
     this.keyAux = key;
     this.lugarAux = lugar
   }
-  delPlan(){
+ delPlan(){
     this.dataServices.deleteEvent(this.keyAux, this.lugarAux);
     console.log(this.keyAux);
+    
+    // this.getEventos();
   }
+  newEvent(){
+    this.type = "SELECCIONE";
+    this.fecha = "";
+    this.ciudad = "";
+    this.lugar = "";
+    this.presupuesto = null;
+    this.distancia = null;
+    this.url = "";
+    this.key = "";
+  }
+
 }

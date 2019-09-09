@@ -31,27 +31,27 @@
                 </div>
                 <div class="col-sm-12 col-md-3">
                   <div class="form-group">
-                    <label class="label-text control-label" for="nombre">Ciudad:</label><br>
+                    <label class="label-text control-label hard-code" for="ciudad">Ciudad:</label><br>
                     <span class="dynamic"> {{plan.ciudad}} </span>
                   </div>
                 </div>
 
                 <div class="col-sm-12 col-md-3">
                   <div class="form-group">
-                    <label class="label-text control-label" for="nombre">Distancia:</label><br>
+                    <label class="label-text control-label hard-code" for="distancia">Distancia:</label><br>
                     <span class="dynamic"> {{plan.distancia}} </span> kms
                   </div>
                 </div>
 
                 <div class="col-sm-12 col-md-3">
                   <div class="form-group">
-                    <label class="label-text control-label" for="nombre">Presupuesto:</label><br>
+                    <label class="label-text control-label hard-code" for="presupuesto">Presupuesto:</label><br>
                     <i class="fa fa-dollar " style="font-size:20px;"></i> <span class="dynamic"> {{plan.presupuesto}} </span>aproximado
                   </div>
                 </div>
                 <div class="col-sm-12 col-md-3">
                   <div class="form-group">
-                    <label class="label-text control-label" for="nombre">Fecha:</label><br>
+                    <label class="label-text control-label hard-code" for="nombre">Fecha:</label><br>
                     <span class="dynamic"> {{plan.fecha}} </span>
                   </div>
                 </div>
@@ -91,7 +91,7 @@
 
         <p class="crear-evento">Crear Evento
           <button class="btn btn-plus red-button" type="button" data-toggle="collapse" data-target="#formAddBiker"
-            aria-expanded="false" aria-controls="formAddBiker">
+            aria-expanded="false" aria-controls="formAddBiker" (click)="newEvent()">
             <i class="fa fa fa-plus" style="font-size:18;"></i>
           </button>
         </p>

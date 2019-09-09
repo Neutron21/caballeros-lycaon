@@ -54,6 +54,7 @@ color: #ff4444 !important;
 .hard-code{
     font-size: smaller;
     color: #d0d6e2;
+    margin-bottom: 0px !important;
 }
 .dynamic{
     font-size: larger;

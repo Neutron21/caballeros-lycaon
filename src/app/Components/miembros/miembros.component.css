@@ -20,3 +20,18 @@
 .admin-check{
     padding-left: 10px !important;
 }
+.color-dark{
+    background-color: #45526e;
+}
+.text-modal{
+    color: black;
+    background-color: #e0e0e0;
+}
+.text-modal .danger-color{
+    color: #ff4444 !important;
+}
+.red-text{
+    color: #ff4444 !important;
+    padding: 5px;
+    margin-top: 2px;
+}

@@ -45,7 +45,33 @@
 }
 .titulos{
     background-color: #616161;
+    padding: 1%;
 }
 .edit-btn{
     height: 50%;
+    margin-top: 1%;
+}
+.hard-code{
+    font-size: smaller;
+    color: #d0d6e2;
+    margin-bottom: 0px !important;
+}
+.dynamic{
+    font-size: larger;
+}
+.fa-warning{
+    color: #ffbb33;
+    padding-left: 4px;
+}
+.fa-heartbeat{
+    color: #ff3d00;
+    padding-left: 4px;
+}  
+.fa-motorcycle{
+    color: black;
+    padding-left: 4px;
+}
+.fa-address-card-o{
+    color: #bbdefb;
+    padding-left: 4px;
 }
