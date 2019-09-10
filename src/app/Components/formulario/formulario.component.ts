@@ -14,6 +14,8 @@ export class FormularioComponent implements OnInit {
   nombre: string;
   correo: string;
   textAreaMsj: string;
+  actButton: boolean = true;
+  badMail: boolean = true;
 
   constructor() {
    
@@ -33,6 +35,17 @@ export class FormularioComponent implements OnInit {
     this.nombre = "";
     this.correo = "";
     this.textAreaMsj = "";
+  }
+  validaCampos(){
+    
+      this.actButton = this.nombre && this.textAreaMsj ? false : true;
+      return this.actButton;
+   
+  }
+  validaMail(){
+      
+    this.badMail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(this.correo); 
+
   }
   
  

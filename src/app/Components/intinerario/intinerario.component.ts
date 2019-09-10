@@ -45,7 +45,7 @@ export class IntinerarioComponent implements OnInit {
     
   }
 
- addEvent(form: NgForm) {
+ async addEvent(form: NgForm) {
     console.log(form.value);
     if(form.value.tipo != "SELECCIONE" && form.value.fecha && form.value.ciudad && 
       form.value.lugar && form.value.presupuesto && form.value.distancia ){
@@ -54,7 +54,7 @@ export class IntinerarioComponent implements OnInit {
       let evento: Evento = new Evento(form.value.tipo, form.value.fecha, form.value.ciudad,
         form.value.lugar,form.value.presupuesto, form.value.distancia, form.value.url, this.key );
        
-      this.dataServices.guardarEvento(evento);
+     await this.dataServices.guardarEvento(evento);
         
       this.type = "SELECCIONE";
       this.fecha = "";
@@ -64,7 +64,7 @@ export class IntinerarioComponent implements OnInit {
       this.distancia = null;
       this.url = ""
       
-      
+      this.eventosArray = await this.dataServices.eventos;
     }
     
     
@@ -93,11 +93,13 @@ export class IntinerarioComponent implements OnInit {
     this.keyAux = key;
     this.lugarAux = lugar
   }
- delPlan(){
-    this.dataServices.deleteEvent(this.keyAux, this.lugarAux);
+ async delPlan(){
+    await this.dataServices.deleteEvent(this.keyAux, this.lugarAux);
     console.log(this.keyAux);
     
-    // this.getEventos();
+      this.eventosArray = await this.dataServices.eventos;
+    
+    console.log(this.eventosArray);
   }
   newEvent(){
     this.type = "SELECCIONE";

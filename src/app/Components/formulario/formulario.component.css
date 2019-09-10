@@ -14,3 +14,11 @@
 .text-modal .danger-color{
   color: #ff4444 !important;
 }
+.bad-mail{
+  color: #ff5252 !important;
+  font-weight: bold;
+  font-size: small;
+}
+.bad-format{
+  border-color: #ff4444;
+}

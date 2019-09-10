@@ -94,6 +94,7 @@ export class DataServices {
                 console.log("EXITO");
                 alert("Guardado exitoso!");
                 this.eventos.push(evento);
+             
                
 
             }).catch((error) => {
