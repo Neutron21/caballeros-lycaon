@@ -2,7 +2,7 @@
   <h5 class="titulos"><i class="fa fa-address-card-o yellow-text" style="font-size:28px;"></i>
     Datos Generales</h5>
   <div *ngIf="!editar && perfil" class="form-edition">
-    <div class="row">
+    <div class="row"><img alt="profile-picture" [src]="perfil.urlImage">
       <div class="col-sm-12 col-md-3">
         <label class="label-text control-label hard-code" for="nombre">Nombre(s):</label><br>
         <span class="capital dynamic">
@@ -165,8 +165,15 @@
               [(ngModel)]="perfil.celular">
           </div>
         </div>
+        <div class="col-sm-12 col-md-3">
+          <div class="form-group">
+            <label class="label-text control-label" for="nombre">Seleccione Imagen:</label>
+            <input type="file" acept=".jpg, .png"
+            id="fileInput" name="fileInput" (change) ="upLoad($event)"
+              value="">
+          </div>
+        </div>
       </div>
-
       <!-- Vehículo(s) -->
       <div class="row">
         <div class="accordion" id="accordionExample">

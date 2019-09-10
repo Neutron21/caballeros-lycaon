@@ -147,6 +147,7 @@
 	height: 50vh;
 	width: 25vw;
 	min-height: 390px !important;
+	margin-top: 12vh;
 }
 .letraStyle{
 	color: aliceblue;

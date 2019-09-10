@@ -16,6 +16,7 @@ import { RaizComponent } from './Components/raiz/raiz.component';
 import { QuienesComponent } from './Components/quienes/quienes.component';
 import { TipsComponent } from './Components/tips/tips.component';
 import { DataServices } from './Services/dataServices'
+import { StorageService } from './Services/storage.services'
 import { HttpClientModule } from '@angular/common/http';
 import { LoginService } from './Services/login.services';
 import { Guardian } from './Services/guardian.service';
@@ -51,9 +52,9 @@ import { MotoComponent } from './Components/moto/moto.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
-  providers: [Logger, DataServices, LoginService, Guardian],
+  providers: [Logger, DataServices, StorageService, LoginService, Guardian],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

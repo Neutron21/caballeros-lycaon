@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
       authDomain: "caballeros-mc.firebaseapp.com",
       databaseURL: "https://caballeros-mc.firebaseio.com",
       projectId: "caballeros-mc",
-      storageBucket: "",
+      storageBucket: "caballeros-mc.appspot.com",
       messagingSenderId: "573088013461",
       appId: "1:573088013461:web:50d8e80338af60cc"
     })

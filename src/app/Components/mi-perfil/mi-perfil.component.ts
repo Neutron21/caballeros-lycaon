@@ -6,6 +6,8 @@ import { TelEmergencia } from 'src/app/Models/telEmergencia.model';
 import { AppConstant } from '../../const';
 import { Health } from 'src/app/Models/health.model';
 import * as moment from 'moment';
+import { Observable } from 'rxjs/internal/Observable';
+import { StorageService } from 'src/app/Services/storage.services';
 
 @Component({
   selector: 'app-mi-perfil',
@@ -51,12 +53,16 @@ export class MiPerfilComponent implements OnInit {
   contactos: TelEmergencia[] = [];
 
   perfil;
-
+  picture;
+  
   arrowDown: boolean = true;
   arrowDown2: boolean = true;
   arrowDown3: boolean = true;
   
-  constructor(private dataServices: DataServices) { }
+  constructor(private dataServices: DataServices,
+              private storageService: StorageService,
+              
+              ) { }
 
   async ngOnInit() {
     
@@ -169,5 +175,17 @@ export class MiPerfilComponent implements OnInit {
   }
   changeEdit(){
     this.editar = !this.editar;
+  }
+  async upLoad(e){
+    
+    let picture = e.target.files[0]
+    let filePath = `media/Profile/${this.perfil.uid}`;
+    let profilePicture = await this.storageService.imgProfile(filePath, picture);
+    this.perfil.urlImage = profilePicture;
+    // console.log(task);
+    console.log(this.perfil);
+    this.dataServices.updateMiembro(this.perfil);
+    
+    
   }
 }
