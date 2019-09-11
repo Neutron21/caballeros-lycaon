@@ -29,7 +29,9 @@ export class LoginService{
         )
         
     }
-    
+    setToken(token){
+        this.token = token;
+    }
     getIdToken(){
         return this.token;
     }

@@ -10,22 +10,28 @@ export class StorageService {
     imgProfile(filePath, file){
     let pathPicture;
     let  storageRef = firebase.storage().ref(filePath);
-     storageRef.put(file);
-    //  this.pathPicture = storageRef.fullPath;
-    //  this.pathPicture = storageRef.fullPath;
+    let uploadTask = storageRef.put(file);
+
+     
+
     return new Promise((resolve, reject) => {
-        storageRef.getDownloadURL().then(url => {
-            // Insert url into an <img> tag to "download"
-            pathPicture = url;
-            console.log(pathPicture);
-            
-            resolve(pathPicture);
-    
-          }).catch(function(error) {
-    
-            console.log(error);
-          
-          });
+      uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+     (snapshot) => {
+         // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+         var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+         console.log('Upload is ' + progress + '% done');
+     }, (error) => {
+
+         reject({ error: error});
+
+     }, () => {
+         
+         uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+             console.log('File available at', downloadURL);
+             resolve( downloadURL);
+         });
+     });
+   
     })
  
     }

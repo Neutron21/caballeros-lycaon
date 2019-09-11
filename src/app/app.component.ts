@@ -21,7 +21,6 @@ export class AppComponent implements OnInit {
   constructor(private loginService: LoginService){  }
   
   ngOnInit(): void {
-    console.log("isAut "+this.isAut);
     
     firebase.initializeApp({
       apiKey: "AIzaSyAfIaS8uMlNSh9zDGXcw0DmTUF3dGuOnW0",
@@ -33,10 +32,27 @@ export class AppComponent implements OnInit {
       appId: "1:573088013461:web:50d8e80338af60cc"
     })
     this.sesionActiva()
+    console.log("isAut "+this.isAut);
   }
- sesionActiva(){
-  this.isAut = this.loginService.isAutenticated();
-  return this.isAut;
+ async sesionActiva(){
+  
+   let user = await new Promise((resolve,reject)=>{
+    firebase.auth().onAuthStateChanged(function(user) {
+      
+      if (user) {
+        resolve(user);
+        // User is signed in.
+      } else {
+        // resolNo user is signed in.
+        resolve(false);
+      }
+    }
+    
+    );
+   }) ;
+  
+   this.isAut = user ? user.refreshToken : false;
+   this.loginService.setToken(user.refreshToken);
  }
   sumaEjecucion(res:Res){
     this.result= Number(res.aOp) + Number(res.bOp);

@@ -34,12 +34,14 @@ export class IntinerarioComponent implements OnInit {
   maxDate = moment(new Date(this.maxYear, this.mm, this.dd)).format('YYYY-MM-DD');
 
   eventosArray = [];
+  miembros = [];
   editar: boolean = false;
   keyAux: string;
   lugarAux: string;
 
   ngOnInit() {
     this.getEventos();
+    this.getMiembros();
     this.eventosArray = this.dataServices.eventos;
     console.log(this.eventosArray);
     
@@ -110,6 +112,20 @@ export class IntinerarioComponent implements OnInit {
     this.distancia = null;
     this.url = "";
     this.key = "";
+  }
+  getMiembros(){
+    this.dataServices.getMembers().subscribe(
+      (members) => {
+        if (members != null) {
+          let miembros = Object.keys(members);
+          for (var m of miembros) {
+            var miembro = members[m];
+            this.miembros.push(miembro);
+
+          }
+        }
+
+      })
   }
 
 }

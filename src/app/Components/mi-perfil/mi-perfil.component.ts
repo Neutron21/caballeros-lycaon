@@ -179,10 +179,14 @@ export class MiPerfilComponent implements OnInit {
   async upLoad(e){
     
     let picture = e.target.files[0]
-    let filePath = `media/Profile/${this.perfil.uid}`;
+    
+    let splitFileName = picture.name.split(".");
+    let extension = splitFileName[splitFileName.length - 1];
+
+    let filePath = `media/Profile/${this.perfil.uid}.${extension}`;
     let profilePicture = await this.storageService.imgProfile(filePath, picture);
     this.perfil.urlImage = profilePicture;
-    // console.log(task);
+    
     console.log(this.perfil);
     this.dataServices.updateMiembro(this.perfil);
     
