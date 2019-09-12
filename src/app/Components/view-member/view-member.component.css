@@ -13,8 +13,8 @@
     font-size: .7em;
 }
 .profile-style{
-    height: 200px;
-    width: 200px;
+    padding-bottom: 15px;
+    width: 85%;
     border-radius: 50%;
 }
 .aling{

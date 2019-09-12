@@ -86,9 +86,15 @@
 }
 .profile-edit{
     width: 80%;
-    /* position: absolute; */
     border-radius: 50%;
 }
 .row{
     margin-left: 0px;
+}
+.abs{
+    position: absolute;
+    margin-top: 15px;
+}
+.form-edition{
+    padding-bottom: 15px;
 }

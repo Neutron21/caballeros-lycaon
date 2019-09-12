@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
     console.log("isAut "+this.isAut);
   }
  async sesionActiva(){
-  
+    
    let user = await new Promise((resolve,reject)=>{
     firebase.auth().onAuthStateChanged(function(user) {
       

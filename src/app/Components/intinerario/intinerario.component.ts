@@ -4,6 +4,7 @@ import { AppConstant } from '../../const';
 import * as moment from 'moment';
 import { DataServices } from 'src/app/Services/dataServices';
 import { Evento } from 'src/app/Models/evento.model';
+import { log } from 'util';
 
 @Component({
   selector: 'app-intinerario',
@@ -38,11 +39,12 @@ export class IntinerarioComponent implements OnInit {
   editar: boolean = false;
   keyAux: string;
   lugarAux: string;
+  indice: number;
 
   ngOnInit() {
     this.getEventos();
     this.getMiembros();
-    this.eventosArray = this.dataServices.eventos;
+    
     console.log(this.eventosArray);
     
   }
@@ -56,7 +58,7 @@ export class IntinerarioComponent implements OnInit {
       let evento: Evento = new Evento(form.value.tipo, form.value.fecha, form.value.ciudad,
         form.value.lugar,form.value.presupuesto, form.value.distancia, form.value.url, this.key );
        
-     await this.dataServices.guardarEvento(evento);
+      let nkey = await this.dataServices.guardarEvento(evento);
         
       this.type = "SELECCIONE";
       this.fecha = "";
@@ -65,16 +67,46 @@ export class IntinerarioComponent implements OnInit {
       this.presupuesto = null;
       this.distancia = null;
       this.url = ""
+      // await this.getEventos();
+      console.log(nkey);
+      evento.key = nkey;
+      this.eventosArray.push(evento);
+      console.log(this.eventosArray);
       
-      this.eventosArray = await this.dataServices.eventos;
+      
     }
     
     
   }
   
   getEventos(){
-    
-    this.dataServices.llenarEventos();
+    this.eventosArray = [];
+    this.dataServices.getEvents().subscribe(
+      (eventos) => {
+        if (eventos != null) {
+          let rodadas = Object.keys(eventos);
+          
+          for (var m of rodadas) {
+            var evento = eventos[m];
+                evento.key = m;
+            
+            this.eventosArray.push(evento);
+            
+            this.eventosArray.sort(function (a, b) {
+              if (a.fecha > b.fecha) {
+                return 1;
+              }
+              if (a.fecha < b.fecha) {
+                return -1;
+              }
+              // a must be equal to b
+              return 0;
+            });
+
+          }
+        }
+
+      })
     
     
   }
@@ -91,15 +123,20 @@ export class IntinerarioComponent implements OnInit {
     this.key = plan.key;
     
   }
-  delAuxPlan(key, lugar){
+  // delAuxPlan(key, lugar){
+  //   this.keyAux = key;
+  //   this.lugarAux = lugar
+  // }
+  delAuxPlan(index, key, lugar){
+    this.indice = index;
     this.keyAux = key;
     this.lugarAux = lugar
   }
  async delPlan(){
     await this.dataServices.deleteEvent(this.keyAux, this.lugarAux);
-    console.log(this.keyAux);
-    
-      this.eventosArray = await this.dataServices.eventos;
+    // console.log(this.keyAux);
+    this.eventosArray.splice(this.indice, 1);
+      
     
     console.log(this.eventosArray);
   }
@@ -119,9 +156,34 @@ export class IntinerarioComponent implements OnInit {
         if (members != null) {
           let miembros = Object.keys(members);
           for (var m of miembros) {
-            var miembro = members[m];
+            var miembro = {
+                nickName: members[m].nickName,
+                dayBirthday: moment(members[m].birthday).format('DD'),
+                monthBirthday: moment(members[m].birthday).format('MMM'),
+                numberMonth: moment(members[m].birthday).format('MM')
+            }
+            
             this.miembros.push(miembro);
-
+            this.miembros.sort(function (a, b) {
+              if (a.numberMonth > b.numberMonth) {
+                return 1;
+              }
+              if (a.numberMonth < b.numberMonth) {
+                return -1;
+              }
+              // a must be equal to b
+              if (a.numberMonth == b.numberMonth) {
+                if (a.dayBirthday > b.dayBirthday) {
+                  return 1;
+                }
+                if (a.dayBirthday < b.dayBirthday) {
+                  return -1;
+                }
+                return 0;
+              }
+              // return 0;
+            });
+            
           }
         }
 

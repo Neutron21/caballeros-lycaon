@@ -13,7 +13,7 @@ export class DataServices {
         private router: Router) { }
 
     miembros: Miembro[];
-    eventos: Evento[] = [];
+    // eventos: Evento[] = [];
 
     guardarMiembro(member) {
 
@@ -77,6 +77,7 @@ export class DataServices {
         })
     }
     guardarEvento(evento) {
+        return new Promise((resolve, reject) => {
         if (evento.key) {
             firebase.database().ref(`/eventos/${evento.key}`).update(evento).then(() => {
                 console.log("EXITO");
@@ -89,52 +90,26 @@ export class DataServices {
             })
         } else {
 
-            firebase.database().ref('/eventos/').push(evento).then(() => {
+            firebase.database().ref('/eventos/').push(evento).then((snap) => {
 
                 console.log("EXITO");
                 alert("Guardado exitoso!");
-                this.eventos.push(evento);
-             
+                // this.eventos.push(evento);
+                console.log(snap.key);
+                resolve(snap.key)
                
-
+   
             }).catch((error) => {
                 console.log("ERROR");
-
+                reject(error)
             })
         }
     }
+)}
     getEvents() {
         return this.httpClient.get(`${AppConstant.URL_DB}eventos.json`);
     }
-    llenarEventos(){
-        
-        this.getEvents().subscribe(
-            (eventos) => {
-              if (eventos != null) {
-                let rodadas = Object.keys(eventos);
-                
-                for (var m of rodadas) {
-                  var evento = eventos[m];
-                      evento.key = m;
-                  
-                  this.eventos.push(evento);
-                  
-                  this.eventos.sort(function (a, b) {
-                    if (a.fecha > b.fecha) {
-                      return 1;
-                    }
-                    if (a.fecha < b.fecha) {
-                      return -1;
-                    }
-                    // a must be equal to b
-                    return 0;
-                  });
-      
-                }
-              }
-      
-            })
-    }
+    
     deleteEvent(key: string, lugar: string) {
 
         firebase.database().ref(`/eventos/${key}`).remove().then(() => {

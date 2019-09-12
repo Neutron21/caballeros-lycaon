@@ -9,16 +9,17 @@
                     <a routerLink="/miembros" class="white-text">                         
                         <i class="fa fa-arrow-left yellow-text" style="font-size:20px;"></i>
                     </a>
-                    {{perfil.nickName}} <span class="cargo">Presidente</span></h5>
+                    {{perfil.nickName}} </h5>
             </div>
             <div class="card-body">
                 <h5 class="card-title"> {{perfil.nombre}} {{perfil.aPat}} {{perfil.aMat}}</h5>
                 <div class="row">
                     <div class="col-md-4">
                         <div class="card-text">
-                            <p>
-                                <img class="profile-style" src="../../../assets/perfil.jpg" />
-                            </p>
+                                <div class="d-flex justify-content-center">
+                                <img *ngIf="perfil.urlImage" class="profile-style" [src]="perfil.urlImage"/>
+                                <img *ngIf="!perfil.urlImage" class="profile-style" src="../../../assets/perfil.png"/>
+                                </div>
                             <i class="fa fa-phone yellow-text" style="font-size:20px;"></i>
                             {{perfil.celular}}
                         </div>
