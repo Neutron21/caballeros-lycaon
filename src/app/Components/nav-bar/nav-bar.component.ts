@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { LoginService } from 'src/app/Services/login.services';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-nav-bar',
@@ -23,5 +24,9 @@ export class NavBarComponent implements OnInit {
    }
   cerrarSesion(){
     this.loginService.logout();
+    this.hideMenu();
+  }
+  hideMenu(){
+    $( "#navbarSupportedContent" ).removeClass( "show" )
   }
 }

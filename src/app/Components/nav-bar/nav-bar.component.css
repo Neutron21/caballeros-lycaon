@@ -25,3 +25,34 @@
 .dropdown-menu{
     margin: 0.125rem -7rem 0;
 }
+.cursor{
+    cursor: pointer;
+}
+.in-sesion:hover{
+    background-color: #4B515D;
+}
+.in-sesion{
+    padding: 7px 5px 7px 5px;
+}
+.web{
+    display: block;
+}
+.mobile{
+    display: none;
+}
+@media only screen and (max-width: 991px){
+
+ .nav-item a{
+    padding-left: 5px;
+}
+.in-sesion{
+    padding: 7px 0px 5px 0px;
+}
+.web{
+    display: none;
+}
+/* .mobile{
+    display: block;
+} */
+
+}

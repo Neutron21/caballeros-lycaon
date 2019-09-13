@@ -1,8 +1,9 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { DataServices } from '../../Services/dataServices'
-import { Login } from '../../Models/login.model'
+import { DataServices } from '../../Services/dataServices';
+import { Login } from '../../Models/login.model';
 import { NgForm } from '@angular/forms';
-import { LoginService } from '../../Services/login.services'
+import { LoginService } from '../../Services/login.services';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-login',
@@ -24,6 +25,7 @@ export class LoginComponent implements OnInit {
               private loginService: LoginService) { }
 
   ngOnInit() {
+    $( "#navbarSupportedContent" ).removeClass( "show" );
   }
 
   loginSystem(form: NgForm) {
