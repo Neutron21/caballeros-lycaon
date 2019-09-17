@@ -29,8 +29,10 @@ export class MiembrosComponent implements OnInit {
 
   nickAux: string;
   uidAux: string;
+  perfil;
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.perfil = await this.dataSevice.getPerfil();
     this.getMiembros()
     console.log(this.miembros);
    

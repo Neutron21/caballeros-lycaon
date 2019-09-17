@@ -63,7 +63,7 @@
 
                   </div>
                 </div>
-                <div class="col-sm-12 col-md-3">
+                <div *ngIf="perfil && perfil.admin" class="col-sm-12 col-md-3">
                   <div class="form-group">
                     <button class="btn btn-secondary mb-2" (click)="edithPlan(plan)" for="borrar"
                       data-toggle="collapse" data-target="#formAddBiker" aria-expanded="false"
@@ -72,7 +72,7 @@
                     </button>
                   </div>
                 </div>
-                <div class="col-sm-12 col-md-3">
+                <div *ngIf="perfil && perfil.admin" class="col-sm-12 col-md-3">
                   <div class="form-group">
                     <button class="btn red-button mb-2" 
                     (click)="delAuxPlan(indice, plan.key, plan.lugar)" 
@@ -88,13 +88,14 @@
           </div>
         </div>
 
-
-        <p class="crear-evento">Crear Evento
+        <!-- <hr> -->
+        <p *ngIf="perfil && perfil.admin" class="crear-evento">Crear Evento
           <button class="btn btn-plus red-button" type="button" data-toggle="collapse" data-target="#formAddBiker"
             aria-expanded="false" aria-controls="formAddBiker" (click)="newEvent()">
             <i class="fa fa fa-plus" style="font-size:18;"></i>
           </button>
         </p>
+        <hr>
         <div class="collapse multi-collapse" id="formAddBiker">
 
           <h6 class="text">Ingresar</h6>

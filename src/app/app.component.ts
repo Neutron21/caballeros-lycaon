@@ -4,6 +4,7 @@ import * as firebase from 'firebase';
 import { Res } from './res.model';
 import { LoginService } from './Services/login.services';
 import { log } from 'util';
+import { DataServices } from './Services/dataServices';
 
 @Component({
   selector: 'app-root',
@@ -17,10 +18,12 @@ export class AppComponent implements OnInit {
   title = 'borrador';
   personas: Persona[] = [];
   result:number;
+  perfil;
   
-  constructor(private loginService: LoginService){  }
+  constructor(private loginService: LoginService,
+              private dataService: DataServices){  }
   
-  ngOnInit(): void {
+  async ngOnInit(){
     
     firebase.initializeApp({
       apiKey: "AIzaSyAfIaS8uMlNSh9zDGXcw0DmTUF3dGuOnW0",
@@ -31,6 +34,10 @@ export class AppComponent implements OnInit {
       messagingSenderId: "573088013461",
       appId: "1:573088013461:web:50d8e80338af60cc"
     })
+    // this.perfil = await this.dataService.getPerfil();
+    // if (this.perfil) {
+    //   this.sesionActiva()
+    // }
     this.sesionActiva()
     console.log("isAut "+this.isAut);
   }
@@ -40,7 +47,7 @@ export class AppComponent implements OnInit {
     firebase.auth().onAuthStateChanged(function(user) {
       
       if (user) {
-        resolve(user);
+       resolve(user);
         // User is signed in.
       } else {
         // resolNo user is signed in.
@@ -50,7 +57,7 @@ export class AppComponent implements OnInit {
     
     );
    }) ;
-  
+
    this.isAut = user ? user.refreshToken : false;
    this.loginService.setToken(user.refreshToken);
  }

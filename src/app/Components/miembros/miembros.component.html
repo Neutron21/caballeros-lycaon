@@ -3,11 +3,11 @@
     <h5 class="text">Miembros</h5>
     <div class="row" *ngFor="let member of miembros; let i = index">
       <app-biker [miembro]="member"> </app-biker>
-              <i class="fa fa-trash red-text" (click)="eliminarUsuer(member.uid, member.nickName)" style="font-size:18px;"
+              <i *ngIf="perfil && perfil.admin" class="fa fa-trash red-text" (click)="eliminarUsuer(member.uid, member.nickName)" style="font-size:18px;"
               data-toggle="modal" data-target="#delUserModal"></i>
     </div>
     
-  <p>Crear Biker
+  <p *ngIf="perfil && perfil.admin">Crear Biker
       <button class="btn btn-plus red-button" type="button" data-toggle="collapse" 
               data-target="#formAddBiker" aria-expanded="false" 
               aria-controls="formAddBiker">

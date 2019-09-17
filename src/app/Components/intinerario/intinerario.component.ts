@@ -4,7 +4,7 @@ import { AppConstant } from '../../const';
 import * as moment from 'moment';
 import { DataServices } from 'src/app/Services/dataServices';
 import { Evento } from 'src/app/Models/evento.model';
-import { log } from 'util';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-intinerario',
@@ -40,10 +40,14 @@ export class IntinerarioComponent implements OnInit {
   keyAux: string;
   lugarAux: string;
   indice: number;
+  perfil;
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.perfil = await this.dataServices.getPerfil();
+  
     this.getEventos();
     this.getMiembros();
+    
     
     console.log(this.eventosArray);
     
@@ -123,10 +127,7 @@ export class IntinerarioComponent implements OnInit {
     this.key = plan.key;
     
   }
-  // delAuxPlan(key, lugar){
-  //   this.keyAux = key;
-  //   this.lugarAux = lugar
-  // }
+
   delAuxPlan(index, key, lugar){
     this.indice = index;
     this.keyAux = key;
@@ -189,5 +190,5 @@ export class IntinerarioComponent implements OnInit {
 
       })
   }
-
+ 
 }

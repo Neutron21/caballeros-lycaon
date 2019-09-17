@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { LoginService } from 'src/app/Services/login.services';
 import * as $ from 'jquery';
+import { DataServices } from 'src/app/Services/dataServices';
 
 @Component({
   selector: 'app-nav-bar',
@@ -12,10 +13,15 @@ export class NavBarComponent implements OnInit {
 
   @Input() sesion: boolean;
   
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService,
+              private dataService: DataServices) { }
 
-  ngOnInit() {
+  perfil;
+
+ async ngOnInit() {
     // this.sesionActiva()
+    // this.sesion 
+    this.perfil = await this.dataService.getPerfil();
   }
  
   sesionActiva(){
