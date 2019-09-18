@@ -17,11 +17,17 @@ export class LoginService{
         firebase.auth().signInWithEmailAndPassword(email, pass).then(
             response => {
                 firebase.auth().currentUser.getIdToken().then(
-                    token => {
+                    async token => {
                         this.token = token;
-                        this.router.navigate(['/']);
+                       let perfil = await this.dataServices.getPerfil();
+                       if (perfil) {
                         
+                        this.router.navigate(['/']);
                         console.log("Auth ok!");
+                       } else{
+                        console.log(perfil, 'no hay perfil');
+                        this.logout();
+                       }
                         
                     }
                 )
@@ -47,11 +53,11 @@ export class LoginService{
         ).catch( error => console.error("error de Logout: "+error))
     }
     addNewMember(data){
-        debugger
+        
         let msj: string;
         firebase.auth().createUserWithEmailAndPassword(data.email, AppConstant.PASSWORD).then(
             userMember => {
-                console.log(userMember); 
+                // console.log(userMember); 
                 let { user } = userMember;
                 let userTosave = {
                     email: data.email,

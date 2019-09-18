@@ -48,7 +48,6 @@
     padding: 1%;
 }
 .edit-btn{
-    /* height: 50%; */
     margin-top: 3%;
 }
 .hard-code{
@@ -97,4 +96,39 @@
 }
 .form-edition{
     padding-bottom: 15px;
+}
+.profile-edit-mobile, .image-mobile{
+    display: none;
+ }
+
+@media only screen and (max-width: 991px){
+
+    .profile-edit-mobile, .image-mobile{
+        display: none;
+     }
+    
+    .edit-btn{
+        margin-top: -5px;
+        margin-bottom: 10px;
+    }
+    .card-header{
+        width: 82vw;
+    }  
+}
+@media only screen and (max-width: 767px){
+
+    .profile-edit{
+       display: none;
+    }
+    .profile-edit-mobile, .image-mobile{
+        width: 100%;
+        border-radius: 50%;
+        display: block;
+        padding-bottom: 3px;
+        padding-top: 3px;
+     }
+    
+}
+@media only screen and (max-width: 660px){
+   
 }

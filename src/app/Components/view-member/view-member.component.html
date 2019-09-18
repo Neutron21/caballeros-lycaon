@@ -7,36 +7,41 @@
             <div class="card-header">
                 <h5>
                     <a routerLink="/miembros" class="white-text">                         
-                        <i class="fa fa-arrow-left yellow-text" style="font-size:20px;"></i>
+                        <i class="fa fa-arrow-left" style="font-size:20px;"></i>
                     </a>
-                    {{perfil.nickName}} </h5>
+                    {{perfil.nickName}} 
+                </h5>
             </div>
             <div class="card-body">
-                <h5 class="card-title"> {{perfil.nombre}} {{perfil.aPat}} {{perfil.aMat}}</h5>
+                <h5 class="card-title"> <span class="capital"> {{perfil.nombre}} {{perfil.aPat}} {{perfil.aMat}}</span></h5>
+                
                 <div class="row">
                     <div class="col-md-4">
-                        <div class="card-text">
+                        <div class="card-text"> 
                                 <div class="d-flex justify-content-center">
                                 <img *ngIf="perfil.urlImage" class="profile-style" [src]="perfil.urlImage"/>
                                 <img *ngIf="!perfil.urlImage" class="profile-style" src="../../../assets/perfil.png"/>
                                 </div>
-                            <i class="fa fa-phone yellow-text" style="font-size:20px;"></i>
+                                
+                            <i class="fa fa-phone " style="font-size:20px;"></i>
                             {{perfil.celular}}
                         </div>
+                        
                         <div class="card-text">
                             <p class="card-text">
-                                <i class="fa fa-birthday-cake yellow-text" style="font-size:20px;"></i>
+                                <i class="fa fa-birthday-cake " style="font-size:20px;"></i>
                                 {{perfil.birthday}}, {{edad}}
                             </p>
-                        </div>
+                        </div> <hr>
                     </div>
                     <div class="col-md-4">
                         <div class="card-text">
 
                             <p class="card-text">
-                                <i class="fa fa-motorcycle yellow-text" style="font-size:20px;"></i>
+                                <i class="fa fa-motorcycle" style="font-size:20px;"></i>
                                 Vehículo.
                             </p>
+                            <hr>
                             <ul *ngFor="let motoArray of perfil.motos; let i = index">
                                 <li>{{motoArray.marca}} {{motoArray.modelo}} {{motoArray.cc}} cc</li>
                                 <li>{{motoArray.modelo}}</li>
@@ -53,6 +58,7 @@
                                 <i class="fa fa-heartbeat yellow-text" style="font-size:20px;"></i>
                                 Alergias y Salud
                             </p>
+                            <hr>
                             <ul *ngIf="perfil.salud">
                                 <li>{{perfil.salud.tipoSangre}}</li>
                                 <li *ngFor="let alergia of perfil.salud.alergias; let i = index">
@@ -68,27 +74,24 @@
                     <div class="col-md-4">
                         <div class="card-text">
                             <p>
-                                <i class="fa fa-warning yellow-text" style="font-size:20px;"></i>
+                                <i class="fa fa-warning " style="font-size:20px;"></i>
                                 Info emergencia.
                             </p>
-
+                            <hr>
                             <ul class="aling" *ngFor="let contacto of perfil.contactos; let i = index">
                                 
-                                <i class="fa fa-user-circle-o yellow-text" style="font-size:20px;"></i>
+                                <i class="fa fa-user-circle-o " style="font-size:20px;"></i>
                                 {{contacto.nomContacto}}, {{contacto.parentesco}}
                                 <br>
                                
-                                <i class="fa fa-phone yellow-text" style="font-size:20px;"></i>
+                                <i class="fa fa-phone padding-text" style="font-size:20px;"></i>
                                 {{contacto.telContacto}}
                                 
                             </ul>
                         </div>
                     </div>
 
-
                 </div>
-
-
 
             </div>
         </div>

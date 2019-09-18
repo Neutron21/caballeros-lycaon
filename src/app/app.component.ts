@@ -10,21 +10,21 @@ import { DataServices } from './Services/dataServices';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-   
+
 })
 export class AppComponent implements OnInit {
-  
+
   isAut: boolean;
   title = 'borrador';
   personas: Persona[] = [];
-  result:number;
+  result: number;
   perfil;
-  
+
   constructor(private loginService: LoginService,
-              private dataService: DataServices){  }
-  
-  async ngOnInit(){
-    
+    private dataService: DataServices) { }
+
+  async ngOnInit() {
+
     firebase.initializeApp({
       apiKey: "AIzaSyAfIaS8uMlNSh9zDGXcw0DmTUF3dGuOnW0",
       authDomain: "caballeros-mc.firebaseapp.com",
@@ -32,40 +32,37 @@ export class AppComponent implements OnInit {
       projectId: "caballeros-mc",
       storageBucket: "caballeros-mc.appspot.com",
       messagingSenderId: "573088013461",
-      appId: "1:573088013461:web:50d8e80338af60cc"
+      appId: "1:573088013461:web:def5cd2e7729e7856e8f9c"
     })
-    // this.perfil = await this.dataService.getPerfil();
-    // if (this.perfil) {
-    //   this.sesionActiva()
-    // }
-    this.sesionActiva()
-    console.log("isAut "+this.isAut);
-  }
- async sesionActiva(){
-    
-   let user = await new Promise((resolve,reject)=>{
-    firebase.auth().onAuthStateChanged(function(user) {
-      
-      if (user) {
-       resolve(user);
-        // User is signed in.
-      } else {
-        // resolNo user is signed in.
-        resolve(false);
-      }
-    }
-    
-    );
-   }) ;
 
-   this.isAut = user ? user.refreshToken : false;
-   this.loginService.setToken(user.refreshToken);
- }
-  sumaEjecucion(res:Res){
-    this.result= Number(res.aOp) + Number(res.bOp);
+    this.sesionActiva()
+    // console.log("isAut "+this.isAut);
   }
-  onSesion(sesion: boolean){
+  async sesionActiva() {
+
+    let user: any = await new Promise((resolve, reject) => {
+      firebase.auth().onAuthStateChanged(function (user) {
+
+        if (user) {
+          resolve(user);
+          // User is signed in.
+        } else {
+          // resolNo user is signed in.
+          resolve(false);
+        }
+      }
+
+      );
+    });
+
+    this.isAut = user ? user.refreshToken : false;
+    this.loginService.setToken(user.refreshToken);
+  }
+  sumaEjecucion(res: Res) {
+    this.result = Number(res.aOp) + Number(res.bOp);
+  }
+  onSesion(sesion: boolean) {
     this.isAut = sesion;
   }
- 
+
 }

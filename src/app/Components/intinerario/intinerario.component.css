@@ -1,3 +1,8 @@
+.container{
+    margin-left: 10% !important;
+    margin-right: 10% !important;
+    width: 80% !important;
+}
 .intinerario{
     margin-top: 1%;
 }
@@ -45,7 +50,7 @@ background-color: #e0e0e0;
 color: #ff4444 !important;
 }
 .crear-evento{
-    margin-top: 1%;
+    margin-top: 2%;
     font-size: larger;
 }
 .link-mapa{
@@ -61,4 +66,26 @@ color: #ff4444 !important;
 }
 hr {
     border-top: 1px solid aliceblue;
-  }
+}
+  .input-group-append{
+    width: inherit;
+}
+.cumpleños-collapse{
+    margin-bottom: 15px;
+}
+@media only screen and (max-width: 991px){
+    .align-btn{
+        margin-top: 0%;
+        margin-bottom: 2%;
+    }
+    .card-header{
+        width: 82vw;
+    }
+}
+@media only screen and (max-width: 564px){
+    .container{
+        margin-left: 5% !important;
+        margin-right: 5% !important;
+        width: 90% !important;
+    }
+}

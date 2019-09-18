@@ -38,7 +38,6 @@ export class MiembrosComponent implements OnInit {
    
   }
   addUser(form: NgForm) {
-    debugger
     
     let miembro1 = {
       email: form.value.email,

@@ -4,7 +4,6 @@ import { Injectable } from '@angular/core';
 import { AppConstant } from '../const';
 import { Miembro } from '../Models/miembro.model';
 import { Router } from '@angular/router';
-import { Evento } from '../Models/evento.model';
 
 @Injectable()
 export class DataServices {

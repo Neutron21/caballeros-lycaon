@@ -20,3 +20,33 @@
 .aling{
     padding-inline-start: 5px !important;
 }
+.fa-arrow-left, .fa-phone{
+    color: #bdbdbd;
+}
+.fa-warning{
+    color: #ffbb33;
+    padding-left: 4px;
+}
+.fa-heartbeat{
+    color: #ff3d00;
+    padding-left: 4px;
+}  
+.fa-motorcycle{
+    color: black;
+    padding-left: 4px;
+}
+hr {
+    border-top: 1px solid aliceblue;
+  }
+  .capital{
+      text-transform: capitalize;
+  }
+  .padding-text{
+      padding-top: 3px;
+  }
+  .fa-user-circle-o{
+    color: #b3e5fc;
+  }
+  .fa-birthday-cake{
+      color: #f8bbd0;
+  }

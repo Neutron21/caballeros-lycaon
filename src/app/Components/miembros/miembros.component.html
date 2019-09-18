@@ -2,18 +2,27 @@
     
     <h5 class="text">Miembros</h5>
     <div class="row" *ngFor="let member of miembros; let i = index">
+      
       <app-biker [miembro]="member"> </app-biker>
-              <i *ngIf="perfil && perfil.admin" class="fa fa-trash red-text" (click)="eliminarUsuer(member.uid, member.nickName)" style="font-size:18px;"
-              data-toggle="modal" data-target="#delUserModal"></i>
+     
+          <i *ngIf="perfil && perfil.admin" class="fa fa-trash red-text mobile-icon" (click)="eliminarUsuer(member.uid, member.nickName)" style="font-size:18px;"
+          data-toggle="modal" data-target="#delUserModal"></i>
+      
+              
     </div>
-    
-  <p *ngIf="perfil && perfil.admin">Crear Biker
-      <button class="btn btn-plus red-button" type="button" data-toggle="collapse" 
-              data-target="#formAddBiker" aria-expanded="false" 
-              aria-controls="formAddBiker">
-              <i class="fa fa fa-plus" style="font-size:18;"></i>
-      </button>
-    </p>
+    <div class="row">
+      <div class="col-sm-12">
+          <p *ngIf="perfil && perfil.admin">Crear Biker
+              <button class="btn btn-plus red-button" type="button" data-toggle="collapse" 
+                      data-target="#formAddBiker" aria-expanded="false" 
+                      aria-controls="formAddBiker">
+                      <i class="fa fa fa-plus" style="font-size:18;"></i>
+              </button>
+            </p>
+      </div>
+       
+    </div>
+ 
         <div class="collapse multi-collapse" id="formAddBiker">
           
               <h4 class="text">Ingresar</h4>

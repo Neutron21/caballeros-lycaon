@@ -157,3 +157,26 @@
 .titulos{
 	font-size: 4vh;
 }
+@media only screen and (max-width: 991px){
+
+	.back-image{
+		height: 50vh;
+		width: 95%;
+		min-height: 390px !important;
+		margin: 2vh;
+		
+	}
+	.letraStyle{
+		color: aliceblue;
+		font-size: 130%;
+		margin-top: 20px;
+	}
+	.blur{
+		font-size: 5vh;
+		margin: 1%;
+	}
+	.focus{
+		font-size: 5vh;
+		margin: 1%;
+	}
+}

@@ -22,40 +22,40 @@
             <div class="card-body">
               <div class="row">
 
-                <div class="col-sm-12 col-md-3">
+                <div class="col-6 col-sm-4 col-md-3">
                   <div class="form-group">
                     <label class="label-text control-label hard-code" for="nombre">Destino:</label><br>
                     <span class="dynamic"> {{plan.lugar}} </span>
                   </div>
 
                 </div>
-                <div class="col-sm-12 col-md-3">
+                <div class="col-6 col-sm-4 col-md-3">
                   <div class="form-group">
                     <label class="label-text control-label hard-code" for="ciudad">Ciudad:</label><br>
                     <span class="dynamic"> {{plan.ciudad}} </span>
                   </div>
                 </div>
 
-                <div class="col-sm-12 col-md-3">
+                <div class="col-6 col-sm-4 col-md-3">
                   <div class="form-group">
                     <label class="label-text control-label hard-code" for="distancia">Distancia:</label><br>
                     <span class="dynamic"> {{plan.distancia}} </span> kms
                   </div>
                 </div>
 
-                <div class="col-sm-12 col-md-3">
+                <div class="col-6 col-sm-4 col-md-3">
                   <div class="form-group">
                     <label class="label-text control-label hard-code" for="presupuesto">Presupuesto:</label><br>
                     <i class="fa fa-dollar " style="font-size:20px;"></i> <span class="dynamic"> {{plan.presupuesto}} </span>aproximado
                   </div>
                 </div>
-                <div class="col-sm-12 col-md-3">
+                <div class="col-6 col-sm-4 col-md-3">
                   <div class="form-group">
                     <label class="label-text control-label hard-code" for="nombre">Fecha:</label><br>
                     <span class="dynamic"> {{plan.fecha}} </span>
                   </div>
                 </div>
-                <div *ngIf="plan.url" class="col-sm-12 col-md-3">
+                <div *ngIf="plan.url" class="col-6 col-sm-4 col-md-3">
                   <div class="form-group">
 
                     <a class="link-mapa" href="{{plan.url}}" target="_blank">
@@ -63,7 +63,7 @@
 
                   </div>
                 </div>
-                <div *ngIf="perfil && perfil.admin" class="col-sm-12 col-md-3">
+                <div *ngIf="perfil && perfil.admin" class="col-6 col-sm-4 col-md-3">
                   <div class="form-group">
                     <button class="btn btn-secondary mb-2" (click)="edithPlan(plan)" for="borrar"
                       data-toggle="collapse" data-target="#formAddBiker" aria-expanded="false"
@@ -72,7 +72,7 @@
                     </button>
                   </div>
                 </div>
-                <div *ngIf="perfil && perfil.admin" class="col-sm-12 col-md-3">
+                <div *ngIf="perfil && perfil.admin" class="col-6 col-sm-4 col-md-3">
                   <div class="form-group">
                     <button class="btn red-button mb-2" 
                     (click)="delAuxPlan(indice, plan.key, plan.lugar)" 
@@ -157,7 +157,7 @@
               <div class="col-sm-12 col-md-3">
                 <div class="form-group">
                   <label class="label-text control-label" for="nombre">Distancia:</label>
-
+                </div>
                   <div class="input-group mb-2">
                     <input type="text" class="form-control" id="distancia" name="distancia" placeholder="Distancia"
                       [(ngModel)]="distancia">
@@ -165,8 +165,9 @@
                       <div class="input-group-text">km</div>
                     </div>
                   </div>
-                </div>
+                
               </div>
+            
               <div class="col-sm-12 col-md-3">
                 <div class="form-group">
                   <label class="label-text control-label" for="correo">Maps:</label>
@@ -200,7 +201,7 @@
     </div>
   
       <div class="row">
-          <div class="accordion" id="accordionExample">
+          <div class="accordion cumpleños-collapse" id="accordionExample">
               <div class="card">
                 <div class="card-header " id="headingOne" data-toggle="collapse" data-target="#cumpleaños"
                   aria-expanded="false" aria-controls="collapseOne">

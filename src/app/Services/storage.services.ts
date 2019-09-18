@@ -19,7 +19,7 @@ export class StorageService {
      (snapshot) => {
          // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
          var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-         console.log('Upload is ' + progress + '% done');
+         
      }, (error) => {
 
          reject({ error: error});
@@ -27,7 +27,7 @@ export class StorageService {
      }, () => {
          
          uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-             console.log('File available at', downloadURL);
+             
              resolve( downloadURL);
          });
      });

@@ -19,7 +19,7 @@ export class Guardian implements CanActivate{
     }
     async sesionActiva(){
     
-        let user = await new Promise((resolve,reject)=>{
+        let user: any = await new Promise((resolve,reject)=>{
          firebase.auth().onAuthStateChanged(function(user) {
            
            if (user) {
@@ -35,8 +35,6 @@ export class Guardian implements CanActivate{
         }) ;
        
         let isAut = user ? user.refreshToken : false;
-        console.log(isAut);
-        
         this.loginService.setToken(user.refreshToken);
       }
 

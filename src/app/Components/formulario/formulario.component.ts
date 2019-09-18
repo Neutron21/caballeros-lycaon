@@ -25,10 +25,6 @@ export class FormularioComponent implements OnInit {
 
   enviarMsj(form: NgForm){
   
-    console.log("hola "+form.value.nombre );
-    console.log("hola "+form.value.correo );
-    console.log("hola "+form.value.textAreaMsj );
-  
     form.value.nombre;
     form.value.correo;
     form.value.textAreaMsj;

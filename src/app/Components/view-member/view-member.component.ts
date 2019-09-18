@@ -22,12 +22,10 @@ export class ViewMemberComponent implements OnInit {
   async ngOnInit() {
     this.id = this.route.snapshot.params['id'];
     if (this.id) {
-      console.log(this.id);
+      
       this.perfil = await this.dataSevice.findMember(this.id)
-      console.log(this.perfil);
-     
       this.edad = this.getEdad(this.perfil.birthday);
-      console.log(this.edad);
+      
     }
   }
   getEdad(birthday){

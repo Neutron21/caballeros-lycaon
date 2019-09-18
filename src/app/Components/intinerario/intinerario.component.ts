@@ -48,8 +48,7 @@ export class IntinerarioComponent implements OnInit {
     this.getEventos();
     this.getMiembros();
     
-    
-    console.log(this.eventosArray);
+    // console.log(this.eventosArray);
     
   }
 
@@ -57,12 +56,12 @@ export class IntinerarioComponent implements OnInit {
     console.log(form.value);
     if(form.value.tipo != "SELECCIONE" && form.value.fecha && form.value.ciudad && 
       form.value.lugar && form.value.presupuesto && form.value.distancia ){
-      console.log(form.value);
+      // console.log(form.value);
   
       let evento: Evento = new Evento(form.value.tipo, form.value.fecha, form.value.ciudad,
         form.value.lugar,form.value.presupuesto, form.value.distancia, form.value.url, this.key );
        
-      let nkey = await this.dataServices.guardarEvento(evento);
+      let nkey: any = await this.dataServices.guardarEvento(evento);
         
       this.type = "SELECCIONE";
       this.fecha = "";
@@ -72,10 +71,10 @@ export class IntinerarioComponent implements OnInit {
       this.distancia = null;
       this.url = ""
       // await this.getEventos();
-      console.log(nkey);
+      // console.log(nkey);
       evento.key = nkey;
       this.eventosArray.push(evento);
-      console.log(this.eventosArray);
+      // console.log(this.eventosArray);
       
       
     }

@@ -81,14 +81,14 @@ export class MiPerfilComponent implements OnInit {
       this.date = this.perfil.birthday;
       this.bloodType = this.perfil.salud.tipoSangre ? this.perfil.salud.tipoSangre : this.bloodType;
     }
-    console.log(this.perfil);
+
 
   }
   addVehicle() {
     
     let moto: Vehicle = new Vehicle(this.marca, this.subMarca, this.modelo, this.placa,
                         this.cc, this.serie, this.aseguradora, this.poliza, this.telAseguradora);
-    console.log(moto);
+    
     this.motosEdit.push(moto);
     this.marca = "";
     this.subMarca = "";
@@ -108,7 +108,7 @@ export class MiPerfilComponent implements OnInit {
     if (this.newAllergy) {
       this.saludEdit.push(this.newAllergy);
       this.newAllergy = ""
-      console.log(this.saludEdit);
+      
     }
 
   }
@@ -132,10 +132,7 @@ export class MiPerfilComponent implements OnInit {
   saveProfile(form: NgForm){
     if (form.value.nombre && form.value.aPat && form.value.aMat 
         && form.value.celPhone && form.value.email && form.value.nickName ) {
-          console.log(form);
-          console.log(this.motosEdit);
-          console.log(this.saludEdit);
-          console.log(this.contactos);
+       
           let infoSalud: Health = new Health(this.bloodType,this.saludEdit)
 
           let newPerfil = {
@@ -151,7 +148,7 @@ export class MiPerfilComponent implements OnInit {
            salud: infoSalud,
            contactos: this.contactos
           }
-          console.log(newPerfil);
+          
           this.dataServices.updateMiembro(newPerfil);
           this.changeEdit();
     }
@@ -187,7 +184,6 @@ export class MiPerfilComponent implements OnInit {
     let profilePicture = await this.storageService.imgProfile(filePath, picture);
     this.perfil.urlImage = profilePicture;
     
-    console.log(this.perfil);
     this.dataServices.updateMiembro(this.perfil);
     
     
