@@ -100,7 +100,19 @@
 .profile-edit-mobile, .image-mobile{
     display: none;
  }
-
+ .color-dark{
+    background-color: #45526e;
+}
+.text-modal{
+    color: black;
+    background-color: #e0e0e0;
+}
+.text-modal .danger-color{
+    color: #ff4444 !important;
+}
+.general-data{
+    margin-bottom: 10px;
+}
 @media only screen and (max-width: 991px){
 
     .profile-edit-mobile, .image-mobile{
@@ -114,6 +126,10 @@
     .card-header{
         width: 82vw;
     }  
+    .brm-brm{
+        margin-top: 5%;
+        max-width: 80vw;
+    }
 }
 @media only screen and (max-width: 767px){
 
@@ -128,7 +144,4 @@
         padding-top: 3px;
      }
     
-}
-@media only screen and (max-width: 660px){
-   
 }

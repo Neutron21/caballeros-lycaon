@@ -6,8 +6,8 @@ import { TelEmergencia } from 'src/app/Models/telEmergencia.model';
 import { AppConstant } from '../../const';
 import { Health } from 'src/app/Models/health.model';
 import * as moment from 'moment';
-import { Observable } from 'rxjs/internal/Observable';
 import { StorageService } from 'src/app/Services/storage.services';
+import { LoginService } from 'src/app/Services/login.services';
 
 @Component({
   selector: 'app-mi-perfil',
@@ -15,6 +15,8 @@ import { StorageService } from 'src/app/Services/storage.services';
   styleUrls: ['./mi-perfil.component.css']
 })
 export class MiPerfilComponent implements OnInit {
+  
+  loading: boolean;
 
   hoy = new Date();
   yyyy = this.hoy.getFullYear();
@@ -58,11 +60,16 @@ export class MiPerfilComponent implements OnInit {
   arrowDown: boolean = true;
   arrowDown2: boolean = true;
   arrowDown3: boolean = true;
+
+  newPass: string;
+  confirmPass: string;
   
   constructor(private dataServices: DataServices,
               private storageService: StorageService,
-              
-              ) { }
+              private loginService: LoginService) {
+               
+                this.loading = true;
+               }
 
   async ngOnInit() {
     
@@ -76,13 +83,18 @@ export class MiPerfilComponent implements OnInit {
     if(this.perfil && this.perfil.uid){
       this.uid = this.perfil.uid; 
       this.motosEdit = this.perfil.motos ? this.perfil.motos : [];
-      this.saludEdit = this.perfil.salud.alergias ? this.perfil.salud.alergias : [];
+      // if (this.perfil.salud) {
+        
+      // }
+      this.saludEdit = this.perfil.salud && this.perfil.salud.alergias ? this.perfil.salud.alergias : [];
       this.contactos = this.perfil.contactos ? this.perfil.contactos : [];
       this.date = this.perfil.birthday;
-      this.bloodType = this.perfil.salud.tipoSangre ? this.perfil.salud.tipoSangre : this.bloodType;
+      this.bloodType = this.perfil.salud && this.perfil.salud.tipoSangre ? this.perfil.salud.tipoSangre : this.bloodType;
     }
-
-
+    // setTimeout(() => {        
+    //   this.loading = false;
+    // }, 500);
+    this.loading = false;
   }
   addVehicle() {
     
@@ -186,6 +198,12 @@ export class MiPerfilComponent implements OnInit {
     
     this.dataServices.updateMiembro(this.perfil);
     
-    
   }
+
+  cambiarPass(){
+    console.log(this.perfil);
+    console.log(this.perfil.email);
+    // this.loginService.sendMail(this.perfil.email);
+  }
+
 }

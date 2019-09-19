@@ -1,4 +1,10 @@
-<div class="container">
+<div class="loader d-flex justify-content-center" *ngIf="loading">
+  <img class="img-fluid loading" src="../../../assets/tenor.gif">
+</div>
+<div class="loader d-flex justify-content-center" *ngIf="loading">
+  <img class="img-fluid brm-brm" src="../../../assets/GIF2.gif">
+</div>
+<div *ngIf="!loading" class="container">
 
   <div class="white-text">
     <h5 class="intinerario">Intinerario</h5>

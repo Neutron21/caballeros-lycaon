@@ -84,6 +84,15 @@ export class LoginService{
         })
         return msj;
     }
-   
+    sendMail(email){
+    var auth = firebase.auth();
+    // var emailAddress = "user@example.com";
+    
+    auth.sendPasswordResetEmail(email).then(function() {
+      // Email sent.
+    }).catch(function(error) {
+      // An error happened.
+    });
+   }
    
 }

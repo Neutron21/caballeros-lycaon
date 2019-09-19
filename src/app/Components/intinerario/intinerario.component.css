@@ -73,6 +73,10 @@ hr {
 .cumpleños-collapse{
     margin-bottom: 15px;
 }
+.brm-brm{
+    margin-top: 5%;
+    max-width: 80vw;
+}
 @media only screen and (max-width: 991px){
     .align-btn{
         margin-top: 0%;

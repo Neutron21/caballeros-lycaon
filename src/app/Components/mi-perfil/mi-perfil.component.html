@@ -1,4 +1,10 @@
-<div class="container text accordion">
+<div class="loader d-flex justify-content-center" *ngIf="loading">
+  <img class="img-fluid loading" src="../../../assets/tenor.gif">
+</div>
+<div class="loader d-flex justify-content-center" *ngIf="loading">
+  <img class="img-fluid brm-brm" src="../../../assets/GIF2.gif">
+</div>
+<div *ngIf="!loading" class="container text accordion">
   <h5 class="titulos"><i class="fa fa-address-card-o yellow-text" style="font-size:28px;"></i>
     Datos Generales</h5>
   <div *ngIf="!editar && perfil" class="form-edition">
@@ -30,7 +36,7 @@
 
     </div>
 
-    <div class="row">
+    <div class="row general-data">
       <div class="col-sm-12 col-md-3 offset-md-3">
         <label class="label-text control-label hard-code" for="nombre">Correo:</label><br>
         <label class="label-text control-label" for="nombre">{{perfil.email}}</label>
@@ -55,6 +61,13 @@
           <i class="fa fa-pencil" style="font-size:18px;"></i>
         </button>
       </div>
+      <div class="col-sm-12 col-md-3">
+          <button data-toggle="modal" data-target="#passwordModal" data-whatever="@getbootstrap" class="btn btn-secondary edit-btn">
+             
+            Password
+            <i class="fa fa-key" style="font-size:18px;"></i>
+          </button>
+        </div>
     </div>
 
     <h5 class="titulos"><i class="fa fa-motorcycle " style="font-size:28px;"></i>
@@ -468,5 +481,28 @@
         </div>
       </div>
     </form>
+  </div>
+</div>
+
+<div class="modal fade" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content text-modal">
+      <div class="modal-header color-dark">
+        <h5 class="modal-title danger-color" id="contactModalLabel">Cambiar Contraseña</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      
+      <div class="modal-body">
+        Desea enviar un correo para restablecer su contraseña?
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button (click)="cambiarPass()" class="btn red-button" data-dismiss="modal">Enviar</button>
+      </div>
+     
+    </div>
   </div>
 </div>

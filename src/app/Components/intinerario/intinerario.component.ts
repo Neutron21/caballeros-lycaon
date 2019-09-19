@@ -13,7 +13,7 @@ import * as firebase from 'firebase';
 })
 export class IntinerarioComponent implements OnInit {
 
-  constructor(private dataServices: DataServices) { }
+  loading: boolean;
 
   type: string = "SELECCIONE";
   tipos = AppConstant.TYPE_EVENT;
@@ -42,12 +42,16 @@ export class IntinerarioComponent implements OnInit {
   indice: number;
   perfil;
 
+  constructor(private dataServices: DataServices) { 
+      this.loading = true;
+  }
+
   async ngOnInit() {
     this.perfil = await this.dataServices.getPerfil();
   
     this.getEventos();
     this.getMiembros();
-    
+    this.loading = false;
     // console.log(this.eventosArray);
     
   }

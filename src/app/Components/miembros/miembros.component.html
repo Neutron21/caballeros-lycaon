@@ -1,4 +1,10 @@
-<div class="container miembros text-style">
+<div class="loader d-flex justify-content-center" *ngIf="loading">
+  <img class="img-fluid loading" src="../../../assets/tenor.gif">
+</div>
+<div class="loader d-flex justify-content-center" *ngIf="loading">
+  <img class="img-fluid brm-brm" src="../../../assets/GIF2.gif">
+</div>
+<div *ngIf="!loading" class="container miembros text-style">
     
     <h5 class="text">Miembros</h5>
     <div class="row" *ngFor="let member of miembros; let i = index">

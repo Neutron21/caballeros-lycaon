@@ -35,6 +35,10 @@
     padding: 5px;
     margin-top: 6px;
 }
+.brm-brm{
+    margin-top: 5%;
+    max-width: 80vw;
+}
 @media only screen and (max-width: 991px){
 
 .mobile-icon{
