@@ -142,8 +142,9 @@ export class MiPerfilComponent implements OnInit {
     this.contactos.splice(indice, 1);
   }
   saveProfile(form: NgForm){
+    
     if (form.value.nombre && form.value.aPat && form.value.aMat 
-        && form.value.celPhone && form.value.email && form.value.nickName ) {
+        && form.value.celPhone && form.value.nickName ) {
        
           let infoSalud: Health = new Health(this.bloodType,this.saludEdit)
 
@@ -153,7 +154,7 @@ export class MiPerfilComponent implements OnInit {
            aMat: form.value.aMat, 
            birthday: form.value.birthday,
            celular: form.value.celPhone, 
-           email: form.value.email, 
+           email: this.perfil.email, 
            nickName: form.value.nickName,
            uid: this.uid,
            motos: this.motosEdit,

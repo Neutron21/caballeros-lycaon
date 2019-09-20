@@ -80,19 +80,18 @@ export class MiembrosComponent implements OnInit {
     console.log("errMsj: " + this.errMsj);
     return this.errMsj;
   }
-  getMiembros(){
-    this.dataSevice.getMembers().subscribe(
-      (members) => {
-        if (members != null) {
-          let miembros = Object.keys(members);
-          for (var m of miembros) {
-            var miembro = members[m];
-            this.miembros.push(miembro);
+ async getMiembros(){
+    let members = await this.dataSevice.getMembers();
+   
+    if (members != null) {
+      let miembros = Object.keys(members);
+      for (var m of miembros) {
+        var miembro = members[m];
+        this.miembros.push(miembro);
 
-          }
-        }
-
-      })
+      }
+    }
+    
   }
   eliminarUsuer(id, apodo){
     

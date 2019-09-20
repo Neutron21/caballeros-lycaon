@@ -4,7 +4,6 @@ import { AppConstant } from '../../const';
 import * as moment from 'moment';
 import { DataServices } from 'src/app/Services/dataServices';
 import { Evento } from 'src/app/Models/evento.model';
-import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-intinerario',
@@ -85,36 +84,30 @@ export class IntinerarioComponent implements OnInit {
     
     
   }
-  
-  getEventos(){
-    this.eventosArray = [];
-    this.dataServices.getEvents().subscribe(
-      (eventos) => {
-        if (eventos != null) {
-          let rodadas = Object.keys(eventos);
-          
-          for (var m of rodadas) {
-            var evento = eventos[m];
-                evento.key = m;
-            
-            this.eventosArray.push(evento);
-            
-            this.eventosArray.sort(function (a, b) {
-              if (a.fecha > b.fecha) {
-                return 1;
-              }
-              if (a.fecha < b.fecha) {
-                return -1;
-              }
-              // a must be equal to b
-              return 0;
-            });
-
+  async getEventos(){
+    let events = await this.dataServices.getEvents();
+   
+    if (events != null) {
+      let rodadas = Object.keys(events);
+      for (var m of rodadas) {
+        var evento = events[m];
+            evento.key = m;
+        
+        this.eventosArray.push(evento);
+        
+        this.eventosArray.sort(function (a, b) {
+          if (a.fecha > b.fecha) {
+            return 1;
           }
-        }
+          if (a.fecha < b.fecha) {
+            return -1;
+          }
+          // a must be equal to b
+          return 0;
+        });
 
-      })
-    
+      }
+    }
     
   }
   
@@ -154,9 +147,9 @@ export class IntinerarioComponent implements OnInit {
     this.url = "";
     this.key = "";
   }
-  getMiembros(){
-    this.dataServices.getMembers().subscribe(
-      (members) => {
+ async getMiembros(){
+    let members = await this.dataServices.getMembers()
+      
         if (members != null) {
           let miembros = Object.keys(members);
           for (var m of miembros) {
@@ -191,7 +184,6 @@ export class IntinerarioComponent implements OnInit {
           }
         }
 
-      })
   }
  
 }

@@ -17,20 +17,27 @@ export class DataServices {
     guardarMiembro(member) {
 
         firebase.database().ref(`/users/${member.uid}`).set(member).then(() => {
-        
+
             console.log("EXITO");
             alert("Guardado exitoso!");
 
         }).catch((error) => {
             firebase.auth().currentUser.delete().then(() => {
-                
+
             }).catch((errorDel) => {
-               
+
             })
         })
     }
     getMembers() {
-        return this.httpClient.get(`${AppConstant.URL_DB}users.json`);
+
+        return new Promise((resolve, reject) => {
+            firebase.database().ref(`/users`).on("value", (data) => {
+                // console.log(data.val());
+                resolve(data.val());
+
+            })
+        })
     }
 
     findMember(uid: string) {
@@ -77,44 +84,54 @@ export class DataServices {
     }
     guardarEvento(evento) {
         return new Promise((resolve, reject) => {
-        if (evento.key) {
-            firebase.database().ref(`/eventos/${evento.key}`).update(evento).then(() => {
-                console.log("EXITO");
-                alert("Evento actualizado!");
-    
-            }).catch((error) => {
-                console.log("ERROR");
-                console.log(error);
-                alert("Ocurrio un error!");
-            })
-        } else {
+            if (evento.key) {
+                firebase.database().ref(`/eventos/${evento.key}`).update(evento).then(() => {
+                    console.log("EXITO");
+                    alert("Evento actualizado!");
 
-            firebase.database().ref('/eventos/').push(evento).then((snap) => {
+                }).catch((error) => {
+                    console.log("ERROR");
+                    console.log(error);
+                    alert("Ocurrio un error!");
+                })
+            } else {
 
-                console.log("EXITO");
-                alert("Guardado exitoso!");
-                // this.eventos.push(evento);
-                console.log(snap.key);
-                resolve(snap.key)
-               
-   
-            }).catch((error) => {
-                console.log("ERROR");
-                reject(error)
-            })
+                firebase.database().ref('/eventos/').push(evento).then((snap) => {
+
+                    console.log("EXITO");
+                    alert("Guardado exitoso!");
+                    // this.eventos.push(evento);
+                    console.log(snap.key);
+                    resolve(snap.key)
+
+
+                }).catch((error) => {
+                    console.log("ERROR");
+                    reject(error)
+                })
+            }
         }
+        )
     }
-)}
     getEvents() {
-        return this.httpClient.get(`${AppConstant.URL_DB}eventos.json`);
+        
+        return new Promise((resolve, reject) => {
+            firebase.database().ref(`/eventos`).on("value", (data) => {
+                
+                console.log(data.val());
+                
+                resolve(data.val());
+
+            })
+        })
     }
-    
+
     deleteEvent(key: string, lugar: string) {
 
         firebase.database().ref(`/eventos/${key}`).remove().then(() => {
             alert("Se Elimino: " + lugar);
-            
-            
+
+
         }).catch((error) => {
             alert("Hubo un error!");
         })
