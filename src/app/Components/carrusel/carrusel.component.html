@@ -1,42 +1,72 @@
-
 <div class="bd-example">
-        <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-          <ol class="carousel-indicators">
-            <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-            <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-          </ol>
-          <div class="carousel-inner">
-            <div class="carousel-item active" data-interval="3000">
-              <img src="../../../assets/mcTodos.jpg" class="d-block w-100" alt="...">
-              <div class="carousel-caption d-none d-md-block">
-                  <h5>Familia Lycaon</h5>
-                  <p>Más que un club, más que amigos, una gran familia!</p>
-              </div>
-            </div>
-            <div class="carousel-item" data-interval="3000">
-              <img src="../../../assets/centroOtomi.jpg" class="d-block w-100" alt="...">
-              <div class="carousel-caption d-none d-md-block">
-                <h5>Centro Ceremonial Otomi. Temoaya</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              </div>
-            </div>
-            <div class="carousel-item" data-interval="3000">
-              <img src="../../../assets/ajusco.jpg" class="d-block w-100" alt="...">
-              <div class="carousel-caption d-none d-md-block">
-                  <h5>Bajando del Ajusco</h5>
-                  <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-              </div>
-            </div>
-          </div>
-          <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
+  <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+      <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active" data-interval="3000">
+        <img src="../../../assets/mcTodos.jpg" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Familia Lycaon</h5>
+          <p>Más que un club, más que amigos, una gran familia!</p>
         </div>
       </div>
-      
+      <div class="carousel-item" data-interval="3000">
+        <img src="../../../assets/centroOtomi.jpg" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Centro Ceremonial Otomi. Temoaya</h5>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+      </div>
+      <div class="carousel-item" data-interval="3000">
+        <img src="../../../assets/ajusco.jpg" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Bajando del Ajusco</h5>
+          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+        </div>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div *ngFor="let picture of galery; let indice = index" class="col-4">
+        <img class="img-fluid" [src]="picture" data-toggle="modal" [attr.data-target]="'#hi' +indice">
+      </div>
+    </div>
+    <div class="row">
+      <video class="video" controls>
+        <source src="../../../assets/CalymcaVideo.mp4" type="video/mp4">
+
+        Your browser does not support HTML5 video.
+      </video>
+    </div>
+    <div class="row invitacion">
+      <h5>Para ver más contenido puedes visitar nuestras redes sociales</h5>
+    </div>
+  </div>
+
+
+
+</div>
+
+<div *ngFor="let picture of galery; let indice = index" class="modal fade" id="{{'hi' +indice}}" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content img-modal">
+       
+      <img class="img-fluid " [src]="picture">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+  </div>
+</div>

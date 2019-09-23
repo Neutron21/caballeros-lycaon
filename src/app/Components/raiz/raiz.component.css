@@ -103,7 +103,6 @@
 
 .blur {
     position: absolute;
-    /* color: #fefefe; */
     color: #ff4444;
     font-family: 'Overpass', sans-serif;
     font-size: 64px;
@@ -173,10 +172,12 @@
 	}
 	.blur{
 		font-size: 5vh;
+		letter-spacing: 11px;
 		margin: 1%;
 	}
 	.focus{
 		font-size: 5vh;
+		letter-spacing: 11px;
 		margin: 1%;
 	}
 }

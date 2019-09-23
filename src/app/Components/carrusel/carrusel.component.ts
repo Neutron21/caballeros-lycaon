@@ -7,8 +7,18 @@ import * as $ from 'jquery';
   styleUrls: ['./carrusel.component.css']
 })
 export class CarruselComponent implements OnInit {
+  
+  galery: string[] = [];
 
-  constructor() { }
+  constructor() { 
+    let ruta = "";
+    for(let i = 0; i < 15; i ++){
+      ruta = "../../../assets/galeria/galery"+i+".jpeg";
+      this.galery.push(ruta);
+    }
+    console.log(this.galery);
+    
+  }
 
   ngOnInit() {
      }

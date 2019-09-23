@@ -59,26 +59,28 @@ export class RaizComponent implements OnInit {
       }
       detectMouseMove();
       
-      // function touchMove(){
-      //   // Initial container width
-      //   var containerWidth = $('.container-estilo').outerWidth();
+      function touchMove(){
+        // Initial container width
+        var containerWidth = $('.container-estilo').outerWidth();
         
-      //   document.addEventListener('touchmove', function(e) {
-      //     $('.hover').css({
-      //        left:  e.pageX
-      //     });
-      //     $('.left-side').css({
-      //       left: e.pageX + 75
-      //     });
-      //     var rightSideLeft = containerWidth - e.pageX;
-      //     $('.right-side').css({
-      //       right: rightSideLeft
-      //     });
+        document.addEventListener('touchmove', function(e) {
+          // console.log(e.changedTouches);
+          
+          $('.hover').css({
+             left:  e.changedTouches[0].clientX
+          });
+          $('.left-side').css({
+            left: e.changedTouches[0].clientX + 75
+          });
+          var rightSideLeft = containerWidth - e.changedTouches[0].clientX;
+          $('.right-side').css({
+            right: rightSideLeft
+          });
     
-      //   })
-      // }
+        })
+      }
       
-      // touchMove();
+      touchMove();
       
       function detectInput(inputType){
         // Detect container width after resizing

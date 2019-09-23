@@ -45,3 +45,13 @@
 }
 
 }
+@media only screen and (max-width: 577px){
+
+    .admin-check{
+        padding-left: 30px !important;
+    }
+    .row{
+        margin-left: 2px;
+    }
+    
+    }

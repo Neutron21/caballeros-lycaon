@@ -202,9 +202,8 @@ export class MiPerfilComponent implements OnInit {
   }
 
   cambiarPass(){
-    console.log(this.perfil);
-    console.log(this.perfil.email);
-    // this.loginService.sendMail(this.perfil.email);
+    // console.log(this.perfil.email);
+    this.loginService.sendMail(this.perfil.email);
   }
 
 }
