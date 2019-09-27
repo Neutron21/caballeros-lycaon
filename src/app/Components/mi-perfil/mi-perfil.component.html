@@ -422,7 +422,8 @@
                     <div class="form-group">
                       <label class="label-text control-label" for="nombre">Nombre:</label>
                       <input type="text" class="form-control mb-2 fill-width upper" id="nameContact" name="nameContact"
-                        placeholder="Nombre" [(ngModel)]="nameContact">
+                        placeholder="Nombre" [(ngModel)]="nameContact" (input)="checkValue()">
+                        <label *ngIf="nameEmpty" class="label-text control-label red-text" for="nombre">Campo Requerido</label>
                     </div>
 
                   </div>
@@ -438,7 +439,8 @@
                     <div class="form-group">
                       <label class="label-text control-label" for="nombre">Número:</label>
                       <input type="text" class="form-control mb-2 fill-width" id="telContact" name="telContact"
-                        placeholder="TELÉFONO" [(ngModel)]="telContact">
+                        placeholder="TELÉFONO" [(ngModel)]="telContact" (input)="checkValue()">
+                        <label *ngIf="numEmpty" class="label-text control-label red-text" for="nombre">Campo Requerido</label>
                     </div>
 
                   </div>
@@ -448,7 +450,7 @@
                       <i class="fa fa-plus " style="font-size:18px;"></i></button>
                   </div>
                   <div class="col-sm-12 col-md-4">
-
+                    
                     <ul *ngFor="let contacto of contactos; let indice = index">
                       <li><i class="fa fa-user-circle-o" style="font-size:18px;"></i>
                         <span class="capital"> {{contacto.nomContacto}}, {{contacto.parentesco}} </span><br>

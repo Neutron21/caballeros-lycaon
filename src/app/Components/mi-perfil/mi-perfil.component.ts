@@ -17,6 +17,9 @@ import { LoginService } from 'src/app/Services/login.services';
 export class MiPerfilComponent implements OnInit {
   
   loading: boolean;
+  numEmpty: boolean;
+  nameEmpty: boolean;
+  motoEmpty: boolean;
 
   hoy = new Date();
   yyyy = this.hoy.getFullYear();
@@ -69,6 +72,9 @@ export class MiPerfilComponent implements OnInit {
               private loginService: LoginService) {
                
                 this.loading = true;
+                this.numEmpty = false;
+                this.nameEmpty = false;
+                this.motoEmpty = false;
                }
 
   async ngOnInit() {
@@ -97,9 +103,22 @@ export class MiPerfilComponent implements OnInit {
     this.loading = false;
   }
   addVehicle() {
-    
-    let moto: Vehicle = new Vehicle(this.marca, this.subMarca, this.modelo, this.placa,
-                        this.cc, this.serie, this.aseguradora, this.poliza, this.telAseguradora);
+    if (this.marca && !this.subMarca && this.modelo && this.placa &&
+      this.cc && this.serie) {
+        // this.motoEmpty = true;
+    }
+    let marca = this.marca ? this.marca : "-";
+    let subMarca = this.subMarca ? this.subMarca : "-";
+    let modelo = this.modelo ? this.modelo : "-";
+    let placa = this.placa ? this.placa : "-";
+    let cc = this.cc ? this.cc : 0;
+    let serie = this.serie ? this.serie : "-";
+    let aseguradora = this.aseguradora ? this.aseguradora : "-";
+    let poliza = this.poliza ? this.poliza : "-";
+    let telAseguradora = this.telAseguradora ? this.telAseguradora : 0;
+
+    let moto: Vehicle = new Vehicle(marca, subMarca, modelo, placa,
+                        cc, serie, aseguradora, poliza, telAseguradora);
     
     this.motosEdit.push(moto);
     this.marca = "";
@@ -128,6 +147,9 @@ export class MiPerfilComponent implements OnInit {
     this.saludEdit.splice(indice, 1);
   }
   addContacto() {
+    this.nameEmpty = this.nameContact ? false : true;
+    this.numEmpty = this.telContact ? false : true;
+
     if (this.nameContact && this.telContact) {
 
       let telContacto = new TelEmergencia(this.nameContact, this.parentesco, this.telContact)
@@ -185,6 +207,8 @@ export class MiPerfilComponent implements OnInit {
   }
   changeEdit(){
     this.editar = !this.editar;
+    this.nameEmpty = this.editar ? false : true;
+    this.numEmpty = this.editar ? false : true;
   }
   async upLoad(e){
     
@@ -204,6 +228,10 @@ export class MiPerfilComponent implements OnInit {
   cambiarPass(){
     // console.log(this.perfil.email);
     this.loginService.sendMail(this.perfil.email);
+  }
+  checkValue(){
+    this.nameEmpty = this.nameContact ? false : true;
+    this.numEmpty = this.telContact ? false : true;
   }
 
 }

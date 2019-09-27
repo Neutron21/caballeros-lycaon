@@ -113,6 +113,9 @@
 .general-data{
     margin-bottom: 10px;
 }
+.red-text{
+    color: #ff4444 !important;
+}
 @media only screen and (max-width: 991px){
 
     .profile-edit-mobile, .image-mobile{
