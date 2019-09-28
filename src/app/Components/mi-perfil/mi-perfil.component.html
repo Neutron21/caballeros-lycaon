@@ -241,6 +241,7 @@
                       <label class="label-text control-label" for="marca">Marca:</label>
                       <input type="text" class="form-control mb-2 fill-width upper" id="marca" name="marca"
                         placeholder="Marca" [(ngModel)]="marca">
+                        <label *ngIf="marcaEmpty" class="label-text control-label red-text" for="nombre">Marca Requerido</label>
                     </div>
 
                   </div>
@@ -249,6 +250,7 @@
                       <label class="label-text control-label" for="subMarca">SubMarca:</label>
                       <input type="text" class="form-control mb-2 fill-width upper" id="subMarca" name="subMarca"
                         placeholder="SubMarca" [(ngModel)]="subMarca">
+                        <label *ngIf="subEmpty" class="label-text control-label red-text" for="nombre">SubMarca Requerido</label>
                     </div>
 
                   </div>
@@ -268,6 +270,7 @@
                       <label class="label-text control-label" for="nombre">Placa:</label>
                       <input type="text" class="form-control mb-2 fill-width upper" id="placa" name="placa"
                         placeholder="Placa" [(ngModel)]="placa">
+                        <label *ngIf="placaEmpty" class="label-text control-label red-text" for="nombre">Placa Requerido</label>
                     </div>
 
                   </div>
@@ -276,6 +279,7 @@
                       <label class="label-text control-label" for="nombre">No. Serie:</label>
                       <input type="text" class="form-control mb-2 fill-width upper" id="serie" name="serie"
                         placeholder="No. Serie" [(ngModel)]="serie">
+                        <label *ngIf="serieEmpty" class="label-text control-label red-text" for="nombre">No. Serie Requerido</label>
                     </div>
 
                   </div>
@@ -313,6 +317,7 @@
                           <div class="input-group-text">cc</div>
                         </div>
                       </div>
+                      <label *ngIf="ccEmpty" class="label-text control-label red-text" for="nombre">Cc es Requerido</label>
                     </div>
                   </div>
                   <div class="form-group btn-agregar">
@@ -423,7 +428,7 @@
                       <label class="label-text control-label" for="nombre">Nombre:</label>
                       <input type="text" class="form-control mb-2 fill-width upper" id="nameContact" name="nameContact"
                         placeholder="Nombre" [(ngModel)]="nameContact" (input)="checkValue()">
-                        <label *ngIf="nameEmpty" class="label-text control-label red-text" for="nombre">Campo Requerido</label>
+                        <label *ngIf="nameEmpty" class="label-text control-label red-text" for="nombre">Nombre Requerido</label>
                     </div>
 
                   </div>
@@ -440,7 +445,7 @@
                       <label class="label-text control-label" for="nombre">Número:</label>
                       <input type="text" class="form-control mb-2 fill-width" id="telContact" name="telContact"
                         placeholder="TELÉFONO" [(ngModel)]="telContact" (input)="checkValue()">
-                        <label *ngIf="numEmpty" class="label-text control-label red-text" for="nombre">Campo Requerido</label>
+                        <label *ngIf="numEmpty" class="label-text control-label red-text" for="nombre">Teléfono Requerido</label>
                     </div>
 
                   </div>

@@ -9,3 +9,9 @@
 .moto{
     margin-left: 1.5%;
 }
+.mayus{
+    text-transform: uppercase;
+}
+.capital{
+    text-transform: capitalize;
+}
