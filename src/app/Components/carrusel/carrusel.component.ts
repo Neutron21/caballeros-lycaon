@@ -16,7 +16,7 @@ export class CarruselComponent implements OnInit {
       ruta = "../../../assets/galeria/galery"+i+".jpeg";
       this.galery.push(ruta);
     }
-    console.log(this.galery);
+    // console.log(this.galery);
     
   }
 

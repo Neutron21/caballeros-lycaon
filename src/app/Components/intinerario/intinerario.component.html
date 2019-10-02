@@ -69,6 +69,12 @@
 
                   </div>
                 </div>
+                <div *ngIf="plan.comentarios" class="col-12 col-sm-12 col-md-6">
+                  <div class="form-group">
+                    <label class="label-text control-label hard-code" for="nombre">Comentarios:</label><br>
+                    <span class="dynamic coments"> {{plan.comentarios}} </span>
+                  </div>
+                </div>
                 <div *ngIf="perfil && perfil.admin" class="col-6 col-sm-4 col-md-3">
                   <div class="form-group">
                     <button class="btn btn-secondary mb-2" (click)="edithPlan(plan)" for="borrar"
@@ -187,6 +193,13 @@
                   </div>
                   <input type="text" class="form-control" id="url" name="url" placeholder="URL Mapa" [(ngModel)]="url">
                 </div>
+              </div>
+              <div class="col-sm-12 col-md-3">
+                <div class="form-group">
+                  <label class="label-text control-label" for="nombre">Comentarios:</label>
+                </div>
+                <textarea type="phone" class="form-control mb-2 fill-width" id="comentarios" name="comentarios" 
+                placeholder="Comentarios" [(ngModel)]="comentarios"></textarea>
               </div>
               <div class="col-sm-12 col-md-3">
                 <div class="form-group d-flex justify-content-center align-btn">

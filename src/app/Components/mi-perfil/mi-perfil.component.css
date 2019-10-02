@@ -54,6 +54,7 @@
     font-size: smaller;
     color: #d0d6e2;
     margin-bottom: 0px !important;
+    font-family: 'Turret Road', cursive;
 }
 .dynamic{
     font-size: larger;
@@ -75,8 +76,6 @@
     padding-left: 4px;
 }
 .profile{
-    /* width: 57%;
-    height: 8em;    */
     width: 12.5vw;
     height: 12.5vw;
     position: absolute;
@@ -137,6 +136,7 @@
         max-width: 80vw;
     }
 }
+
 @media only screen and (max-width: 767px){
 
     .profile-edit{

@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { LoginService } from 'src/app/Services/login.services';
 import * as $ from 'jquery';
 import { DataServices } from 'src/app/Services/dataServices';
+import { log } from 'util';
 
 @Component({
   selector: 'app-nav-bar',
@@ -18,12 +19,23 @@ export class NavBarComponent implements OnInit {
 
   perfil;
 
- async ngOnInit() {
+  async ngOnInit() {
     // this.sesionActiva()
     // this.sesion 
-    this.perfil = await this.dataService.getPerfil();
+    // this.perfil = await this.dataService.getPerfil();
+    // console.log(this.perfil);
+  // let perfil = await this.isAdmin();
+  // console.log(perfil);
+  
   }
- 
+//   async isAdmin(){
+//   this.perfil = await this.dataService.getPerfil();
+//   console.log(this.perfil);
+//   if (this.perfil && this.perfil.admin) {
+    
+//     return this.perfil;
+//   }
+//  }
   sesionActiva(){
     return this.loginService.isAutenticated();
     // console.log(this.isAut)

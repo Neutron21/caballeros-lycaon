@@ -5,6 +5,8 @@ import { AppConstant } from '../const';
 import { Miembro } from '../Models/miembro.model';
 import { Router } from '@angular/router';
 
+
+
 @Injectable()
 export class DataServices {
 
@@ -63,8 +65,12 @@ export class DataServices {
         })
     }
     getPerfil() {
-        let uid = firebase.auth().currentUser.uid;
-        return this.findMember(uid);
+        try {
+            let uid = firebase.auth().currentUser.uid;
+            return this.findMember(uid);
+        } catch (error) {
+            // console.log(error);
+        }
 
     }
     updateMiembro(member) {
@@ -118,7 +124,7 @@ export class DataServices {
         return new Promise((resolve, reject) => {
             firebase.database().ref(`/eventos`).on("value", (data) => {
                 
-                console.log(data.val());
+                // console.log(data.val());
                 
                 resolve(data.val());
 
@@ -134,6 +140,27 @@ export class DataServices {
 
         }).catch((error) => {
             alert("Hubo un error!");
+        })
+    }
+    guardarMensaje(mensaje) {
+     
+        firebase.database().ref(`/mensajes/`).push(mensaje).then((snap) => {
+
+            console.log("EXITO");
+            // alert("Guardado exitoso!");
+
+        }).catch((error) => {
+            alert("Error al enviar!");
+        })
+    }
+    getMensajes() {
+
+        return new Promise((resolve, reject) => {
+            firebase.database().ref(`/mensajes`).on("value", (data) => {
+                // console.log(data.val());
+                resolve(data.val());
+
+            })
         })
     }
 }

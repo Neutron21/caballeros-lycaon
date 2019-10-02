@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Persona } from '../../persona.model';
 import { NgForm } from '@angular/forms';
+import { DataServices } from 'src/app/Services/dataServices';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class FormularioComponent implements OnInit {
   actButton: boolean = true;
   badMail: boolean = true;
 
-  constructor() {
+  constructor(private dataServices: DataServices) {
    
    }
 
@@ -28,9 +29,17 @@ export class FormularioComponent implements OnInit {
     form.value.nombre;
     form.value.correo;
     form.value.textAreaMsj;
+    let newMsj = {
+      nombre : form.value.nombre,
+      correo : form.value.correo,
+      mensaje : form.value.textAreaMsj,
+    }
+    this.dataServices.guardarMensaje(newMsj);
     this.nombre = "";
     this.correo = "";
     this.textAreaMsj = "";
+    console.log(form.value);
+    
   }
   validaCampos(){
     

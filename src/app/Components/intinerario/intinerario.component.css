@@ -9,6 +9,9 @@
 .white-text{
     color: aliceblue;
 }
+.btn-secondary, .red-button{
+    font-size: small;
+}
 .red-button{
     color: aliceblue;
     background-color: #ff4444;
@@ -60,15 +63,16 @@ color: #ff4444 !important;
     font-size: smaller;
     color: #d0d6e2;
     margin-bottom: 0px !important;
+    font-family: 'Turret Road', cursive;
 }
 .dynamic{
-    font-size: larger;
+    font-size: large;
+}
+.coments{
+    font-size: medium;
 }
 hr {
     border-top: 1px solid aliceblue;
-}
-  .input-group-append{
-    width: inherit;
 }
 .cumpleños-collapse{
     margin-bottom: 15px;

@@ -23,6 +23,7 @@ export class IntinerarioComponent implements OnInit {
   distancia: number;
   url: string;
   key: string = "";
+  comentarios: string;
 
   hoy = new Date();
   yyyy = this.hoy.getFullYear();
@@ -62,7 +63,7 @@ export class IntinerarioComponent implements OnInit {
       // console.log(form.value);
   
       let evento: Evento = new Evento(form.value.tipo, form.value.fecha, form.value.ciudad,
-        form.value.lugar,form.value.presupuesto, form.value.distancia, form.value.url, this.key );
+        form.value.lugar,form.value.presupuesto, form.value.distancia, form.value.url, this.key, this.comentarios);
        
       let nkey: any = await this.dataServices.guardarEvento(evento);
         
@@ -73,6 +74,7 @@ export class IntinerarioComponent implements OnInit {
       this.presupuesto = null;
       this.distancia = null;
       this.url = ""
+      this.comentarios = "";
       // await this.getEventos();
       // console.log(nkey);
       evento.key = nkey;
