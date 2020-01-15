@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { AppConstant } from '../const';
 import { Miembro } from '../Models/miembro.model';
 import { Router } from '@angular/router';
+import { log } from 'util';
 
 
 
@@ -65,13 +66,14 @@ export class DataServices {
         })
     }
     getPerfil() {
-        try {
-            let uid = firebase.auth().currentUser.uid;
-            return this.findMember(uid);
-        } catch (error) {
-            // console.log(error);
-        }
-
+       
+        return new Promise((resolve, reject) => {
+            
+                if (firebase.auth().currentUser) {
+                    let uid = firebase.auth().currentUser.uid;
+                    resolve(this.findMember(uid));
+                } 
+        })
     }
     updateMiembro(member) {
 
@@ -94,7 +96,7 @@ export class DataServices {
                 firebase.database().ref(`/eventos/${evento.key}`).update(evento).then(() => {
                     console.log("EXITO");
                     alert("Evento actualizado!");
-
+                    resolve(evento.key)
                 }).catch((error) => {
                     console.log("ERROR");
                     console.log(error);

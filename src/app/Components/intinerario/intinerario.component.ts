@@ -23,7 +23,7 @@ export class IntinerarioComponent implements OnInit {
   distancia: number;
   url: string;
   key: string = "";
-  comentarios: string;
+  comentarios: string = "";
 
   hoy = new Date();
   yyyy = this.hoy.getFullYear();
@@ -31,10 +31,13 @@ export class IntinerarioComponent implements OnInit {
   dd = this.hoy.getDate();
   maxYear = this.yyyy+1;
 
-  minDate= moment(new Date()).format('YYYY-MM-DD');
+  minDate = moment(new Date()).format('YYYY-MM-DD');
   maxDate = moment(new Date(this.maxYear, this.mm, this.dd)).format('YYYY-MM-DD');
 
+  mensajesArray = [];
   eventosArray = [];
+  intinerarioArray = [];
+  historialArray = [];
   miembros = [];
   editar: boolean = false;
   keyAux: string;
@@ -48,25 +51,39 @@ export class IntinerarioComponent implements OnInit {
 
   async ngOnInit() {
     this.perfil = await this.dataServices.getPerfil();
+    let mensajes = await this.dataServices.getMensajes();
+    // console.log(mensajes);
+
+    if (mensajes != null) {
+      let mjs = Object.keys(mensajes);
+      for (var m of mjs) {
+        var evento = mensajes[m];
+        
+          evento.key = m;
+          
+          this.mensajesArray.push(evento);
+
+      }
+    }
   
     this.getEventos();
     this.getMiembros();
     this.loading = false;
     // console.log(this.eventosArray);
-    
   }
 
  async addEvent(form: NgForm) {
+
     console.log(form.value);
     if(form.value.tipo != "SELECCIONE" && form.value.fecha && form.value.ciudad && 
       form.value.lugar && form.value.presupuesto && form.value.distancia ){
       // console.log(form.value);
-  
+    debugger
       let evento: Evento = new Evento(form.value.tipo, form.value.fecha, form.value.ciudad,
         form.value.lugar,form.value.presupuesto, form.value.distancia, form.value.url, this.key, this.comentarios);
        
       let nkey: any = await this.dataServices.guardarEvento(evento);
-        
+      debugger
       this.type = "SELECCIONE";
       this.fecha = "";
       this.ciudad = "";
@@ -88,14 +105,15 @@ export class IntinerarioComponent implements OnInit {
   }
   async getEventos(){
     let events = await this.dataServices.getEvents();
-   
+    let fechaEvento;
+    console.log(events);
     if (events != null) {
       let rodadas = Object.keys(events);
       for (var m of rodadas) {
         var evento = events[m];
             evento.key = m;
-        
-        this.eventosArray.push(evento);
+
+        fechaEvento = new Date(evento.fecha);
         
         this.eventosArray.sort(function (a, b) {
           if (a.fecha > b.fecha) {
@@ -107,7 +125,13 @@ export class IntinerarioComponent implements OnInit {
           // a must be equal to b
           return 0;
         });
+        if (this.hoy > fechaEvento) {
+          
+          this.historialArray.push(evento);
+        } else {
 
+          this.intinerarioArray.push(evento);
+        }
       }
     }
     
@@ -123,6 +147,7 @@ export class IntinerarioComponent implements OnInit {
     this.distancia = plan.distancia;
     this.url = plan.url;
     this.key = plan.key;
+    this.comentarios = plan.comentarios;
     
   }
 

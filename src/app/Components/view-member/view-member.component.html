@@ -9,7 +9,7 @@
                     <a routerLink="/miembros" class="white-text">                         
                         <i class="fa fa-arrow-left" style="font-size:20px;"></i>
                     </a>
-                    {{perfil.nickName}} 
+                    <span class="nickname"> {{perfil.nickName}} </span>
                 </h5>
             </div>
             <div class="card-body">
@@ -45,11 +45,11 @@
                             <ul *ngFor="let motoArray of perfil.motos; let i = index">
                                 <li>{{motoArray.marca}} {{motoArray.modelo}} {{motoArray.cc}} cc</li>
                                 <li>{{motoArray.modelo}}</li>
-                                <li>Placa: {{motoArray.placa}}</li>
-                                <li>SN: {{motoArray.serie}}</li>
-                                <li>Seguro: {{motoArray.ciaSeguro}}</li>
+                                <li>Placa:<span class="mayus"> {{motoArray.placa}}</span></li>
+                                <li>SN:<span class="mayus"> {{motoArray.serie}} </span></li>
+                                <li>Seguro:<span class="capital"> {{motoArray.ciaSeguro}}</span></li>
                                 <li>Tel Seguro: {{motoArray.telSeguro}}</li>
-                                <li>Poliza: {{motoArray.poliza}}</li>
+                                <li>Poliza:<span class="mayus"> {{motoArray.poliza}}</span></li>
                             </ul>
                         </div>
 

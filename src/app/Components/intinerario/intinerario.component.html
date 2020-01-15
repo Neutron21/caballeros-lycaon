@@ -10,7 +10,7 @@
     <h5 class="intinerario">Intinerario</h5>
     <div class="row">
       <div class="accordion" id="accordionExample">
-        <div class="card" *ngFor="let plan of eventosArray; let indice = index">
+        <div class="card" *ngFor="let plan of intinerarioArray; let indice = index">
           <div class="card-header " id="headingOne" data-toggle="collapse" [attr.data-target]="'#'+ plan.key"
             aria-expanded="false" aria-controls="collapseOne">
             <h2 class="mb-0">
@@ -258,6 +258,131 @@
           </div>
         </div>
       </div>
+     
+      <div class="mensajes" *ngIf="perfil && perfil.admin" >
+      
+        <h5 class="mensajes-title">Mensajes</h5>
+        <div class="row">
+           
+            <div class="accordion" id="accordionExample">
+                <div class="card" *ngFor="let msj of mensajesArray; let indice = index">
+                    <div class="card-header " id="headingOne" data-toggle="collapse" [attr.data-target]="'#'+ msj.key"
+                        aria-expanded="false" aria-controls="collapseOne">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link-perfil red-hover" type="button">
+                                <i class="fa fa-envelope-o " style="font-size:28px;"></i>
+                                <span class="red-hover"> {{msj.nombre}} </span>
+
+                            </button>
+                        </h2>
+                    </div>
+
+                    <div id="{{msj.key}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <div class="row">
+
+                                <div class="col-6 col-sm-4">
+                                    <div class="form-group">
+                                        <label class="label-text control-label hard-code"
+                                            for="nombre">Correo:</label><br>
+                                        <span class="dynamic-mail"> {{msj.correo}} </span>
+                                    </div>
+
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label class="label-text control-label hard-code"
+                                            for="ciudad">Mensaje:</label><br>
+                                        <span class="dynamic-msj"> {{msj.mensaje}} </span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+      </div>
+  </div>
+  <div class="white-text historial">
+    <h5 class="intinerario">Historial</h5>
+    <div class="row">
+      <div class="card" *ngFor="let plan of historialArray; let indice = index">
+        <div class="card-header " id="headingOne" data-toggle="collapse" [attr.data-target]="'#'+ plan.key"
+          aria-expanded="false" aria-controls="collapseOne">
+          <h2 class="mb-0">
+            <button class="btn btn-link-perfil red-hover" type="button">
+              <i *ngIf="plan.type == 'Rodada'" class="fa fa-road " style="font-size:28px;"></i>
+
+              <i *ngIf="plan.type == 'Convivencia'" class="fa fa-smile-o " style="font-size:28px;"></i>
+              <span class="red-hover"> {{plan.lugar}} </span>
+
+            </button>
+          </h2>
+        </div>
+
+        <div id="{{plan.key}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+          <div class="card-body">
+            <div class="row">
+
+              <div class="col-6 col-sm-4 col-md-3">
+                <div class="form-group">
+                  <label class="label-text control-label hard-code" for="nombre">Destino:</label><br>
+                  <span class="dynamic"> {{plan.lugar}} </span>
+                </div>
+
+              </div>
+              <div class="col-6 col-sm-4 col-md-3">
+                <div class="form-group">
+                  <label class="label-text control-label hard-code" for="ciudad">Ciudad:</label><br>
+                  <span class="dynamic"> {{plan.ciudad}} </span>
+                </div>
+              </div>
+
+              <div class="col-6 col-sm-4 col-md-3">
+                <div class="form-group">
+                  <label class="label-text control-label hard-code" for="distancia">Distancia:</label><br>
+                  <span class="dynamic"> {{plan.distancia}} </span> kms
+                </div>
+              </div>
+
+              <div class="col-6 col-sm-4 col-md-3">
+                <div class="form-group">
+                  <label class="label-text control-label hard-code" for="presupuesto">Presupuesto:</label><br>
+                  <i class="fa fa-dollar " style="font-size:20px;"></i> <span class="dynamic"> {{plan.presupuesto}} </span>aproximado
+                </div>
+              </div>
+              <div class="col-6 col-sm-4 col-md-3">
+                <div class="form-group">
+                  <label class="label-text control-label hard-code" for="nombre">Fecha:</label><br>
+                  <span class="dynamic"> {{plan.fecha}} </span>
+                </div>
+              </div>
+              <div *ngIf="plan.url" class="col-6 col-sm-4 col-md-3">
+                <div class="form-group">
+
+                  <a class="link-mapa" href="{{plan.url}}" target="_blank">
+                    <i class="fa fa-map-marker red-text" style="font-size:18px;"></i> Mapa</a>
+
+                </div>
+              </div>
+              <div *ngIf="plan.comentarios" class="col-12 col-sm-12 col-md-6">
+                <div class="form-group">
+                  <label class="label-text control-label hard-code" for="nombre">Comentarios:</label><br>
+                  <span class="dynamic coments"> {{plan.comentarios}} </span>
+                </div>
+              </div>
+          
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
     <div class="modal fade" id="confimrModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content text-modal">

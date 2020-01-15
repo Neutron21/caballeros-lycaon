@@ -80,18 +80,30 @@ hr {
 .brm-brm{
     max-width: 80vw;
 }
+.mensajes, .historial{
+    padding-bottom: 10px;
+}
+.mensajes-title{
+    color: #ff4444 !important;
+}
+.dynamic-msj{
+    font-family: 'Gloria Hallelujah', cursive;
+}
+.dynamic-mail{
+    font-family: 'Open Sans Condensed', sans-serif;
+}
 @media only screen and (max-width: 991px){
     .align-btn{
         margin-top: 0%;
         margin-bottom: 2%;
     }
     .card-header{
-        width: 82vw;
+        width: 93vw;
     }
 }
 @media only screen and (max-width: 564px){
     .container{
-        margin-left: 5% !important;
+        margin-left: 3% !important;
         margin-right: 5% !important;
         width: 90% !important;
     }

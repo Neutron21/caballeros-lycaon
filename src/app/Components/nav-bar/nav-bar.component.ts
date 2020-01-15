@@ -13,38 +13,34 @@ import { log } from 'util';
 export class NavBarComponent implements OnInit {
 
   @Input() sesion: boolean;
-  
+
   constructor(private loginService: LoginService,
-              private dataService: DataServices) { }
+    private dataService: DataServices) { }
 
   perfil;
 
   async ngOnInit() {
-    // this.sesionActiva()
-    // this.sesion 
-    // this.perfil = await this.dataService.getPerfil();
-    // console.log(this.perfil);
-  // let perfil = await this.isAdmin();
-  // console.log(perfil);
-  
-  }
-//   async isAdmin(){
-//   this.perfil = await this.dataService.getPerfil();
-//   console.log(this.perfil);
-//   if (this.perfil && this.perfil.admin) {
     
-//     return this.perfil;
-//   }
-//  }
-  sesionActiva(){
+    this.perfil = await this.dataService.getPerfil();
+    console.log(this.perfil);
+    // let perfil = await this.dataService.getPerfil();
+    // console.log(perfil);
+  }
+  isAdmin() {
+
+    if (this.sesionActiva() && this.perfil && this.perfil.admin) {
+      return true;
+    }
+  }
+  sesionActiva() {
     return this.loginService.isAutenticated();
-    // console.log(this.isAut)
-   }
-  cerrarSesion(){
+
+  }
+  cerrarSesion() {
     this.loginService.logout();
     this.hideMenu();
   }
-  hideMenu(){
-    $( "#navbarSupportedContent" ).removeClass( "show" )
+  hideMenu() {
+    $("#navbarSupportedContent").removeClass("show")
   }
 }

@@ -23,7 +23,7 @@ export class LoginService{
                        if (perfil) {
                         
                         this.router.navigate(['/']);
-                        console.log("Auth ok!");
+                        // console.log("Auth ok!");
                        } else{
                         console.log(perfil, 'no hay perfil');
                         this.logout();
