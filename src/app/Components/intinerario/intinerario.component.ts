@@ -106,7 +106,7 @@ export class IntinerarioComponent implements OnInit {
   async getEventos(){
     let events = await this.dataServices.getEvents();
     let fechaEvento;
-    console.log(events);
+    
     if (events != null) {
       let rodadas = Object.keys(events);
       for (var m of rodadas) {
@@ -114,29 +114,36 @@ export class IntinerarioComponent implements OnInit {
             evento.key = m;
 
         fechaEvento = new Date(evento.fecha);
-        
-        this.eventosArray.sort(function (a, b) {
-          if (a.fecha > b.fecha) {
-            return 1;
-          }
-          if (a.fecha < b.fecha) {
-            return -1;
-          }
-          // a must be equal to b
-          return 0;
-        });
+        this.eventosArray.push(evento);
+      
         if (this.hoy > fechaEvento) {
           
           this.historialArray.push(evento);
+          
         } else {
 
           this.intinerarioArray.push(evento);
         }
       }
+    
+      this.orderArray(this.intinerarioArray);
+      this.orderArray(this.historialArray);
     }
     
   }
-  
+  orderArray(array){
+    array.sort(function (a, b) {
+          
+      if (a.fecha > b.fecha) {
+        return 1;
+      }
+      if (a.fecha < b.fecha) {
+        return -1;
+      }
+      
+      return 0;
+    });
+  }
   edithPlan(plan){
     console.log(plan);
     this.type = plan.type;
@@ -179,6 +186,7 @@ export class IntinerarioComponent implements OnInit {
       
         if (members != null) {
           let miembros = Object.keys(members);
+          
           for (var m of miembros) {
             var miembro = {
                 nickName: members[m].nickName,
@@ -188,6 +196,7 @@ export class IntinerarioComponent implements OnInit {
             }
             
             this.miembros.push(miembro);
+            
             this.miembros.sort(function (a, b) {
               if (a.numberMonth > b.numberMonth) {
                 return 1;
