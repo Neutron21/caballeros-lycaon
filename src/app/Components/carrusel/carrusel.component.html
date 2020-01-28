@@ -5,26 +5,54 @@
       <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
       <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
     </ol>
-    <div class="carousel-inner">
+    <!-- Carrusel para moviles -->
+    <!-- <div class="carousel-inner mobile">
       <div class="carousel-item active" data-interval="3000">
-        <img src="../../../assets/mcTodos.jpg" class="d-block w-100" alt="...">
+        <img src="../../../assets/movil/Pic4.jpeg" class="d-block w-100" alt="...">
         <div class="carousel-caption d-none d-md-block">
           <h5>Familia Lycaon</h5>
           <p>Más que un club, más que amigos, una gran familia!</p>
         </div>
       </div>
       <div class="carousel-item" data-interval="3000">
-        <img src="../../../assets/centroOtomi.jpg" class="d-block w-100" alt="...">
+        <img src="../../../assets/movil/Pic6.jpeg" class="d-block w-100" alt="...">
         <div class="carousel-caption d-none d-md-block">
           <h5>Centro Ceremonial Otomi. Temoaya</h5>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <p>Rodamos con familiares y amigos, ambiente 100% familiar.</p>
         </div>
       </div>
       <div class="carousel-item" data-interval="3000">
-        <img src="../../../assets/ajusco.jpg" class="d-block w-100" alt="...">
+        <img src="../../../assets/movil/Pic0.jpeg" class="d-block w-100" alt="...">
         <div class="carousel-caption d-none d-md-block">
           <h5>Bajando del Ajusco</h5>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          <p>Los huevos van en el piloto, no en la moto.</p>
+        </div>
+      </div>
+    </div> -->
+    <!-- Carrusel para Pc -->
+    <div class="carousel-inner ">
+      <div class="carousel-item active" data-interval="3000">
+        <img *ngIf="x > 600" src="../../../assets/mcTodos.jpg" class="d-block w-100" alt="...">
+        <img *ngIf="x < 600"  src="../../../assets/movil/Pic4.jpeg" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Familia Lycaon</h5>
+          <p>Más que un club, más que amigos, una gran familia!</p>
+        </div>
+      </div>
+      <div class="carousel-item" data-interval="3000">
+        <img *ngIf="x > 600" src="../../../assets/centroOtomi.jpg" class="d-block w-100" alt="...">
+        <img *ngIf="x < 600" src="../../../assets/movil/Pic6.jpeg" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Centro Ceremonial Otomi. Temoaya</h5>
+          <p>Rodamos con familiares y amigos, ambiente 100% familiar.</p>
+        </div>
+      </div>
+      <div class="carousel-item" data-interval="3000">
+        <img *ngIf="x > 600" src="../../../assets/ajusco.jpg" class="d-block w-100" alt="...">
+        <img *ngIf="x < 600" src="../../../assets/movil/Pic0.jpeg" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Bajando del Ajusco</h5>
+          <p>Los huevos van en el piloto, no en la moto.</p>
         </div>
       </div>
     </div>
