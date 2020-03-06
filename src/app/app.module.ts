@@ -29,6 +29,7 @@ import { MotoComponent } from './Components/moto/moto.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { MensajesComponent } from './Components/mensajes/mensajes.component';
+import { PagosComponent } from './Components/pagos/pagos.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { MensajesComponent } from './Components/mensajes/mensajes.component';
     MiPerfilComponent,
     ViewMemberComponent,
     MotoComponent,
-    MensajesComponent
+    MensajesComponent,
+    PagosComponent
   ],
   imports: [
     BrowserModule,

@@ -165,4 +165,40 @@ export class DataServices {
             })
         })
     }
+    guardarPago(pago) {
+     
+        firebase.database().ref(`/pagos/`).push(pago).then((snap) => {
+
+            console.log("EXITO");
+            // alert("Guardado exitoso!");
+
+        }).catch((error) => {
+            alert("Error al enviar!");
+        })
+    }
+    getPagos() {
+
+        return new Promise((resolve, reject) => {
+            firebase.database().ref(`/pagos`).on("value", (data) => {
+                // console.log(data.val());
+                resolve(data.val());
+
+            })
+        })
+    }
+    updatePago(pago) {
+
+        firebase.database().ref(`/pagos/${pago.id}/detalle`).push(pago).then(() => {
+            // this.miembros.push(member);
+            // this.router.navigate(['miembros']);
+
+            console.log("EXITO");
+            alert("Pago agregado con exito!");
+
+        }).catch((error) => {
+            console.log("ERROR");
+            console.log(error);
+            alert("Ocurrio un error!");
+        })
+    }
 }

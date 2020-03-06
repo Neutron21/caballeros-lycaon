@@ -21,10 +21,12 @@
         <li class="nav-item" *ngIf="sesionActiva()" (click)="hideMenu()">
             <a class="nav-link danger-color" routerLink="miembros">Miembros</a>
         </li>
-        <li class="nav-item" *ngIf="isAdmin()" (click)="hideMenu()">
+        <!-- <li class="nav-item" *ngIf="isAdmin()" (click)="hideMenu()">
           <a class="nav-link danger-color" routerLink="mensajes">Mensajes</a>
-      </li>
-       
+        </li> -->
+        <li class="nav-item" *ngIf="sesionActiva()" (click)="hideMenu()">
+         <a class="nav-link danger-color" routerLink="pagos">Registro Pagos</a>
+        </li>
       </ul>
       <ul class="navbar-nav">
           <li  *ngIf="!sesionActiva()" class="nav-item cursor in-sesion"(click)="hideMenu()" routerLink="login">

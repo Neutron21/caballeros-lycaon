@@ -78,12 +78,12 @@ export class IntinerarioComponent implements OnInit {
     if(form.value.tipo != "SELECCIONE" && form.value.fecha && form.value.ciudad && 
       form.value.lugar && form.value.presupuesto && form.value.distancia ){
       // console.log(form.value);
-    debugger
+    // debugger
       let evento: Evento = new Evento(form.value.tipo, form.value.fecha, form.value.ciudad,
         form.value.lugar,form.value.presupuesto, form.value.distancia, form.value.url, this.key, this.comentarios);
        
       let nkey: any = await this.dataServices.guardarEvento(evento);
-      debugger
+      // debugger
       this.type = "SELECCIONE";
       this.fecha = "";
       this.ciudad = "";
