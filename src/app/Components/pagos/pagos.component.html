@@ -41,7 +41,8 @@
                     
                       <div *ngIf="perfil && perfil.admin" class="col-2 col-sm-2 col-md-2">
                         <div class="form-group">
-                          <button class="btn btn-plus red-button" type="button" data-toggle="collapse" data-target="#formAddPagos"
+                          <button class="btn btn-plus red-button" type="button" data-toggle="collapse" 
+                          [attr.data-target]="'#formAddPagos'+ plan.key"
                           aria-expanded="false" aria-controls="formAddPagos" (click)="showAddPay()">
                           <i class="fa fa fa-plus" style="font-size:18;"></i>
                         </button>
@@ -74,7 +75,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="collapse multi-collapse" id="formAddPagos">
+                    <div class="collapse multi-collapse" id="formAddPagos{{plan.key}}">
                       <!-- *ngIf="showform"  -->
                       Agregar pagos
                       <form class="form-inline" #f="ngForm" (ngSubmit)="f.form.valid && addPAy(f, plan.key, indice)">
@@ -84,9 +85,9 @@
                               <div class="form-group">
                                   <label class="label-text control-label" for="nombrePago">Nombre:</label>
                               </div>
-                              <input type="text" class="form-control mb-2 fill-width" id="nombrePago" name="nombrePago" style="text-transform:capitalize"
+                              <input type="text" class="form-control mb-2 fill-width" id="nombrePago${{plan.key}}" name="nombrePago" style="text-transform:capitalize"
                                   placeholder="Nombre" [(ngModel)]="pago.nombrePago" (input)="inputForm('nombrePago')">
-                                  <span *ngIf="this.errorArray[0]" class="label-text control-label mensajes-title" for="nombreError">Nombre requerido!</span>
+                                  <span *ngIf="this.errorArray.nombrePago" class="label-text control-label mensajes-title" for="nombreError">Nombre requerido!</span>
                           </div>
                          
                           <div class="col-sm-12 col-md-6 col-lg-3">
@@ -99,27 +100,27 @@
                                           <i class="fa fa fa-dollar" style="font-size:18;"></i>
                                       </div>
                                   </div>
-                                  <input type="number" class="form-control" id="montoPago" name="montoPago"
-                                      placeholder="$ 0.00" [(ngModel)]="pago.montoPago" (input)="inputForm('monto')">
+                                  <input type="number" class="form-control" id="montoPago${{plan.key}}" name="montoPago"
+                                      placeholder="$ 0.00" [(ngModel)]="pago.montoPago" (input)="inputForm('montoPago')">
                               </div>
-                              <span *ngIf="this.errorArray[2]" class="mensajes-title label-text control-label">
+                              <span *ngIf="this.errorArray.montoPago" class="mensajes-title label-text control-label">
                                 Monto requerido!</span>
                           </div>
                           <div class="col-sm-12 col-md-6 col-lg-3">
                             <div class="form-group">
                                 <label class="label-text control-label" for="nombre">Fecha:</label>
                             </div>
-                            <input type="date" class="form-control mb-2 fill-width" id="fechaPago" name="fechaPago"
-                                [min]="minDate" [max]="maxDate" [(ngModel)]="pago.fechaPago" (input)="inputForm('fechaPago')">
-                                <span *ngIf="this.errorArray[1]" class="mensajes-title label-text control-label" for="fechaPago">Fecha requerido!</span>
+                            <input type="date" class="form-control mb-2 fill-width" id="fechaPago${{plan.key}}" name="fechaPago"
+                                [min]="minDateYear" [max]="minDate" [(ngModel)]="pago.fechaPago" (input)="inputForm('fechaPago')">
+                                <span *ngIf="this.errorArray.fechaPago" class="mensajes-title label-text control-label" for="fechaPago">Fecha requerido!</span>
                           </div>
                           <div class="col-sm-12 col-md-6 col-lg-3">
                             <div class="form-group">
                                 <label class="label-text control-label" for="nombre">Lugar:</label>
                             </div>
-                            <input type="text" class="form-control mb-2 fill-width" id="lugarPago" name="lugarPago" style="text-transform:capitalize"
+                            <input type="text" class="form-control mb-2 fill-width" id="lugarPago${{plan.key}}" name="lugarPago" style="text-transform:capitalize"
                                 placeholder="Lugar" [(ngModel)]="pago.lugarPago" (input)="inputForm('lugarPago')">
-                                <span *ngIf="this.errorArray[0]" class="label-text control-label mensajes-title" for="lugarPago">Lugar requerido!</span>
+                                <span *ngIf="this.errorArray.lugarPago" class="label-text control-label mensajes-title" for="lugarPago">Lugar requerido!</span>
                           </div>
                           <div class="col-sm-12 col-md-6 col-lg-3 offset-lg-9">
                             <div class="form-group d-flex justify-content-center align-btn">
@@ -140,18 +141,24 @@
                           <!-- <tr mdbTableCol *ngFor="let dato of plan.detalle"> -->
                           <tr mdbTableCol *ngFor="let dato of plan.data">
                             <th scope="row">{{dato.nombre}}</th>
-                            <td>{{dato.monto}}</td>
+                            <td [ngClass]="{'greenText': dato.monto == plan.monto,'redText': dato.monto < plan.monto}"
+                            >{{dato.monto}}</td>
                             <td>{{dato.fecha}}</td>
                             <td>{{dato.lugar}}</td>
                           </tr>
+                          <!-- <tr>
+                            Total: {{plan.total}}
+                          </tr> -->
                         </tbody>
-
+                        
                     </table>
+                    Total: {{plan.total}}
                   </div>
                 </div>
               </div>
       
-              
+              <button (click)="openModal('custom-modal-1')">Open Modal 2</button>
+
               <p *ngIf="perfil && perfil.admin" class="crear-evento">Crear Evento
                 <button class="btn btn-plus red-button" type="button" data-toggle="collapse" data-target="#formAddBiker"
                   aria-expanded="false" aria-controls="formAddBiker" (click)="newEvent()">
@@ -169,7 +176,7 @@
                         </div>
                         <input type="text" class="form-control mb-2 fill-width" id="nombre" name="nombre" style="text-transform:capitalize"
                             placeholder="Nombre" [(ngModel)]="nombre" (input)="inputForm('nombre')">
-                            <span *ngIf="this.errorArray[0]" class="label-text control-label mensajes-title" for="nombreError">Nombre requerido!</span>
+                            <span *ngIf="this.errorArray.nombre" class="label-text control-label mensajes-title" for="nombreError">Nombre requerido!</span>
                     </div>
                     <div class="col-sm-12 col-md-6 col-lg-3">
                         <div class="form-group">
@@ -177,7 +184,7 @@
                         </div>
                         <input type="date" class="form-control mb-2 fill-width" id="fecha" name="fecha"
                             [min]="minDate" [max]="maxDate" [(ngModel)]="fecha" (input)="inputForm('fecha')">
-                            <span *ngIf="this.errorArray[1]" class="mensajes-title label-text control-label" for="nombreError">Fecha requerido!</span>
+                            <span *ngIf="this.errorArray.fecha" class="mensajes-title label-text control-label" for="nombreError">Fecha requerido!</span>
                     </div>
                     <div class="col-sm-12 col-md-6 col-lg-3">
                         <div class="form-group">
@@ -192,7 +199,7 @@
                             <input type="number" class="form-control" id="monto" name="monto"
                                 placeholder="$ 0.00" [(ngModel)]="monto" (input)="inputForm('monto')">
                         </div>
-                        <span *ngIf="this.errorArray[2]" class="mensajes-title label-text control-label">
+                        <span *ngIf="this.errorArray.monto" class="mensajes-title label-text control-label">
                           Monto requerido!</span>
                     </div>
                  
@@ -223,3 +230,50 @@
           </div>
     </div>
 </div>
+
+<div class="modal fade" id="confimrModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content text-modal">
+      <div class="modal-header color-dark">
+        <h5 class="modal-title danger-color" id="contactModalLabel">Mensaje enviado</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Estas seguro de eliminar el plan {{nombreAux}}?<br>
+        
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+        <button type="button" class="btn red-button" data-dismiss="modal" (click)="delPlan()">Si</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-modal id="custom-modal-1">
+  <h1>A Custom Modal!</h1>
+  
+  <button (click)="closeModal('custom-modal-1');">Close</button>
+</app-modal>

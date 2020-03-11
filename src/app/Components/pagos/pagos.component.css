@@ -99,14 +99,18 @@ hr {
 #formAddPagos{
     margin-bottom: 10px;
 }
+.greenText{
+    color: rgb(104, 238, 104) !important;
+}
+.redText{
+    color: #ff4444 !important;
+}
 @media only screen and (max-width: 991px){
     .align-btn{
         margin-top: 0%;
         margin-bottom: 2%;
     }
-    .card-header{
-        width: 93vw;
-    }
+  
 }
 @media only screen and (max-width: 564px){
     .container{
@@ -117,5 +121,8 @@ hr {
     .table{
         /* background-color: #d0d6e2; */
         font-size: 0.8rem;
+    }
+    .card-header{
+        width: 93vw;
     }
 }

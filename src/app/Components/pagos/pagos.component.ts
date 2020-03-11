@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { DataServices } from 'src/app/Services/dataServices';
+import { ModalService } from '../../Services/modal.services';
 import * as moment from 'moment';
-import { AppConstant } from '../../const';
+
 
 @Component({
   selector: 'app-pagos',
@@ -16,20 +17,31 @@ export class PagosComponent implements OnInit {
   mm = this.hoy.getMonth();
   dd = this.hoy.getDate();
   maxYear = this.yyyy+1;
+  minYear = this.yyyy-1;
 
   minDate = moment(new Date()).format('YYYY-MM-DD');
   maxDate = moment(new Date(this.maxYear, this.mm, this.dd)).format('YYYY-MM-DD');
-
-  tipos = AppConstant.TYPE_EVENT;
+  minDateYear = moment(new Date(this.minYear, this.mm, this.dd)).format('YYYY-MM-DD');
+  
   loading: boolean;
   pagosArray = [];
   eventosArray = [];
-  errorArray = [];
+  errorArray = {
+    nombre: false,
+    fecha: false,
+    monto: false,
+    nombrePago: false,
+    fechaPago: false,
+    montoPago: false,
+    lugarPago: false,
+  };
 
   nombre: string;
   fecha: string;
   monto: number;
   comentarios: string = "";
+  detalleAux = {} ;
+
   pago = {
     nombrePago: "",
     fechaPago: "",
@@ -37,16 +49,17 @@ export class PagosComponent implements OnInit {
     lugarPago:  "",
     id: "",
   };
+  indiceAux: number;
+  keyAux: string;
+  nombreAux: string;
   
   perfil;
-  data = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
+
   headElements = ['Nombre', 'Monto', 'Fecha', 'Lugar'];
   showform: boolean;
-  constructor(private dataServices: DataServices) { 
+
+  bodyText: string = "Body Text!!";
+  constructor(private dataServices: DataServices, private modalService: ModalService) { 
     this.loading = true;
   }
       
@@ -55,6 +68,7 @@ export class PagosComponent implements OnInit {
     this.loading = false;
     this.showform = false;
     this.getRegistros();
+  
   }
   async getRegistros(){
     let pagos = await this.dataServices.getPagos();
@@ -72,12 +86,17 @@ export class PagosComponent implements OnInit {
           evento.data = [];
           // console.log("no esta vacio");
           let detallePagos = Object.keys(evento.detalle);
+          var total = 0;
           for (var i of detallePagos) {
             var detalle = evento.detalle[i];
               detalle.key = i;
               // console.log("detalle", detalle);
+              total += detalle.monto;
               evento.data.push(detalle);
               }
+              // console.log("total", total);
+              this.ordenarDetalle(evento.data);
+              evento.total = total;
         }
         // if (this.hoy > fechaEvento) {
           
@@ -88,13 +107,14 @@ export class PagosComponent implements OnInit {
         //   this.pagosArray.push(evento);
         // }
         this.pagosArray.push(evento);
-
+        
+        
       }
-      console.log(this.pagosArray);
+      
       // this.orderArray(this.pagosArray);
       // this.orderArray(this.historialArray);
     }
-    
+    // console.log(this.pagosArray);
   }
   addEvent(form: NgForm){
    
@@ -104,36 +124,44 @@ export class PagosComponent implements OnInit {
         fecha: form.value.fecha,
         monto: form.value.monto,
         comentarios: form.value.comentarios,
-        detalle: []
+        key: null,
+        detalle: {}
+      }
+      if (this.detalleAux) {
+        newEvent.detalle = this.detalleAux;
+        newEvent.key = this.keyAux;
       }
       console.log("newEvent", newEvent);
       this.dataServices.guardarPago(newEvent);
       this.newEvent();
-      this.getRegistros();
+      // this.getRegistros();
     } else {
       
-      this.testValues()
+      this.testValuesEvento()
     }
 
   }
   edithPlan(plan){
     console.log(plan);
-    // this.type = plan.type;
-    // this.fecha = plan.fecha;
-    // this.ciudad = plan.ciudad;
-    // this.lugar = plan.lugar;
-    // this.presupuesto = plan.presupuesto;
-    // this.distancia = plan.distancia;
-    // this.url = plan.url;
-    // this.key = plan.key;
-    // this.comentarios = plan.comentarios;
+    
+    this.fecha = plan.fecha;
+    this.comentarios = plan.comentarios;
+    this.nombre = plan.nombre;
+    this.monto = plan.monto;
+    this.detalleAux = plan.detalle;
+    this.keyAux = plan.key;
     
   }
 
-  delAuxPlan(index, key, lugar){
-    // this.indice = index;
-    // this.keyAux = key;
-    // this.lugarAux = lugar
+  delAuxPlan(index, key, nombre){
+    this.indiceAux = index;
+    this.keyAux = key;
+    this.nombreAux = nombre;
+   
+  }
+  delPlan(){
+    this.dataServices.deleteRegistroPago(this.keyAux, this.nombreAux);
+    this.pagosArray.splice(this.indiceAux, 1);
   }
   newEvent(){
     
@@ -141,6 +169,9 @@ export class PagosComponent implements OnInit {
     this.fecha = "";
     this.monto = null;
     this.comentarios = "";
+    this.errorArray.nombre = false;
+    this.errorArray.fecha = false;
+    this.errorArray.monto = false;
 
   }
   showAddPay(){
@@ -155,6 +186,10 @@ export class PagosComponent implements OnInit {
       lugarPago:  "",
       id: "",
     };
+    this.errorArray.nombrePago = false;
+    this.errorArray.fechaPago = false;
+    this.errorArray.montoPago = false;
+    this.errorArray.lugarPago = false;
   }
   addPAy(form: NgForm, key, indice){
     debugger
@@ -172,32 +207,77 @@ export class PagosComponent implements OnInit {
       // console.log("pagosArray", this.pagosArray);
       // console.log("pagosArray", this.pagosArray[indice]);
       console.log("pagosArray", this.pagosArray[indice].data);
+      this.dataServices.updatePago(newPay);
       this.pagosArray[indice].data.push(newPay);
-      // this.dataServices.updatePago(newPay);
       // this.newEvent();
       this.cleanFormPago();
       
       
         } else {
-      this.testValues()
+      this.testValuesPago()
     }
   }
+  ordenarDetalle(list){
+    console.log("ordenarDetalle", list);
+    
+    let nuevoObjeto = {}
+    //Recorremos el arreglo 
+    list.forEach( x => {
+      //Si la ciudad no existe en nuevoObjeto entonces
+      //la creamos e inicializamos el arreglo de profesionales. 
+      if( !nuevoObjeto.hasOwnProperty(x.nombre)){
+        nuevoObjeto[x.nombre] = {
+          abonos: []
+        }
+      }
+      
+      //Agregamos los datos de propesionales. 
+        nuevoObjeto[x.nombre].abonos.push({
+          monto: x.monto,
+          descripcion: x.fecha
+        })
+      
+    })
+
+    console.log(nuevoObjeto)
+  }
+
   inputForm(tipo){
 
     switch (tipo) {
       case "nombre":
         if (this.nombre) { 
-          this.errorArray[0] = false;
+          this.errorArray.nombre = false;
         }
         break;
       case "fecha":
         if (this.fecha) {
-          this.errorArray[1] = false;
+          this.errorArray.fecha = false;
         }
         break;
       case "monto": 
         if (this.monto) {
-            this.errorArray[2] = false;
+            this.errorArray.monto = false;
+        }
+        break;
+      case "nombrePago": 
+        if (this.pago.nombrePago) {
+            this.errorArray.nombrePago = false;
+        }
+        break;
+      case "fechaPago": 
+        if (this.pago.fechaPago) {
+            this.errorArray.fechaPago = false;
+        }
+        break;
+      case "montoPago": 
+        if (this.pago.montoPago) {
+            this.errorArray.montoPago = false;
+        }
+        break;
+      case "lugarPago": 
+        if (this.pago.lugarPago) {
+            this.errorArray.lugarPago = false;
         }
         break;
     
@@ -205,22 +285,54 @@ export class PagosComponent implements OnInit {
  
     
   }
-  testValues(){
+  testValuesEvento(){
 
     if (this.nombre) {
-      this.errorArray[0] = false;
+      this.errorArray.nombre = false;
     } else {
-      this.errorArray[0] = true;
+      this.errorArray.nombre = true;
     }
     if (this.fecha) {
-      this.errorArray[1] = false;
+      this.errorArray.fecha = false;
     } else {
-      this.errorArray[1] = true;
+      this.errorArray.fecha = true;
     }
     if (this.monto) {
-      this.errorArray[2] = false;
+      this.errorArray.monto= false;
     } else {
-      this.errorArray[2] = true;
+      this.errorArray.monto = true;
     }
+  }
+  testValuesPago(){
+
+    if (this.pago.nombrePago) {
+      this.errorArray.nombrePago = false;
+    } else {
+      this.errorArray.nombrePago = true;
+    }
+    if (this.pago.fechaPago) {
+      this.errorArray.fechaPago = false;
+    } else {
+      this.errorArray.fechaPago = true;
+    }
+    if (this.pago.montoPago) {
+      this.errorArray.montoPago= false;
+    } else {
+      this.errorArray.montoPago = true;
+    }
+    if (this.pago.lugarPago) {
+      this.errorArray.lugarPago= false;
+    } else {
+      this.errorArray.lugarPago = true;
+    }
+  }
+    openModal(id: string) {
+      console.log(id);
+      
+      this.modalService.open(id);
+  }
+  
+  closeModal(id: string) {
+      this.modalService.close(id);
   }
 }

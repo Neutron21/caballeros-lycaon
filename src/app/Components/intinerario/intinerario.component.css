@@ -97,14 +97,15 @@ hr {
         margin-top: 0%;
         margin-bottom: 2%;
     }
-    .card-header{
-        width: 93vw;
-    }
+ 
 }
 @media only screen and (max-width: 564px){
     .container{
         margin-left: 3% !important;
         margin-right: 5% !important;
         width: 90% !important;
+    }
+    .card-header{
+        width: 93vw;
     }
 }

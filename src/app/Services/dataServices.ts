@@ -166,19 +166,35 @@ export class DataServices {
         })
     }
     guardarPago(pago) {
-     
-        firebase.database().ref(`/pagos/`).push(pago).then((snap) => {
+        return new Promise((resolve, reject) => {
+            if (pago.key) {
+                firebase.database().ref(`/pagos/${pago.key}`).update(pago).then(() => {
+                    console.log("EXITO");
+                    alert("Evento actualizado!");
+                    resolve(pago.key)
+                }).catch((error) => {
+                    console.log("ERROR");
+                    console.log(error);
+                    alert("Ocurrio un error!");
+                })
+            } else{
+                firebase.database().ref(`/pagos/`).push(pago).then((snap) => {
 
-            console.log("EXITO");
-            // alert("Guardado exitoso!");
-
-        }).catch((error) => {
-            alert("Error al enviar!");
-        })
+                    console.log("EXITO");
+                    alert("Guardado exitoso!");
+        
+                }).catch((error) => {
+                    alert("Error al enviar!");
+                })
+            }
+        });
+            
+       
     }
     getPagos() {
 
         return new Promise((resolve, reject) => {
+            
             firebase.database().ref(`/pagos`).on("value", (data) => {
                 // console.log(data.val());
                 resolve(data.val());
@@ -201,4 +217,15 @@ export class DataServices {
             alert("Ocurrio un error!");
         })
     }
+    deleteRegistroPago(key: string, nombre: string) {
+
+        firebase.database().ref(`/pagos/${key}`).remove().then(() => {
+            alert("Se Elimino: " + nombre);
+
+
+        }).catch((error) => {
+            alert("Hubo un error!");
+        })
+    }
+    
 }

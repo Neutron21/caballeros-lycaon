@@ -30,6 +30,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { MensajesComponent } from './Components/mensajes/mensajes.component';
 import { PagosComponent } from './Components/pagos/pagos.component';
+import { ModalComponent } from './Components/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { PagosComponent } from './Components/pagos/pagos.component';
     ViewMemberComponent,
     MotoComponent,
     MensajesComponent,
-    PagosComponent
+    PagosComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
