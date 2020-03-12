@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { DataServices } from 'src/app/Services/dataServices';
 import { ModalService } from '../../Services/modal.services';
 import * as moment from 'moment';
+import { element } from 'protractor';
 
 
 @Component({
@@ -73,7 +74,7 @@ export class PagosComponent implements OnInit {
   async getRegistros(){
     let pagos = await this.dataServices.getPagos();
     let fechaEvento;
-    console.log("events", pagos);
+    // console.log("events", pagos);
     if (pagos != null) {
       let registroPagos = Object.keys(pagos);
       for (var i of registroPagos) {
@@ -83,6 +84,7 @@ export class PagosComponent implements OnInit {
         fechaEvento = new Date(evento.fecha);
         
         if (evento.detalle) {
+          evento.dataSalvaje = [];
           evento.data = [];
           // console.log("no esta vacio");
           let detallePagos = Object.keys(evento.detalle);
@@ -92,10 +94,10 @@ export class PagosComponent implements OnInit {
               detalle.key = i;
               // console.log("detalle", detalle);
               total += detalle.monto;
-              evento.data.push(detalle);
+              evento.dataSalvaje.push(detalle);
               }
               // console.log("total", total);
-              this.ordenarDetalle(evento.data);
+              evento.data = this.ordenarDetalle(evento.dataSalvaje);
               evento.total = total;
         }
         // if (this.hoy > fechaEvento) {
@@ -217,29 +219,63 @@ export class PagosComponent implements OnInit {
       this.testValuesPago()
     }
   }
+
   ordenarDetalle(list){
-    console.log("ordenarDetalle", list);
     
-    let nuevoObjeto = {}
-    //Recorremos el arreglo 
+    let nuevoObjeto = {};
+    let abonosArray = [];
+    let arrayResponse = [];
+    let total: number = 0;
+
     list.forEach( x => {
-      //Si la ciudad no existe en nuevoObjeto entonces
-      //la creamos e inicializamos el arreglo de profesionales. 
+      
       if( !nuevoObjeto.hasOwnProperty(x.nombre)){
         nuevoObjeto[x.nombre] = {
-          abonos: []
+          abonos: [],
+          total: 0,
+          fecha: "",
+          id: null,
+          key: null,
+          nombre: "",
+          lugar: ""
         }
       }
       
-      //Agregamos los datos de propesionales. 
         nuevoObjeto[x.nombre].abonos.push({
           monto: x.monto,
-          descripcion: x.fecha
+          fecha: x.fecha
         })
-      
-    })
 
-    console.log(nuevoObjeto)
+        if (nuevoObjeto[x.nombre].abonos.length > 1) {
+          total = 0;
+          abonosArray = nuevoObjeto[x.nombre].abonos
+          abonosArray.forEach( element => {
+              total += element.monto;
+          });
+          
+        } else {
+          total = 0;
+           total = nuevoObjeto[x.nombre].abonos[0].monto;
+        }
+        
+        nuevoObjeto[x.nombre].total = total
+        nuevoObjeto[x.nombre].fecha = x.fecha
+        nuevoObjeto[x.nombre].id = x.id
+        nuevoObjeto[x.nombre].key = x.key
+        nuevoObjeto[x.nombre].nombre = x.nombre
+        nuevoObjeto[x.nombre].lugar = x.lugar
+        
+      })
+      // console.log(nuevoObjeto);
+
+    let arrayAux = Object.keys(nuevoObjeto);
+    for (var i of arrayAux) {
+      var evento = nuevoObjeto[i];
+          evento.key = i;
+          arrayResponse.push(evento);
+    }
+    return arrayResponse;
+    // console.log(arrayResponse)
   }
 
   inputForm(tipo){

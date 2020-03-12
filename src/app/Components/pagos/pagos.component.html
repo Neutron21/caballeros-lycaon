@@ -141,8 +141,8 @@
                           <!-- <tr mdbTableCol *ngFor="let dato of plan.detalle"> -->
                           <tr mdbTableCol *ngFor="let dato of plan.data">
                             <th scope="row">{{dato.nombre}}</th>
-                            <td [ngClass]="{'greenText': dato.monto == plan.monto,'redText': dato.monto < plan.monto}"
-                            >{{dato.monto}}</td>
+                            <td [ngClass]="{'greenText': dato.total == plan.monto,'redText': dato.total < plan.monto}"
+                            >{{dato.total}}</td>
                             <td>{{dato.fecha}}</td>
                             <td>{{dato.lugar}}</td>
                           </tr>
