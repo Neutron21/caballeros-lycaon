@@ -10,7 +10,11 @@ import { log } from 'util';
 
 @Injectable()
 export class DataServices {
-
+     modal = {
+        titulo: "",
+        message: "",
+        color: null
+     };
     constructor(private httpClient: HttpClient,
         private router: Router) { }
 
@@ -91,6 +95,7 @@ export class DataServices {
         })
     }
     guardarEvento(evento) {
+       
         return new Promise((resolve, reject) => {
             if (evento.key) {
                 firebase.database().ref(`/eventos/${evento.key}`).update(evento).then(() => {
@@ -111,7 +116,6 @@ export class DataServices {
                     // this.eventos.push(evento);
                     console.log(snap.key);
                     resolve(snap.key)
-
 
                 }).catch((error) => {
                     console.log("ERROR");
@@ -166,25 +170,36 @@ export class DataServices {
         })
     }
     guardarPago(pago) {
+        
         return new Promise((resolve, reject) => {
+            
             if (pago.key) {
+                
                 firebase.database().ref(`/pagos/${pago.key}`).update(pago).then(() => {
-                    console.log("EXITO");
-                    alert("Evento actualizado!");
-                    resolve(pago.key)
+                    
+                    this.modal.titulo = "EXITO";
+                    this.modal.message = "Evento actualizado!";
+                    this.modal.color = true;
+                    resolve(this.modal);
                 }).catch((error) => {
-                    console.log("ERROR");
+                    
                     console.log(error);
-                    alert("Ocurrio un error!");
+                    this.modal.titulo = "ERROR";
+                    this.modal.message = "Ocurrio un error!";
+                    this.modal.color = false;
+                    reject(this.modal);
                 })
             } else{
                 firebase.database().ref(`/pagos/`).push(pago).then((snap) => {
-
-                    console.log("EXITO");
-                    alert("Guardado exitoso!");
+                    this.modal.titulo = "EXITO";
+                    this.modal.message = "Guardado exitoso!";
+                    this.modal.color = true;
+                    resolve(this.modal);
         
                 }).catch((error) => {
-                    alert("Error al enviar!");
+                    this.modal.titulo = "ERROR";
+                    this.modal.message = "Ocurrio un error!";
+                    reject(this.modal);
                 })
             }
         });
@@ -200,32 +215,46 @@ export class DataServices {
                 resolve(data.val());
 
             })
-        })
+        });
     }
     updatePago(pago) {
-
-        firebase.database().ref(`/pagos/${pago.id}/detalle`).push(pago).then(() => {
-            // this.miembros.push(member);
-            // this.router.navigate(['miembros']);
-
-            console.log("EXITO");
-            alert("Pago agregado con exito!");
-
-        }).catch((error) => {
-            console.log("ERROR");
-            console.log(error);
-            alert("Ocurrio un error!");
-        })
+        return new Promise((resolve, reject) => {
+            firebase.database().ref(`/pagos/${pago.id}/detalle`).push(pago).then(() => {
+            this.modal.titulo = "EXITO";
+            this.modal.message = "Pago agregado con exito!";
+            this.modal.color = true;
+            resolve(this.modal);
+    
+            }).catch((error) => {
+                this.modal.titulo = "ERROR";
+                this.modal.message = "Ocurrio un error!";
+                this.modal.color = true;
+                console.log(error);
+                reject(this.modal);
+                
+            })
+        });
+        
     }
     deleteRegistroPago(key: string, nombre: string) {
-
+     
+    return new Promise((resolve, reject) => {
         firebase.database().ref(`/pagos/${key}`).remove().then(() => {
-            alert("Se Elimino: " + nombre);
-
+            
+            this.modal.titulo = "EXITO";
+            this.modal.message = "Se Elimino: " + nombre;
+            this.modal.color = true;
+            resolve(this.modal);
 
         }).catch((error) => {
-            alert("Hubo un error!");
+            this.modal.titulo = "ERROR";
+            this.modal.message = "Ocurrio un error!";
+            this.modal.color = false;
+            console.log(error);
+            reject(this.modal);
+            
         })
+    });
     }
     
 }

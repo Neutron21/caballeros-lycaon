@@ -105,6 +105,12 @@ hr {
 .redText{
     color: #ff4444 !important;
 }
+.titulo-modal{
+    color: whitesmoke;
+}
+.black-text{
+    color: black;
+}
 @media only screen and (max-width: 991px){
     .align-btn{
         margin-top: 0%;

@@ -41,7 +41,7 @@ export class PagosComponent implements OnInit {
   fecha: string;
   monto: number;
   comentarios: string = "";
-  detalleAux = {} ;
+  detalleAux  ;
 
   pago = {
     nombrePago: "",
@@ -55,7 +55,11 @@ export class PagosComponent implements OnInit {
   nombreAux: string;
   
   perfil;
-
+  modal = {
+      titulo: "Titulo modal",
+      message: "Contenido del modal",
+      color: false,
+  } 
   headElements = ['Nombre', 'Monto', 'Fecha', 'Lugar'];
   showform: boolean;
 
@@ -74,7 +78,7 @@ export class PagosComponent implements OnInit {
   async getRegistros(){
     let pagos = await this.dataServices.getPagos();
     let fechaEvento;
-    // console.log("events", pagos);
+    
     if (pagos != null) {
       let registroPagos = Object.keys(pagos);
       for (var i of registroPagos) {
@@ -118,24 +122,30 @@ export class PagosComponent implements OnInit {
     }
     // console.log(this.pagosArray);
   }
-  addEvent(form: NgForm){
+ async addEvent(form: NgForm){
    
     if (form.value.nombre && form.value.fecha && form.value.monto) {
-      let newEvent = {
+      let newEvent: any = {
         nombre: form.value.nombre,
         fecha: form.value.fecha,
         monto: form.value.monto,
         comentarios: form.value.comentarios,
-        key: null,
+        // key: "",
         detalle: {}
+      }
+      if (this.keyAux) {
+        newEvent.key = this.keyAux;
       }
       if (this.detalleAux) {
         newEvent.detalle = this.detalleAux;
-        newEvent.key = this.keyAux;
       }
-      console.log("newEvent", newEvent);
-      this.dataServices.guardarPago(newEvent);
-      this.newEvent();
+      // console.log("newEvent", newEvent);
+     let modal :any = await this.dataServices.guardarPago(newEvent);
+     
+     this.modal = modal;
+     this.newEvent();
+     this.openModal("custom-modal-1");
+
       // this.getRegistros();
     } else {
       
@@ -156,14 +166,17 @@ export class PagosComponent implements OnInit {
   }
 
   delAuxPlan(index, key, nombre){
+    
     this.indiceAux = index;
     this.keyAux = key;
     this.nombreAux = nombre;
    
   }
-  delPlan(){
-    this.dataServices.deleteRegistroPago(this.keyAux, this.nombreAux);
-    this.pagosArray.splice(this.indiceAux, 1);
+   async delPlan(){
+   let modal: any = await this.dataServices.deleteRegistroPago(this.keyAux, this.nombreAux);
+   this.modal = modal;
+   this.openModal("custom-modal-1");
+   this.pagosArray.splice(this.indiceAux, 1);
   }
   newEvent(){
     
@@ -171,6 +184,7 @@ export class PagosComponent implements OnInit {
     this.fecha = "";
     this.monto = null;
     this.comentarios = "";
+    this.keyAux = null;
     this.errorArray.nombre = false;
     this.errorArray.fecha = false;
     this.errorArray.monto = false;
@@ -193,8 +207,8 @@ export class PagosComponent implements OnInit {
     this.errorArray.montoPago = false;
     this.errorArray.lugarPago = false;
   }
-  addPAy(form: NgForm, key, indice){
-    debugger
+ async addPAy(form: NgForm, key, indice){
+    
     console.log(form.value);
     
     if (form.value.nombrePago && form.value.fechaPago && form.value.montoPago) {
@@ -205,15 +219,18 @@ export class PagosComponent implements OnInit {
         lugar: form.value.lugarPago,
         id: key,
       }
-      // console.log("newEvent", newPay);
-      // console.log("pagosArray", this.pagosArray);
-      // console.log("pagosArray", this.pagosArray[indice]);
+   
       console.log("pagosArray", this.pagosArray[indice].data);
-      this.dataServices.updatePago(newPay);
-      this.pagosArray[indice].data.push(newPay);
+      console.log(newPay);
+      
+      let modal: any = await this.dataServices.updatePago(newPay);
+      this.modal = modal;
+      this.pagosArray[indice].dataSalvaje.push(newPay);
+      this.pagosArray[indice].data = this.ordenarDetalle(this.pagosArray[indice].dataSalvaje);
+      console.log("pagosArray", this.pagosArray);
       // this.newEvent();
       this.cleanFormPago();
-      
+      this.openModal("custom-modal-1");
       
         } else {
       this.testValuesPago()
@@ -362,7 +379,7 @@ export class PagosComponent implements OnInit {
       this.errorArray.lugarPago = true;
     }
   }
-    openModal(id: string) {
+  openModal(id: string) {
       console.log(id);
       
       this.modalService.open(id);

@@ -61,7 +61,7 @@
                       <div *ngIf="perfil && perfil.admin" class="col-2 col-sm-2 col-md-2">
                         <div class="form-group">
                           <button class="btn red-button mb-2" 
-                          (click)="delAuxPlan(indice, plan.key, plan.lugar)" 
+                          (click)="delAuxPlan(indice, plan.key, plan.nombre)" 
                           data-toggle="modal" data-target="#confimrModal">
                             <!-- Eliminar -->
                             <i class="fa fa-trash red-text" style="font-size:18px;"></i>
@@ -141,14 +141,14 @@
                           <!-- <tr mdbTableCol *ngFor="let dato of plan.detalle"> -->
                           <tr mdbTableCol *ngFor="let dato of plan.data">
                             <th scope="row">{{dato.nombre}}</th>
-                            <td [ngClass]="{'greenText': dato.total == plan.monto,'redText': dato.total < plan.monto}"
-                            >{{dato.total}}</td>
+                            <td *ngIf="dato.total" [ngClass]="{'greenText': dato.total >= plan.monto,'redText': dato.total < plan.monto}">
+                              {{dato.total}}</td>
+                            <!-- <td *ngIf="dato.monto" [ngClass]="{'greenText': dato.monto >= plan.monto,'redText': dato.monto < plan.monto}">
+                              {{dato.total}}</td> -->
                             <td>{{dato.fecha}}</td>
                             <td>{{dato.lugar}}</td>
                           </tr>
-                          <!-- <tr>
-                            Total: {{plan.total}}
-                          </tr> -->
+                         
                         </tbody>
                         
                     </table>
@@ -157,7 +157,7 @@
                 </div>
               </div>
       
-              <button (click)="openModal('custom-modal-1')">Open Modal 2</button>
+              <!-- <button (click)="openModal('custom-modal-1')">Open Modal 2</button> -->
 
               <p *ngIf="perfil && perfil.admin" class="crear-evento">Crear Evento
                 <button class="btn btn-plus red-button" type="button" data-toggle="collapse" data-target="#formAddBiker"
@@ -252,28 +252,30 @@
   </div>
 </div>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 <app-modal id="custom-modal-1">
-  <h1>A Custom Modal!</h1>
+  <div class="titulo-modal modal-header"
+  [ngClass]="{'bg-success': modal.color,'bg-warning': !modal.color, 'black-text': !modal.color}">
+    <h4>{{modal.titulo}}</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span (click)="closeModal('custom-modal-1');" aria-hidden="true">&times;</span>
+  </button>
   
-  <button (click)="closeModal('custom-modal-1');">Close</button>
+  </div>
+  <div class="modal-body">
+    <div class="d-flex justify-content-center">
+      <p>
+        {{modal.message}}
+      </p>
+    </div>
+    <div class="d-flex justify-content-center">
+      <button class="btn" 
+        [ngClass]="{'btn-success': modal.color,'btn-warning': !modal.color}"
+        (click)="closeModal('custom-modal-1');">
+        Aceptar
+      </button>
+    </div>
+  </div>
+  
+
 </app-modal>
