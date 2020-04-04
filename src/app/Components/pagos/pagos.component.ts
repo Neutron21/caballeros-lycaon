@@ -120,7 +120,7 @@ export class PagosComponent implements OnInit {
       // this.orderArray(this.pagosArray);
       // this.orderArray(this.historialArray);
     }
-    // console.log(this.pagosArray);
+    console.log(this.pagosArray);
   }
  async addEvent(form: NgForm){
    
@@ -209,7 +209,7 @@ export class PagosComponent implements OnInit {
   }
  async addPAy(form: NgForm, key, indice){
     
-    console.log(form.value);
+    // console.log(form.value);
     
     if (form.value.nombrePago && form.value.fechaPago && form.value.montoPago) {
       let newPay = {
@@ -220,17 +220,28 @@ export class PagosComponent implements OnInit {
         id: key,
       }
    
-      console.log("pagosArray", this.pagosArray[indice].data);
-      console.log(newPay);
+      // console.log(newPay);
       
       let modal: any = await this.dataServices.updatePago(newPay);
       this.modal = modal;
       this.pagosArray[indice].dataSalvaje.push(newPay);
       this.pagosArray[indice].data = this.ordenarDetalle(this.pagosArray[indice].dataSalvaje);
-      console.log("pagosArray", this.pagosArray);
+      console.log("pagosArray", this.pagosArray[indice].data);
       // this.newEvent();
       this.cleanFormPago();
       this.openModal("custom-modal-1");
+      // this.pagosArray = [];
+      // this.getRegistros();
+      let arrayAux = this.pagosArray[indice].data;
+      console.log("arrayAux", arrayAux);
+      var total = 0;
+      for (var element of arrayAux) {
+        total += element.total;
+
+          // evento.dataSalvaje.push(detalle);
+          }
+          console.log("total", total);
+          this.pagosArray[indice].total = total;
       
         } else {
       this.testValuesPago()
@@ -380,7 +391,7 @@ export class PagosComponent implements OnInit {
     }
   }
   openModal(id: string) {
-      console.log(id);
+      // console.log(id);
       
       this.modalService.open(id);
   }

@@ -36,7 +36,7 @@ export class AppComponent implements OnInit {
      
     })
    
-    // ----------------------
+    
     this.sesionActiva()
     // console.log("isAut "+this.isAut);
   }
