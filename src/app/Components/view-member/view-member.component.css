@@ -14,7 +14,8 @@
 }
 .profile-style{
     padding-bottom: 15px;
-    width: 85%;
+    width: 50vh;
+    height: 50vh;
     border-radius: 50%;
 }
 .aling{
@@ -36,17 +37,20 @@
     padding-left: 4px;
 }
 hr {
-    border-top: 1px solid aliceblue;
-  }
-  .capital{
-      text-transform: capitalize;
-  }
-  .padding-text{
-      padding-top: 3px;
-  }
-  .fa-user-circle-o{
-    color: #b3e5fc;
-  }
-  .fa-birthday-cake{
-      color: #f8bbd0;
-  }
+border-top: 1px solid aliceblue;
+}
+.capital{
+    text-transform: capitalize;
+}
+.mayus{
+    text-transform: uppercase;
+}
+.padding-text{
+    padding-top: 3px;
+}
+.fa-user-circle-o{
+color: #b3e5fc;
+}
+.fa-birthday-cake{
+    color: #f8bbd0;
+}

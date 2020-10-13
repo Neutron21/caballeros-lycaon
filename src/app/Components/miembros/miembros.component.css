@@ -35,10 +35,20 @@
     padding: 5px;
     margin-top: 6px;
 }
+.brm-brm{
+    max-width: 80vw;
+}
 @media only screen and (max-width: 991px){
 
-.mobile-icon{
-    margin-left: 70%;
-}
 
 }
+@media only screen and (max-width: 577px){
+
+    .admin-check{
+        padding-left: 30px !important;
+    }
+    .row{
+        margin-left: 2px;
+    }
+    
+    }

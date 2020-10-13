@@ -9,6 +9,9 @@
 .white-text{
     color: aliceblue;
 }
+.btn-secondary, .red-button{
+    font-size: small;
+}
 .red-button{
     color: aliceblue;
     background-color: #ff4444;
@@ -60,32 +63,49 @@ color: #ff4444 !important;
     font-size: smaller;
     color: #d0d6e2;
     margin-bottom: 0px !important;
+    font-family: 'Turret Road', cursive;
 }
 .dynamic{
-    font-size: larger;
+    font-size: large;
+}
+.coments{
+    font-size: medium;
 }
 hr {
     border-top: 1px solid aliceblue;
 }
-  .input-group-append{
-    width: inherit;
-}
 .cumpleños-collapse{
     margin-bottom: 15px;
+}
+.brm-brm{
+    max-width: 80vw;
+}
+.mensajes, .historial{
+    padding-bottom: 10px;
+}
+.mensajes-title{
+    color: #ff4444 !important;
+}
+.dynamic-msj{
+    font-family: 'Gloria Hallelujah', cursive;
+}
+.dynamic-mail{
+    font-family: 'Open Sans Condensed', sans-serif;
 }
 @media only screen and (max-width: 991px){
     .align-btn{
         margin-top: 0%;
         margin-bottom: 2%;
     }
-    .card-header{
-        width: 82vw;
-    }
+ 
 }
 @media only screen and (max-width: 564px){
     .container{
-        margin-left: 5% !important;
+        margin-left: 3% !important;
         margin-right: 5% !important;
         width: 90% !important;
+    }
+    .card-header{
+        width: 93vw;
     }
 }

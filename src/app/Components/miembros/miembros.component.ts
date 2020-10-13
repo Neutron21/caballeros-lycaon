@@ -14,8 +14,9 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class MiembrosComponent implements OnInit {
 
-  constructor(private loginService: LoginService,
-              private dataSevice: DataServices) { }
+ 
+  loading: boolean;
+
   nombre: string;
   aPat: string;
   aMat: string;
@@ -31,10 +32,16 @@ export class MiembrosComponent implements OnInit {
   uidAux: string;
   perfil;
 
+  constructor(private loginService: LoginService,
+    private dataSevice: DataServices) { 
+      this.loading = true;
+    }
+
   async ngOnInit() {
     this.perfil = await this.dataSevice.getPerfil();
     this.getMiembros()
-    console.log(this.miembros);
+    // console.log(this.miembros);
+    this.loading = false;
    
   }
   addUser(form: NgForm) {
@@ -73,19 +80,18 @@ export class MiembrosComponent implements OnInit {
     console.log("errMsj: " + this.errMsj);
     return this.errMsj;
   }
-  getMiembros(){
-    this.dataSevice.getMembers().subscribe(
-      (members) => {
-        if (members != null) {
-          let miembros = Object.keys(members);
-          for (var m of miembros) {
-            var miembro = members[m];
-            this.miembros.push(miembro);
+ async getMiembros(){
+    let members = await this.dataSevice.getMembers();
+   
+    if (members != null) {
+      let miembros = Object.keys(members);
+      for (var m of miembros) {
+        var miembro = members[m];
+        this.miembros.push(miembro);
 
-          }
-        }
-
-      })
+      }
+    }
+    
   }
   eliminarUsuer(id, apodo){
     

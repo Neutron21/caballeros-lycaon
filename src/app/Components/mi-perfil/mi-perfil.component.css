@@ -54,6 +54,7 @@
     font-size: smaller;
     color: #d0d6e2;
     margin-bottom: 0px !important;
+    font-family: 'Turret Road', cursive;
 }
 .dynamic{
     font-size: larger;
@@ -75,7 +76,8 @@
     padding-left: 4px;
 }
 .profile{
-    width: 57%;
+    width: 12.5vw;
+    height: 12.5vw;
     position: absolute;
     border-radius: 50%;
     transition: transform .2s;
@@ -100,7 +102,22 @@
 .profile-edit-mobile, .image-mobile{
     display: none;
  }
-
+ .color-dark{
+    background-color: #45526e;
+}
+.text-modal{
+    color: black;
+    background-color: #e0e0e0;
+}
+.text-modal .danger-color{
+    color: #ff4444 !important;
+}
+.general-data{
+    margin-bottom: 10px;
+}
+.red-text{
+    color: #ff4444 !important;
+}
 @media only screen and (max-width: 991px){
 
     .profile-edit-mobile, .image-mobile{
@@ -114,7 +131,12 @@
     .card-header{
         width: 82vw;
     }  
+    .brm-brm{
+        margin-top: 5%;
+        max-width: 80vw;
+    }
 }
+
 @media only screen and (max-width: 767px){
 
     .profile-edit{
@@ -127,8 +149,14 @@
         padding-bottom: 3px;
         padding-top: 3px;
      }
-    
+     .profile{
+        height: 35vh;   
+        width: 35vh;
+    }
 }
-@media only screen and (max-width: 660px){
-   
+@media only screen and (max-width: 370px){
+    .profile{
+        width: 30vh;
+        height: 30vh;   
+    } 
 }

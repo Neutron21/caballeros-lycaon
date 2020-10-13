@@ -1,0 +1,79 @@
+[debug] [2019-09-28T19:16:00.798Z] ----------------------------------------------------------------------
+[debug] [2019-09-28T19:16:00.801Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2019-09-28T19:16:00.801Z] CLI Version:   3.16.0
+[debug] [2019-09-28T19:16:00.801Z] Platform:      darwin
+[debug] [2019-09-28T19:16:00.801Z] Node Version:  v10.14.1
+[debug] [2019-09-28T19:16:00.802Z] Time:          Sat Sep 28 2019 14:16:00 GMT-0500 (GMT-05:00)
+[debug] [2019-09-28T19:16:00.803Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-09-28T19:16:00.817Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-09-28T19:16:00.818Z] > authorizing via signed-in user
+[debug] [2019-09-28T19:16:00.820Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2019-09-28T19:16:00.820Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ { refresh_token: '1/S1Xjtn5UhWTmpVmtpyS4kkogyyEdDubH80Dj3oucB5w',
+  client_id:
+   '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope:
+   'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Sat Sep 28 2019 14:16:00 GMT-0500 (GMT-05:00)
+[debug] [2019-09-28T19:16:01.148Z] <<< HTTP RESPONSE 200
+[debug] [2019-09-28T19:16:01.166Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/caballeros-mc  
+  
+ Sat Sep 28 2019 14:16:01 GMT-0500 (GMT-05:00)
+[debug] [2019-09-28T19:16:01.559Z] <<< HTTP RESPONSE 200
+[debug] [2019-09-28T19:16:01.560Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/caballeros-mc/tokens  
+  
+ Sat Sep 28 2019 14:16:01 GMT-0500 (GMT-05:00)
+[debug] [2019-09-28T19:16:01.962Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'caballeros-mc'...
+[info] 
+[info] i  deploying database, storage, hosting
+[info] i  database: checking rules syntax...
+[debug] [2019-09-28T19:16:02.371Z] >>> HTTP REQUEST PUT https://caballeros-mc.firebaseio.com/.settings/rules.json?dryRun=true  
+ {
+  "rules": {
+    ".read": "auth != null",
+    ".write": "auth != null"
+  }
+} 
+ Sat Sep 28 2019 14:16:02 GMT-0500 (GMT-05:00)
+[debug] [2019-09-28T19:16:02.693Z] <<< HTTP RESPONSE 200
+[info] ✔  database: rules syntax for database caballeros-mc is valid
+[debug] [2019-09-28T19:16:02.695Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/caballeros-mc  
+  
+ Sat Sep 28 2019 14:16:02 GMT-0500 (GMT-05:00)
+[debug] [2019-09-28T19:16:03.120Z] <<< HTTP RESPONSE 200
+[info] i  storage: checking storage.rules for compilation errors...
+[debug] [2019-09-28T19:16:03.123Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/caballeros-mc:test  
+ { source: { files: [ [Object] ] } } 
+ Sat Sep 28 2019 14:16:03 GMT-0500 (GMT-05:00)
+[debug] [2019-09-28T19:16:03.397Z] <<< HTTP RESPONSE 200
+[info] ✔  storage: rules file storage.rules compiled successfully
+[info] i  storage: uploading rules storage.rules...
+[debug] [2019-09-28T19:16:03.406Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/caballeros-mc/rulesets  
+ { source: { files: [ [Object] ] } } 
+ Sat Sep 28 2019 14:16:03 GMT-0500 (GMT-05:00)
+[debug] [2019-09-28T19:16:03.915Z] <<< HTTP RESPONSE 200
+[debug] [2019-09-28T19:16:03.915Z] [rules] created ruleset projects/caballeros-mc/rulesets/ab724413-305f-4329-b9c8-bf4f19aec822
+[info] i  hosting: preparing dist directory for upload...
+[debug] [2019-09-28T19:16:04.664Z] >>> HTTP REQUEST PUT https://deploy.firebase.com/v1/hosting/caballeros-mc/uploads/-LptIHfMpdHu6QDhFn2s?fileCount=46&message=  
+  
+ Sat Sep 28 2019 14:16:04 GMT-0500 (GMT-05:00)
+[debug] [2019-09-28T19:16:38.203Z] <<< HTTP RESPONSE 410
+[debug] [2019-09-28T19:16:38.203Z] <<< HTTP RESPONSE BODY undefined
+[debug] [2019-09-28T19:16:38.205Z] TypeError: Cannot read property 'error' of undefined
+    at module.exports (/Users/pedroivanjuarez/.config/yarn/global/node_modules/firebase-tools/lib/responseToError.js:10:13)
+    at Request._callback (/Users/pedroivanjuarez/.config/yarn/global/node_modules/firebase-tools/lib/api.js:45:25)
+    at Request.self.callback (/Users/pedroivanjuarez/.config/yarn/global/node_modules/request/request.js:185:22)
+    at Request.emit (events.js:182:13)
+    at Request.EventEmitter.emit (domain.js:442:20)
+    at Request.<anonymous> (/Users/pedroivanjuarez/.config/yarn/global/node_modules/request/request.js:1161:10)
+    at Request.emit (events.js:182:13)
+    at Request.EventEmitter.emit (domain.js:442:20)
+    at IncomingMessage.<anonymous> (/Users/pedroivanjuarez/.config/yarn/global/node_modules/request/request.js:1083:12)
+    at Object.onceWrapper (events.js:273:13)
+[error] 
+[error] Error: An unexpected error has occurred.

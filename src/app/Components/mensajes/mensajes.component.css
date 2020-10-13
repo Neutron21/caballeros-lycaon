@@ -1,0 +1,35 @@
+.container{
+    margin-left: 10% !important;
+    margin-right: 10% !important;
+    width: 80% !important;
+}
+.mensajes{
+    margin-top: 1%;
+}
+.white-text{
+    color: aliceblue;
+}
+.row{
+    width: 100%;
+}
+.card{
+    background-color: transparent;
+    border-style: solid;
+}
+.card-header{
+    background-color: #616161;
+    width: 78vw;
+}
+.btn-link-perfil{
+    color: aliceblue;
+}
+.brm-brm{
+    max-width: 80vw;
+}
+@media only screen and (max-width: 564px){
+    .container{
+        margin-left: 5% !important;
+        margin-right: 5% !important;
+        width: 90% !important;
+    }
+}

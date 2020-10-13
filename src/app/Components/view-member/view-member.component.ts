@@ -29,12 +29,14 @@ export class ViewMemberComponent implements OnInit {
     }
   }
   getEdad(birthday){
-
+    // debugger
     let hoy = new Date();
     let yyyy = hoy.getFullYear();
-    let mm = hoy.getMonth();
+    let mm = hoy.getMonth() + 1;
     let dd = hoy.getDate();
     let today = moment(`${yyyy}-${mm}-${dd}`);
+    console.log(today.diff(birthday, 'years') + ' años');
+    
     return today.diff(birthday, 'years') + ' años';
   
   }

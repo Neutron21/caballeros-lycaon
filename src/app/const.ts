@@ -8,4 +8,6 @@ export class AppConstant {
     public static TYPE_EVENT = [
         'Rodada','Convivencia'
     ];  
+    public static MJ_APIKEY_PUBLIC='975cde06239bf027e8b66ef4cd1349c1'
+    public static MJ_APIKEY_PRIVATE='8175ec2b5dc87511f0d1ef8881d95085'
  }

@@ -10,6 +10,8 @@ import { MiembrosComponent } from './Components/miembros/miembros.component';
 import { Guardian } from './Services/guardian.service';
 import { MiPerfilComponent } from './Components/mi-perfil/mi-perfil.component';
 import { ViewMemberComponent } from './Components/view-member/view-member.component';
+import { MensajesComponent } from './Components/mensajes/mensajes.component';
+import { PagosComponent } from './Components/pagos/pagos.component';
 
 const routes: Routes = [
   { path: '', component: RaizComponent },
@@ -22,6 +24,8 @@ const routes: Routes = [
   { path: 'miPerfil', component: MiPerfilComponent, canActivate: [Guardian]}, 
   { path: 'miembros', component: MiembrosComponent, canActivate: [Guardian]}, 
   { path: 'profile/:id', component: ViewMemberComponent, canActivate: [Guardian]}, 
+  { path: 'mensajes', component: MensajesComponent, canActivate: [Guardian]}, 
+  { path: 'pagos', component: PagosComponent, canActivate: [Guardian]}, 
 ];
 
 @NgModule({

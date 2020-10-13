@@ -64,13 +64,15 @@ export class RaizComponent implements OnInit {
         var containerWidth = $('.container-estilo').outerWidth();
         
         document.addEventListener('touchmove', function(e) {
+          // console.log(e.changedTouches);
+          
           $('.hover').css({
-             left:  e.pageX
+             left:  e.changedTouches[0].clientX
           });
           $('.left-side').css({
-            left: e.pageX + 75
+            left: e.changedTouches[0].clientX + 75
           });
-          var rightSideLeft = containerWidth - e.pageX;
+          var rightSideLeft = containerWidth - e.changedTouches[0].clientX;
           $('.right-side').css({
             right: rightSideLeft
           });

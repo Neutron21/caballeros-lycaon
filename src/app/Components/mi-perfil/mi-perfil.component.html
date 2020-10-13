@@ -1,4 +1,10 @@
-<div class="container text accordion">
+<div class="loader d-flex justify-content-center" *ngIf="loading">
+  <img class="img-fluid loading" src="../../../assets/tenor.gif">
+</div>
+<div class="loader d-flex justify-content-center" *ngIf="loading">
+  <img class="img-fluid brm-brm" src="../../../assets/GIF2.gif">
+</div>
+<div *ngIf="!loading" class="container text accordion">
   <h5 class="titulos"><i class="fa fa-address-card-o yellow-text" style="font-size:28px;"></i>
     Datos Generales</h5>
   <div *ngIf="!editar && perfil" class="form-edition">
@@ -30,7 +36,7 @@
 
     </div>
 
-    <div class="row">
+    <div class="row general-data">
       <div class="col-sm-12 col-md-3 offset-md-3">
         <label class="label-text control-label hard-code" for="nombre">Correo:</label><br>
         <label class="label-text control-label" for="nombre">{{perfil.email}}</label>
@@ -55,6 +61,13 @@
           <i class="fa fa-pencil" style="font-size:18px;"></i>
         </button>
       </div>
+      <div class="col-sm-12 col-md-3">
+          <button data-toggle="modal" data-target="#passwordModal" data-whatever="@getbootstrap" class="btn btn-secondary edit-btn">
+             
+            Password
+            <i class="fa fa-key" style="font-size:18px;"></i>
+          </button>
+        </div>
     </div>
 
     <h5 class="titulos"><i class="fa fa-motorcycle " style="font-size:28px;"></i>
@@ -228,6 +241,7 @@
                       <label class="label-text control-label" for="marca">Marca:</label>
                       <input type="text" class="form-control mb-2 fill-width upper" id="marca" name="marca"
                         placeholder="Marca" [(ngModel)]="marca">
+                        <label *ngIf="marcaEmpty" class="label-text control-label red-text" for="nombre">Marca Requerido</label>
                     </div>
 
                   </div>
@@ -236,6 +250,7 @@
                       <label class="label-text control-label" for="subMarca">SubMarca:</label>
                       <input type="text" class="form-control mb-2 fill-width upper" id="subMarca" name="subMarca"
                         placeholder="SubMarca" [(ngModel)]="subMarca">
+                        <label *ngIf="subEmpty" class="label-text control-label red-text" for="nombre">SubMarca Requerido</label>
                     </div>
 
                   </div>
@@ -255,6 +270,7 @@
                       <label class="label-text control-label" for="nombre">Placa:</label>
                       <input type="text" class="form-control mb-2 fill-width upper" id="placa" name="placa"
                         placeholder="Placa" [(ngModel)]="placa">
+                        <label *ngIf="placaEmpty" class="label-text control-label red-text" for="nombre">Placa Requerido</label>
                     </div>
 
                   </div>
@@ -263,6 +279,7 @@
                       <label class="label-text control-label" for="nombre">No. Serie:</label>
                       <input type="text" class="form-control mb-2 fill-width upper" id="serie" name="serie"
                         placeholder="No. Serie" [(ngModel)]="serie">
+                        <label *ngIf="serieEmpty" class="label-text control-label red-text" for="nombre">No. Serie Requerido</label>
                     </div>
 
                   </div>
@@ -300,6 +317,7 @@
                           <div class="input-group-text">cc</div>
                         </div>
                       </div>
+                      <label *ngIf="ccEmpty" class="label-text control-label red-text" for="nombre">Cc es Requerido</label>
                     </div>
                   </div>
                   <div class="form-group btn-agregar">
@@ -409,7 +427,8 @@
                     <div class="form-group">
                       <label class="label-text control-label" for="nombre">Nombre:</label>
                       <input type="text" class="form-control mb-2 fill-width upper" id="nameContact" name="nameContact"
-                        placeholder="Nombre" [(ngModel)]="nameContact">
+                        placeholder="Nombre" [(ngModel)]="nameContact" (input)="checkValue()">
+                        <label *ngIf="nameEmpty" class="label-text control-label red-text" for="nombre">Nombre Requerido</label>
                     </div>
 
                   </div>
@@ -425,7 +444,8 @@
                     <div class="form-group">
                       <label class="label-text control-label" for="nombre">Número:</label>
                       <input type="text" class="form-control mb-2 fill-width" id="telContact" name="telContact"
-                        placeholder="TELÉFONO" [(ngModel)]="telContact">
+                        placeholder="TELÉFONO" [(ngModel)]="telContact" (input)="checkValue()">
+                        <label *ngIf="numEmpty" class="label-text control-label red-text" for="nombre">Teléfono Requerido</label>
                     </div>
 
                   </div>
@@ -435,7 +455,7 @@
                       <i class="fa fa-plus " style="font-size:18px;"></i></button>
                   </div>
                   <div class="col-sm-12 col-md-4">
-
+                    
                     <ul *ngFor="let contacto of contactos; let indice = index">
                       <li><i class="fa fa-user-circle-o" style="font-size:18px;"></i>
                         <span class="capital"> {{contacto.nomContacto}}, {{contacto.parentesco}} </span><br>
@@ -468,5 +488,28 @@
         </div>
       </div>
     </form>
+  </div>
+</div>
+
+<div class="modal fade" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content text-modal">
+      <div class="modal-header color-dark">
+        <h5 class="modal-title danger-color" id="contactModalLabel">Cambiar Contraseña</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      
+      <div class="modal-body">
+        Desea enviar un correo para restablecer su contraseña?
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button (click)="cambiarPass()" class="btn red-button" data-dismiss="modal">Enviar</button>
+      </div>
+     
+    </div>
   </div>
 </div>

@@ -1,7 +1,14 @@
  .grey-darken{
-    /* background-color: #757575; */
     background-color: #424242;
+    width: 100vw !important;
+    min-width: 288px;
  }
  .page-body{
    min-height: 85vh ;
+ }
+ @media only screen and (max-width: 991px){
+  .grey-darken{
+    width: 100% !important;
+    
+ }
  }

@@ -7,5 +7,6 @@ export class Evento{
                 public distancia: number,
                 public url: string,
                 public key: string,
+                public comentarios: string,
                 ){}
 }

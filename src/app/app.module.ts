@@ -26,6 +26,11 @@ import { BikerComponent } from './Components/biker/biker.component';
 import { MiPerfilComponent } from './Components/mi-perfil/mi-perfil.component';
 import { ViewMemberComponent } from './Components/view-member/view-member.component';
 import { MotoComponent } from './Components/moto/moto.component';
+// import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+import { MensajesComponent } from './Components/mensajes/mensajes.component';
+import { PagosComponent } from './Components/pagos/pagos.component';
+import { ModalComponent } from './Components/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -46,13 +51,17 @@ import { MotoComponent } from './Components/moto/moto.component';
     BikerComponent,
     MiPerfilComponent,
     ViewMemberComponent,
-    MotoComponent
+    MotoComponent,
+    MensajesComponent,
+    PagosComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    // ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [Logger, DataServices, StorageService, LoginService, Guardian],
   bootstrap: [AppComponent]

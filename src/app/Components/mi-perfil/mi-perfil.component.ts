@@ -6,8 +6,8 @@ import { TelEmergencia } from 'src/app/Models/telEmergencia.model';
 import { AppConstant } from '../../const';
 import { Health } from 'src/app/Models/health.model';
 import * as moment from 'moment';
-import { Observable } from 'rxjs/internal/Observable';
 import { StorageService } from 'src/app/Services/storage.services';
+import { LoginService } from 'src/app/Services/login.services';
 
 @Component({
   selector: 'app-mi-perfil',
@@ -16,14 +16,23 @@ import { StorageService } from 'src/app/Services/storage.services';
 })
 export class MiPerfilComponent implements OnInit {
 
+  loading: boolean;
+  numEmpty: boolean;
+  nameEmpty: boolean;
+  marcaEmpty: boolean;
+  subEmpty: boolean;
+  placaEmpty: boolean;
+  ccEmpty: boolean;
+  serieEmpty: boolean;
+
   hoy = new Date();
   yyyy = this.hoy.getFullYear();
   mm = this.hoy.getMonth();
   dd = this.hoy.getDate();
-  minYear = this.yyyy-50;
+  minYear = this.yyyy - 50;
 
   maxDate = moment(new Date()).format('YYYY-MM-DD');
-  minDate= moment(new Date(this.minYear, this.mm, this.dd)).format('YYYY-MM-DD');
+  minDate = moment(new Date(this.minYear, this.mm, this.dd)).format('YYYY-MM-DD');
   date;
   modelos = [];
 
@@ -54,61 +63,90 @@ export class MiPerfilComponent implements OnInit {
 
   perfil;
   picture;
-  
+
   arrowDown: boolean = true;
   arrowDown2: boolean = true;
   arrowDown3: boolean = true;
-  
+
+  newPass: string;
+  confirmPass: string;
+
   constructor(private dataServices: DataServices,
-              private storageService: StorageService,
-              
-              ) { }
+    private storageService: StorageService,
+    private loginService: LoginService) {
+
+    this.loading = true;
+    this.numEmpty = false;
+    this.nameEmpty = false;
+    this.marcaEmpty = false;
+    this.subEmpty = false;
+    this.placaEmpty = false;
+    this.ccEmpty = false;
+    this.serieEmpty = false;
+
+  }
 
   async ngOnInit() {
-    
+
     this.perfil = await this.dataServices.getPerfil();
-    
+
     for (let index = 0; index < 50; index++) {
       this.modelos[index] = this.yyyy;
       this.yyyy--;
     }
-    
-    if(this.perfil && this.perfil.uid){
-      this.uid = this.perfil.uid; 
+
+    if (this.perfil && this.perfil.uid) {
+      this.uid = this.perfil.uid;
       this.motosEdit = this.perfil.motos ? this.perfil.motos : [];
-      this.saludEdit = this.perfil.salud.alergias ? this.perfil.salud.alergias : [];
+      // if (this.perfil.salud) {
+
+      // }
+      this.saludEdit = this.perfil.salud && this.perfil.salud.alergias ? this.perfil.salud.alergias : [];
       this.contactos = this.perfil.contactos ? this.perfil.contactos : [];
       this.date = this.perfil.birthday;
-      this.bloodType = this.perfil.salud.tipoSangre ? this.perfil.salud.tipoSangre : this.bloodType;
+      this.bloodType = this.perfil.salud && this.perfil.salud.tipoSangre ? this.perfil.salud.tipoSangre : this.bloodType;
     }
-
-
+    // setTimeout(() => {        
+    //   this.loading = false;
+    // }, 500);
+    this.loading = false;
   }
   addVehicle() {
-    
-    let moto: Vehicle = new Vehicle(this.marca, this.subMarca, this.modelo, this.placa,
-                        this.cc, this.serie, this.aseguradora, this.poliza, this.telAseguradora);
-    
-    this.motosEdit.push(moto);
-    this.marca = "";
-    this.subMarca = "";
-    this.modelo = "SELECCIONE";
-    this.serie = "";
-    this.cc = null;
-    this.placa = "";
-    this.aseguradora = "";
-    this.poliza = "";
-    this.telAseguradora = null;
+  let motoEmpty = this.checkMotoValue();
+  console.log(motoEmpty);
+  
+    if (motoEmpty) {
+
+      let modelo = this.modelo ? this.modelo : "-";
+
+      let aseguradora = this.aseguradora ? this.aseguradora : "-";
+      let poliza = this.poliza ? this.poliza : "-";
+      let telAseguradora = this.telAseguradora ? this.telAseguradora : 0;
+
+      let moto: Vehicle = new Vehicle(this.marca, this.subMarca, modelo, this.placa,
+        this.cc, this.serie, aseguradora, poliza, telAseguradora);
+
+      this.motosEdit.push(moto);
+      this.marca = "";
+      this.subMarca = "";
+      this.modelo = "SELECCIONE";
+      this.serie = "";
+      this.cc = null;
+      this.placa = "";
+      this.aseguradora = "";
+      this.poliza = "";
+      this.telAseguradora = null;
+    }
   }
-  delVehicle(indice: number){
+  delVehicle(indice: number) {
     this.motosEdit.splice(indice, 1);
   }
   addAlergia() {
-    
+
     if (this.newAllergy) {
       this.saludEdit.push(this.newAllergy);
       this.newAllergy = ""
-      
+
     }
 
   }
@@ -116,6 +154,9 @@ export class MiPerfilComponent implements OnInit {
     this.saludEdit.splice(indice, 1);
   }
   addContacto() {
+    this.nameEmpty = this.nameContact ? false : true;
+    this.numEmpty = this.telContact ? false : true;
+
     if (this.nameContact && this.telContact) {
 
       let telContacto = new TelEmergencia(this.nameContact, this.parentesco, this.telContact)
@@ -129,63 +170,88 @@ export class MiPerfilComponent implements OnInit {
   delContact(indice: number) {
     this.contactos.splice(indice, 1);
   }
-  saveProfile(form: NgForm){
-    if (form.value.nombre && form.value.aPat && form.value.aMat 
-        && form.value.celPhone && form.value.email && form.value.nickName ) {
-       
-          let infoSalud: Health = new Health(this.bloodType,this.saludEdit)
+  saveProfile(form: NgForm) {
 
-          let newPerfil = {
-           nombre: form.value.nombre, 
-           aPat: form.value.aPat, 
-           aMat: form.value.aMat, 
-           birthday: form.value.birthday,
-           celular: form.value.celPhone, 
-           email: form.value.email, 
-           nickName: form.value.nickName,
-           uid: this.uid,
-           motos: this.motosEdit,
-           salud: infoSalud,
-           contactos: this.contactos
-          }
-          
-          this.dataServices.updateMiembro(newPerfil);
-          this.changeEdit();
+    if (form.value.nombre && form.value.aPat && form.value.aMat
+      && form.value.celPhone && form.value.nickName) {
+
+      let infoSalud: Health = new Health(this.bloodType, this.saludEdit)
+
+      let newPerfil = {
+        nombre: form.value.nombre,
+        aPat: form.value.aPat,
+        aMat: form.value.aMat,
+        birthday: form.value.birthday,
+        celular: form.value.celPhone,
+        email: this.perfil.email,
+        nickName: form.value.nickName,
+        uid: this.uid,
+        motos: this.motosEdit,
+        salud: infoSalud,
+        contactos: this.contactos
+      }
+
+      this.dataServices.updateMiembro(newPerfil);
+      this.changeEdit();
     }
-    
-    
+
+
   }
-  changeArrow(){
+  changeArrow() {
     this.arrowDown = !this.arrowDown;
     this.arrowDown2 = true;
     this.arrowDown3 = true;
   }
-  changeArrow2(){
+  changeArrow2() {
     this.arrowDown2 = !this.arrowDown2;
     this.arrowDown = true;
     this.arrowDown3 = true;
   }
-  changeArrow3(){
+  changeArrow3() {
     this.arrowDown3 = !this.arrowDown3;
     this.arrowDown = true;
     this.arrowDown2 = true;
   }
-  changeEdit(){
+  changeEdit() {
     this.editar = !this.editar;
+    this.nameEmpty = this.editar ? false : true;
+    this.numEmpty = this.editar ? false : true;
   }
-  async upLoad(e){
-    
+  async upLoad(e) {
+
     let picture = e.target.files[0]
-    
+
     let splitFileName = picture.name.split(".");
     let extension = splitFileName[splitFileName.length - 1];
 
     let filePath = `media/Profile/${this.perfil.uid}.${extension}`;
     let profilePicture = await this.storageService.imgProfile(filePath, picture);
     this.perfil.urlImage = profilePicture;
-    
+
     this.dataServices.updateMiembro(this.perfil);
-    
-    
+
+  }
+
+  cambiarPass() {
+    // console.log(this.perfil.email);
+    this.loginService.sendMail(this.perfil.email);
+  }
+  checkValue() {
+    this.nameEmpty = this.nameContact ? false : true;
+    this.numEmpty = this.telContact ? false : true;
+  }
+  checkMotoValue() {
+    debugger
+    this.marcaEmpty = this.marca ? false : true;
+    this.subEmpty = this.subMarca ? false : true;
+    this.placaEmpty = this.placa ? false : true;
+    this.ccEmpty = this.cc ? false : true;
+    this.serieEmpty = this.serie ? false : true;
+
+    if (!this.marcaEmpty && !this.subEmpty && !this.placaEmpty && !this.ccEmpty && !this.serieEmpty) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

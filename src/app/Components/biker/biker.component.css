@@ -16,10 +16,22 @@
 .label-member{
     padding: 2px;
 }
+.salto-linea{
+    display: none;
+}
 @media only screen and (max-width: 991px){
 
 .mobile{
     display: none;
 }
-
+.salto-linea{
+    display: none;
 }
+}
+@media only screen and (max-width: 480px){
+
+    .salto-linea{
+        display: block;
+    }
+    
+    }

@@ -1,0 +1,134 @@
+.container{
+    margin-left: 10% !important;
+    margin-right: 10% !important;
+    width: 80% !important;
+}
+.intinerario{
+    margin-top: 1%;
+}
+.white-text{
+    color: aliceblue;
+}
+.btn-secondary, .red-button{
+    font-size: small;
+}
+.red-button{
+    color: aliceblue;
+    background-color: #ff4444;
+}
+.btn-plus{
+    border-radius: 50%;
+}
+.fill-width{
+    width: 100%;
+}
+.row{
+    width: 100%;
+}
+.align-btn{
+    margin-top: 10%;
+}
+.card{
+    background-color: transparent;
+    border-style: solid;
+}
+.card-header{
+    background-color: #616161;
+    width: 78vw;
+}
+.btn-link-perfil{
+    color: aliceblue;
+}
+.red-hover:hover{
+    color:  #ff4444;
+}
+.color-dark{
+background-color: #45526e;
+}
+.text-modal{
+color: black;
+background-color: #e0e0e0;
+}
+.text-modal .danger-color{
+color: #ff4444 !important;
+}
+.crear-evento{
+    margin-top: 2%;
+    font-size: larger;
+}
+.link-mapa{
+    color: #bbdefb;
+}
+.hard-code{
+    font-size: smaller;
+    color: #d0d6e2;
+    margin-bottom: 0px !important;
+    font-family: 'Turret Road', cursive;
+}
+.dynamic{
+    font-size: large;
+}
+.coments{
+    font-size: medium;
+}
+hr {
+    border-top: 1px solid aliceblue;
+}
+.cumpleños-collapse{
+    margin-bottom: 15px;
+}
+.brm-brm{
+    max-width: 80vw;
+}
+.mensajes, .historial{
+    padding-bottom: 10px;
+}
+.mensajes-title{
+    color: #ff4444 !important;
+}
+.dynamic-msj{
+    font-family: 'Gloria Hallelujah', cursive;
+}
+.dynamic-mail{
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+.capital{
+    text-transform: capitalize;
+}
+
+#formAddPagos{
+    margin-bottom: 10px;
+}
+.greenText{
+    color: rgb(104, 238, 104) !important;
+}
+.redText{
+    color: #ff4444 !important;
+}
+.titulo-modal{
+    color: whitesmoke;
+}
+.black-text{
+    color: black;
+}
+@media only screen and (max-width: 991px){
+    .align-btn{
+        margin-top: 0%;
+        margin-bottom: 2%;
+    }
+  
+}
+@media only screen and (max-width: 564px){
+    .container{
+        margin-left: 3% !important;
+        margin-right: 5% !important;
+        width: 90% !important;
+    }
+    .table{
+        /* background-color: #d0d6e2; */
+        font-size: 0.8rem;
+    }
+    .card-header{
+        width: 93vw;
+    }
+}

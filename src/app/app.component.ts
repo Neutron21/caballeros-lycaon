@@ -33,8 +33,10 @@ export class AppComponent implements OnInit {
       storageBucket: "caballeros-mc.appspot.com",
       messagingSenderId: "573088013461",
       appId: "1:573088013461:web:def5cd2e7729e7856e8f9c"
+     
     })
-
+   
+    
     this.sesionActiva()
     // console.log("isAut "+this.isAut);
   }

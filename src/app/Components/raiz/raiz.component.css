@@ -103,7 +103,6 @@
 
 .blur {
     position: absolute;
-    /* color: #fefefe; */
     color: #ff4444;
     font-family: 'Overpass', sans-serif;
     font-size: 64px;
@@ -151,7 +150,7 @@
 }
 .letraStyle{
 	color: aliceblue;
-	font-size: 130%;
+	font-size: 115%;
 	margin-top: 20px;
 }
 .titulos{
@@ -172,11 +171,26 @@
 		margin-top: 20px;
 	}
 	.blur{
-		font-size: 5vh;
+		font-size: 6vw;
+		letter-spacing: 11px;
 		margin: 1%;
 	}
 	.focus{
-		font-size: 5vh;
+		font-size: 6vw;
+		letter-spacing: 11px;
+		margin: 1%;
+	}
+}
+@media only screen and (max-width: 577px){
+	
+	.blur{
+		font-size: 4.5vh;
+		letter-spacing: 11px;
+		margin: 1%;
+	}
+	.focus{
+		font-size: 4.5vh;
+		letter-spacing: 11px;
 		margin: 1%;
 	}
 }
