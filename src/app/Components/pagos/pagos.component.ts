@@ -90,17 +90,17 @@ export class PagosComponent implements OnInit {
         if (evento.detalle) {
           evento.dataSalvaje = [];
           evento.data = [];
-          // console.log("no esta vacio");
+          
           let detallePagos = Object.keys(evento.detalle);
           var total = 0;
           for (var i of detallePagos) {
             var detalle = evento.detalle[i];
               detalle.key = i;
-              // console.log("detalle", detalle);
+              
               total += detalle.monto;
               evento.dataSalvaje.push(detalle);
               }
-              // console.log("total", total);
+              
               evento.data = this.ordenarDetalle(evento.dataSalvaje);
               evento.total = total;
         }
@@ -120,7 +120,7 @@ export class PagosComponent implements OnInit {
       // this.orderArray(this.pagosArray);
       // this.orderArray(this.historialArray);
     }
-    console.log(this.pagosArray);
+    // console.log(this.pagosArray);
   }
  async addEvent(form: NgForm){
    
@@ -139,7 +139,7 @@ export class PagosComponent implements OnInit {
       if (this.detalleAux) {
         newEvent.detalle = this.detalleAux;
       }
-      // console.log("newEvent", newEvent);
+      
      let modal :any = await this.dataServices.guardarPago(newEvent);
      
      this.modal = modal;
@@ -209,7 +209,6 @@ export class PagosComponent implements OnInit {
   }
  async addPAy(form: NgForm, key, indice){
     
-    // console.log(form.value);
     
     if (form.value.nombrePago && form.value.fechaPago && form.value.montoPago) {
       let newPay = {
@@ -219,8 +218,6 @@ export class PagosComponent implements OnInit {
         lugar: form.value.lugarPago,
         id: key,
       }
-   
-      // console.log(newPay);
       
       let modal: any = await this.dataServices.updatePago(newPay);
       this.modal = modal;
@@ -230,15 +227,13 @@ export class PagosComponent implements OnInit {
       // this.newEvent();
       this.cleanFormPago();
       this.openModal("custom-modal-1");
-      // this.pagosArray = [];
-      // this.getRegistros();
+    
       let arrayAux = this.pagosArray[indice].data;
       console.log("arrayAux", arrayAux);
       var total = 0;
       for (var element of arrayAux) {
         total += element.total;
 
-          // evento.dataSalvaje.push(detalle);
           }
           console.log("total", total);
           this.pagosArray[indice].total = total;
@@ -294,7 +289,6 @@ export class PagosComponent implements OnInit {
         nuevoObjeto[x.nombre].lugar = x.lugar
         
       })
-      // console.log(nuevoObjeto);
 
     let arrayAux = Object.keys(nuevoObjeto);
     for (var i of arrayAux) {
@@ -303,7 +297,7 @@ export class PagosComponent implements OnInit {
           arrayResponse.push(evento);
     }
     return arrayResponse;
-    // console.log(arrayResponse)
+
   }
 
   inputForm(tipo){
